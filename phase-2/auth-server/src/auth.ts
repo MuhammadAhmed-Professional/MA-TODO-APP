@@ -74,12 +74,12 @@ export const auth = betterAuth({
   /**
    * CORS Configuration
    */
-  trustedOrigins: [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://talal-s-tda.vercel.app",
-    "https://talal-s-tda-production.up.railway.app", // Backend needs to proxy requests
-  ],
+  trustedOrigins: process.env.CORS_ORIGINS
+    ? process.env.CORS_ORIGINS.split(",").map((o) => o.trim())
+    : [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+      ],
 
   /**
    * Rate Limiting

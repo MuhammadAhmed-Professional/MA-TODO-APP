@@ -133,9 +133,13 @@ async def signup(
 
             # If auth server returned error, forward it
             if auth_response.status_code != 200:
+                try:
+                    error_content = auth_response.json()
+                except Exception:
+                    error_content = {"error": auth_response.text or "Auth server error"}
                 return JSONResponse(
                     status_code=auth_response.status_code,
-                    content=auth_response.json(),
+                    content=error_content,
                 )
 
             # Extract response data from Better Auth
@@ -152,13 +156,20 @@ async def signup(
             detail="Auth server timeout - please try again",
         )
     except httpx.RequestError as e:
-        # Log detailed error for debugging
         import logging
         logger = logging.getLogger(__name__)
         logger.error(f"Failed to connect to auth server at {AUTH_SERVER_URL}: {type(e).__name__}: {str(e)}")
         raise HTTPException(
             status_code=503,
             detail=f"Auth server unavailable: {type(e).__name__} - {str(e)}",
+        )
+    except Exception as e:
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.error(f"Signup error: {type(e).__name__}: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Signup failed: {type(e).__name__}",
         )
 
 
@@ -275,9 +286,13 @@ async def login(
 
             # If auth server returned error, forward it
             if auth_response.status_code != 200:
+                try:
+                    error_content = auth_response.json()
+                except Exception:
+                    error_content = {"error": auth_response.text or "Auth server error"}
                 return JSONResponse(
                     status_code=auth_response.status_code,
-                    content=auth_response.json(),
+                    content=error_content,
                 )
 
             # Extract response data from Better Auth
@@ -294,13 +309,20 @@ async def login(
             detail="Auth server timeout - please try again",
         )
     except httpx.RequestError as e:
-        # Log detailed error for debugging
         import logging
         logger = logging.getLogger(__name__)
         logger.error(f"Failed to connect to auth server at {AUTH_SERVER_URL}: {type(e).__name__}: {str(e)}")
         raise HTTPException(
             status_code=503,
             detail=f"Auth server unavailable: {type(e).__name__} - {str(e)}",
+        )
+    except Exception as e:
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.error(f"Login error: {type(e).__name__}: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Login failed: {type(e).__name__}",
         )
 
 
