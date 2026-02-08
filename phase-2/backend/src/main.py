@@ -12,7 +12,6 @@ from typing import Optional
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.middleware.base import BaseHTTPMiddleware
 from fastapi.responses import JSONResponse
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
@@ -41,70 +40,36 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-class HTTPSRedirectMiddleware(BaseHTTPMiddleware):
+class SecurityHeadersMiddleware:
     """
-    Middleware to force HTTPS in redirect responses.
+    Pure ASGI middleware to add OWASP-recommended security headers.
 
-    Railway's reverse proxy handles HTTPS but FastAPI's redirect_slashes
-    generates HTTP redirect URLs. This middleware fixes the Location header.
-    """
-
-    async def dispatch(self, request: Request, call_next):
-        response = await call_next(request)
-
-        # Log ALL responses for debugging
-        logger.info(f"HTTPSRedirectMiddleware: {request.method} {request.url.path} → {response.status_code}")
-
-        # Fix redirect Location headers to use HTTPS
-        if response.status_code in (301, 302, 303, 307, 308):
-            location = response.headers.get("location", "")
-            logger.info(f"Redirect detected! Location header: {location}")
-            if location.startswith("http://"):
-                # Replace http:// with https://
-                fixed_location = location.replace("http://", "https://", 1)
-                response.headers["location"] = fixed_location
-                logger.info(f"✅ Fixed redirect: {location} → {fixed_location}")
-            else:
-                logger.info(f"⚠️ Location already HTTPS or empty: {location}")
-
-        return response
-
-
-class SecurityHeadersMiddleware(BaseHTTPMiddleware):
-    """
-    Middleware to add OWASP-recommended security headers.
-
-    Headers added:
-    - Strict-Transport-Security: Force HTTPS (HSTS)
-    - X-Content-Type-Options: Prevent MIME-type sniffing
-    - X-Frame-Options: Prevent clickjacking
-    - Content-Security-Policy: Mitigate XSS attacks
-    - X-XSS-Protection: Enable browser XSS protection
-    - Referrer-Policy: Control referrer information
+    Uses raw ASGI interface instead of BaseHTTPMiddleware to avoid
+    interference with CORSMiddleware's ASGI send wrapper.
     """
 
-    async def dispatch(self, request: Request, call_next):
-        response = await call_next(request)
+    def __init__(self, app):
+        self.app = app
 
-        # HSTS: Force HTTPS for 1 year (31536000 seconds)
-        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
 
-        # Prevent MIME-type sniffing
-        response.headers["X-Content-Type-Options"] = "nosniff"
+        async def send_with_security_headers(message):
+            if message["type"] == "http.response.start":
+                headers = list(message.get("headers", []))
+                headers.extend([
+                    (b"strict-transport-security", b"max-age=31536000; includeSubDomains"),
+                    (b"x-content-type-options", b"nosniff"),
+                    (b"x-frame-options", b"DENY"),
+                    (b"x-xss-protection", b"1; mode=block"),
+                    (b"referrer-policy", b"strict-origin-when-cross-origin"),
+                ])
+                message = {**message, "headers": headers}
+            await send(message)
 
-        # Prevent clickjacking (deny iframe embedding)
-        response.headers["X-Frame-Options"] = "DENY"
-
-        # Content Security Policy - strict policy for API
-        response.headers["Content-Security-Policy"] = "default-src 'self'; frame-ancestors 'none'"
-
-        # Enable browser XSS protection (legacy, but still useful)
-        response.headers["X-XSS-Protection"] = "1; mode=block"
-
-        # Referrer policy - strict for security
-        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-
-        return response
+        await self.app(scope, receive, send_with_security_headers)
 
 
 # Initialize limiter
@@ -198,12 +163,8 @@ CORS_ORIGINS = [origin.strip() for origin in os.getenv("CORS_ORIGINS", "http://l
 # Log CORS origins for debugging
 logger.info(f"CORS Origins configured: {CORS_ORIGINS}")
 
-# Add HTTPS redirect middleware (MUST be first to fix Railway proxy redirects)
-app.add_middleware(HTTPSRedirectMiddleware)
-
-# Add security headers middleware
-app.add_middleware(SecurityHeadersMiddleware)
-
+# CORS must be added BEFORE any BaseHTTPMiddleware subclasses.
+# SecurityHeadersMiddleware is now pure ASGI to avoid interfering with CORSMiddleware.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=CORS_ORIGINS,
@@ -211,6 +172,9 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+# Pure ASGI security headers middleware (won't interfere with CORS)
+app.add_middleware(SecurityHeadersMiddleware)
 
 # TrustedHostMiddleware disabled for Railway deployment
 # Railway provides its own host validation at the load balancer level
