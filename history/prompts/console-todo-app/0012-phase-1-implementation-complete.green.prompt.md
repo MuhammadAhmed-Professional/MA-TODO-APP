@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: 001-console-todo-app
 branch: 003-project-readme
-user: talal
+user: muhammadahmed
 command: /sp.implement
 labels: ["implementation", "menu-loop", "documentation", "phase-1-complete"]
 links:

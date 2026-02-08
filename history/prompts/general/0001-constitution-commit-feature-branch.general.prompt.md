@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: none
 branch: docs/phase1-constitution
-user: Talal Ahmed
+user: Muhammad Ahmed
 command: /sp.git.commit_pr
 labels: ["git", "workflow", "constitution", "feature-branch", "commit"]
 links:

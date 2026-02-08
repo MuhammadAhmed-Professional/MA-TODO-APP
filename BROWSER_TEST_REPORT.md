@@ -2,8 +2,8 @@
 
 **Test Date**: December 27, 2025
 **Test Method**: Automated browser testing with Playwright
-**Frontend URL**: https://talal-s-tda.vercel.app
-**Backend URL**: https://tda-backend-production.up.railway.app
+**Frontend URL**: https://frontend-six-coral-90.vercel.app
+**Backend URL**: https://backend-production-9a40.up.railway.app
 
 ---
 
@@ -29,7 +29,7 @@
 ### 1. Login Page Load ✅ PASS
 
 **Test**: Navigate to login page
-**URL**: https://talal-s-tda.vercel.app/login
+**URL**: https://frontend-six-coral-90.vercel.app/login
 **Result**: ✅ Page loads successfully
 
 **Screenshot Evidence**:
@@ -51,8 +51,8 @@
 **Console Logs**:
 ```
 🔍 AUTH CLIENT DEBUG:
-  process.env.NEXT_PUBLIC_API_URL: https://tda-backend-production.up.railway.app
-  BACKEND_URL: https://tda-backend-production.up.railway.app
+  process.env.NEXT_PUBLIC_API_URL: https://backend-production-9a40.up.railway.app
+  BACKEND_URL: https://backend-production-9a40.up.railway.app
 ```
 
 **Assessment**: Login UI is production-ready and beautiful.
@@ -64,13 +64,13 @@
 **Test**: Enter credentials and submit
 **Credentials**:
 - Email: `ta234567801@gmail.com`
-- Password: `talal12345`
+- Password: `ahmed12345`
 
 **Result**: ✅ Form submission successful
 
 **Network Request**:
 ```
-POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
 Status: 200 OK
 Response: { user: {...}, session: { token: "...", expiresAt: "..." } }
 ```
@@ -86,8 +86,8 @@ Response: { user: {...}, session: { token: "...", expiresAt: "..." } }
 
 **URL Change**:
 ```
-Before: https://talal-s-tda.vercel.app/login
-After:  https://talal-s-tda.vercel.app/dashboard
+Before: https://frontend-six-coral-90.vercel.app/login
+After:  https://frontend-six-coral-90.vercel.app/dashboard
 ```
 
 **Assessment**: Navigation flow working correctly.
@@ -133,10 +133,10 @@ Vercel Status: 🔄 CDN propagating (typically 5-15 minutes)
 **Console Errors**:
 ```
 [ERROR] Failed to load resource: the server responded with a status of 401 ()
-        @ https://tda-backend-production.up.railway.app/api/auth/get-session
+        @ https://backend-production-9a40.up.railway.app/api/auth/get-session
 
 [ERROR] Failed to load resource: the server responded with a status of 401 ()
-        @ https://tda-backend-production.up.railway.app/api/tasks/
+        @ https://backend-production-9a40.up.railway.app/api/tasks/
 
 [ERROR] Load tasks error: APIError: Session expired. Please log in again.
 ```
@@ -228,8 +228,8 @@ Actual: Authorization header NOT present
 ### The Cross-Domain Authentication Challenge
 
 **Problem**:
-- Frontend: `talal-s-tda.vercel.app` (Vercel)
-- Backend: `tda-backend-production.up.railway.app` (Railway)
+- Frontend: `frontend-six-coral-90.vercel.app` (Vercel)
+- Backend: `backend-production-9a40.up.railway.app` (Railway)
 - Different domains → Browsers block third-party cookies
 
 **Solution Implemented**:
@@ -265,7 +265,7 @@ Mac: Cmd + Shift + R
 **Step 2**: Login Again
 ```
 Email: ta234567801@gmail.com
-Password: talal12345
+Password: ahmed12345
 ```
 
 **Step 3**: Check Console (F12)
@@ -308,12 +308,12 @@ $ git log --oneline -5
 
 ### Vercel Deployment
 ```
-Project: Talal-s-TDA
+Project: MA-TODO-APP
 Environment: Production
 Branch: main
 Commit: 86cbc83
 Status: Deployed (CDN propagating)
-URL: https://talal-s-tda.vercel.app
+URL: https://frontend-six-coral-90.vercel.app
 ```
 
 ### Railway Deployment
@@ -321,7 +321,7 @@ URL: https://talal-s-tda.vercel.app
 Service: tda-backend-production
 Status: Running
 Health: Healthy
-URL: https://tda-backend-production.up.railway.app
+URL: https://backend-production-9a40.up.railway.app
 Database: Connected (Neon PostgreSQL)
 ```
 
@@ -417,7 +417,7 @@ Database: Connected (Neon PostgreSQL)
 
 ### For Testing (When CDN Updates)
 1. Hard refresh: `Ctrl+Shift+R`
-2. Login: `ta234567801@gmail.com` / `talal12345`
+2. Login: `ta234567801@gmail.com` / `ahmed12345`
 3. Console: Look for `🔐 SIGNIN RESPONSE:` log
 4. Test: Create/Complete/Delete tasks
 5. Verify: Session persistence on refresh

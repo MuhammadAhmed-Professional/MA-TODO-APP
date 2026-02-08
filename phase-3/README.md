@@ -1,7 +1,7 @@
 # Phase III: AI Chatbot with MCP Tools
 
 **Status**: ✅ Complete (integrated into Phase II backend)
-**Live**: [https://talal-s-tda.vercel.app](https://talal-s-tda.vercel.app) (Chat page)
+**Live**: [https://frontend-six-coral-90.vercel.app](https://frontend-six-coral-90.vercel.app) (Chat page)
 
 ---
 

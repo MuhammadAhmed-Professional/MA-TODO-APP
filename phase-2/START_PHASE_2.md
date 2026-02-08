@@ -11,15 +11,15 @@
 
 ```cmd
 # Window 1: Auth Server (Port 3001)
-cd D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\auth-server
+cd E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\auth-server
 start_auth.bat
 
 # Window 2: Backend (Port 8000)
-cd D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\backend
+cd E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\backend
 start_backend.bat
 
 # Window 3: Frontend (Port 3000)
-cd D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\frontend
+cd E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\frontend
 start_frontend.bat
 ```
 

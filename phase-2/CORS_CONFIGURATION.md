@@ -67,12 +67,12 @@ app.add_middleware(
 
 **Environment Variable** (`.env`):
 ```env
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-8251.up.railway.app
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-cd0e.up.railway.app
 ```
 
 **For Production** (Railway):
 ```env
-CORS_ORIGINS=http://localhost:3000,https://your-frontend.vercel.app,https://auth-server-production-8251.up.railway.app
+CORS_ORIGINS=http://localhost:3000,https://your-frontend.vercel.app,https://auth-server-production-cd0e.up.railway.app
 ```
 
 **Status**: ✓ Configured correctly
@@ -321,12 +321,12 @@ response.set_cookie(
 **Auth Server Environment Variables** (Railway dashboard):
 ```env
 CORS_ORIGINS=https://your-frontend.vercel.app,http://localhost:3000
-BETTER_AUTH_URL=https://auth-server-production-8251.up.railway.app
+BETTER_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 ```
 
 **Backend Environment Variables** (Railway dashboard):
 ```env
-CORS_ORIGINS=https://your-frontend.vercel.app,https://auth-server-production-8251.up.railway.app,http://localhost:3000
+CORS_ORIGINS=https://your-frontend.vercel.app,https://auth-server-production-cd0e.up.railway.app,http://localhost:3000
 ```
 
 **Why include localhost**: Allows testing production APIs from local frontend
@@ -337,7 +337,7 @@ CORS_ORIGINS=https://your-frontend.vercel.app,https://auth-server-production-825
 
 **Environment Variables** (Vercel dashboard):
 ```env
-NEXT_PUBLIC_AUTH_URL=https://auth-server-production-8251.up.railway.app
+NEXT_PUBLIC_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 NEXT_PUBLIC_API_URL=https://your-backend.up.railway.app
 ```
 

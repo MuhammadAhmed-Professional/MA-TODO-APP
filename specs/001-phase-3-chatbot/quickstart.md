@@ -24,7 +24,7 @@
 #### Backend Environment
 
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 
 # Copy environment template
 cp .env.example .env.local
@@ -41,7 +41,7 @@ RATE_LIMIT_PER_MINUTE=60
 #### Frontend Environment
 
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/frontend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/frontend
 
 # Copy environment template
 cp .env.example .env.local
@@ -58,7 +58,7 @@ NEXT_PUBLIC_WS_URL=ws://localhost:8000
 ### Create Migration
 
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 
 # Create migration for conversation tables
 uv run alembic revision --autogenerate -m "Add conversation tables for Phase III"

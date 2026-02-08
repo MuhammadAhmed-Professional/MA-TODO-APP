@@ -28,7 +28,7 @@ spec:
       serviceAccountName: recurring-task-service-sa
       containers:
         - name: recurring-task-service
-          image: ghcr.io/demolinator/recurring-task-service:latest
+          image: ghcr.io/muhammadahmed-professional/recurring-task-service:latest
           imagePullPolicy: Always
           ports:
             - name: http

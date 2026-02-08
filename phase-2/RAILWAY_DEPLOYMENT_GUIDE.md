@@ -55,8 +55,8 @@ const pool = new Pool({
 trustedOrigins: [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "https://talal-s-tda.vercel.app",
-  "https://tda-backend-production.up.railway.app", // Backend proxies requests
+  "https://frontend-six-coral-90.vercel.app",
+  "https://backend-production-9a40.up.railway.app", // Backend proxies requests
 ],
 ```
 
@@ -70,7 +70,7 @@ trustedOrigins: [
 ```env
 # Auth Server Configuration
 # Better Auth server URL (for proxying authentication requests)
-# For Railway: https://auth-server-production-8251.up.railway.app
+# For Railway: https://auth-server-production-cd0e.up.railway.app
 # For local: http://localhost:3001
 AUTH_SERVER_URL=http://localhost:3001
 ```
@@ -89,8 +89,8 @@ Set these variables in Railway dashboard for the **auth-server** service:
 |----------|-------|-------|
 | `DATABASE_URL` | `postgresql://neondb_owner:...@ep-...neon.tech/neondb?sslmode=require` | From Neon dashboard |
 | `BETTER_AUTH_SECRET` | `<your-secret>` | Must match backend `JWT_SECRET` |
-| `BETTER_AUTH_URL` | `https://auth-server-production-8251.up.railway.app` | Your auth server Railway URL |
-| `CORS_ORIGINS` | `http://localhost:3000,https://talal-s-tda.vercel.app,https://tda-backend-production.up.railway.app` | Comma-separated |
+| `BETTER_AUTH_URL` | `https://auth-server-production-cd0e.up.railway.app` | Your auth server Railway URL |
+| `CORS_ORIGINS` | `http://localhost:3000,https://frontend-six-coral-90.vercel.app,https://backend-production-9a40.up.railway.app` | Comma-separated |
 | `NODE_ENV` | `production` | Enable production mode |
 | `PORT` | `3001` | Railway auto-assigns, but set for consistency |
 
@@ -102,8 +102,8 @@ Set these variables in Railway dashboard for the **backend** service:
 |----------|-------|-------|
 | `DATABASE_URL` | `postgresql://neondb_owner:...@ep-...neon.tech/neondb?sslmode=require` | Same as auth server |
 | `JWT_SECRET` | `<your-secret>` | Must match auth server `BETTER_AUTH_SECRET` |
-| `AUTH_SERVER_URL` | `https://auth-server-production-8251.up.railway.app` | **CRITICAL**: Must be set! |
-| `CORS_ORIGINS` | `http://localhost:3000,https://talal-s-tda.vercel.app` | Frontend origins |
+| `AUTH_SERVER_URL` | `https://auth-server-production-cd0e.up.railway.app` | **CRITICAL**: Must be set! |
+| `CORS_ORIGINS` | `http://localhost:3000,https://frontend-six-coral-90.vercel.app` | Frontend origins |
 | `ENVIRONMENT` | `production` | Enable production mode |
 | `JWT_ALGORITHM` | `HS256` | Default algorithm |
 | `ACCESS_TOKEN_EXPIRE_MINUTES` | `15` | 15 minute expiry |
@@ -139,7 +139,7 @@ git push origin main
 **Backend**:
 1. Click on "backend" service
 2. Go to "Variables" tab
-3. **CRITICAL**: Add `AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app`
+3. **CRITICAL**: Add `AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app`
 4. Verify all other variables are set correctly
 5. Click "Deploy" to trigger a new deployment
 
@@ -154,14 +154,14 @@ git push origin main
 
 **Check Backend Logs**:
 ```
-🔗 Backend using AUTH_SERVER_URL: https://auth-server-production-8251.up.railway.app
+🔗 Backend using AUTH_SERVER_URL: https://auth-server-production-cd0e.up.railway.app
 ```
 
 ### Step 4: Test Authentication
 
 **Test Auth Server Directly**:
 ```bash
-curl -X POST https://auth-server-production-8251.up.railway.app/api/auth/sign-up/email \
+curl -X POST https://auth-server-production-cd0e.up.railway.app/api/auth/sign-up/email \
   -H "Content-Type: application/json" \
   -d '{"name":"Test User","email":"test@example.com","password":"password123"}'
 ```
@@ -170,7 +170,7 @@ curl -X POST https://auth-server-production-8251.up.railway.app/api/auth/sign-up
 
 **Test Backend Proxy**:
 ```bash
-curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email \
+curl -X POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"password123"}'
 ```
@@ -178,7 +178,7 @@ curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/emai
 **Expected Response**: 200 OK with user object and session
 
 **Test Frontend**:
-1. Go to https://talal-s-tda.vercel.app/login
+1. Go to https://frontend-six-coral-90.vercel.app/login
 2. Enter email and password
 3. Click "Sign In"
 4. Should redirect to /dashboard without 504 error
@@ -198,10 +198,10 @@ curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/emai
 **Debug Commands**:
 ```bash
 # Check auth server health
-curl https://auth-server-production-8251.up.railway.app/health
+curl https://auth-server-production-cd0e.up.railway.app/health
 
 # Check backend can reach auth server
-curl https://tda-backend-production.up.railway.app/api/auth/get-session
+curl https://backend-production-9a40.up.railway.app/api/auth/get-session
 ```
 
 ### Database Connection Errors
@@ -245,7 +245,7 @@ curl https://tda-backend-production.up.railway.app/api/auth/get-session
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Frontend (Vercel)                            │
-│              https://talal-s-tda.vercel.app            │
+│              https://frontend-six-coral-90.vercel.app            │
 └─────────────────┬───────────────────────┬───────────────────────┘
                   │                       │
                   │ Auth Requests         │ API Requests

@@ -1,16 +1,16 @@
-"""CLI Banner Module for Talal's TDA.
+"""CLI Banner Module for MA-TODO-APP.
 
 This module provides banner display functionality for the Todo Console Application.
 Displays ASCII art branding with version information and optional ANSI color support.
 
 Features:
-- ASCII art banner with "Talal's TDA" branding
+- ASCII art banner with "MA-TODO-APP" branding
 - Application tagline and copyright information
 - Version extraction from package metadata
 - Terminal capability detection for color support
 - Graceful fallback to plain text when colors not supported
 
-Author: Talal
+Author: Muhammad Ahmed
 Project: Phase I Hackathon - Console Todo Application
 """
 
@@ -23,16 +23,16 @@ RESET = '\033[0m'
 
 # ASCII Art - 80 columns, 5 lines (T004)
 ASCII_ART_LINES = [
-    "  _____     _       _       _____ ____    _    ",
-    " |_   _|_ _| | __ _| |___  |_   _|  _ \\  / \\   ",
-    "   | |/ _` | |/ _` | / __|   | | | | | |/ _ \\  ",
-    "   | | (_| | | (_| | \\__ \\   | | | |_| / ___ \\ ",
-    "   |_|\\__,_|_|\\__,_|_|___/   |_| |____/_/   \\_\\\\",
+    "  __  __    _      _____ ___  ____   ___       _    ____  ____  ",
+    " |  \\/  |  / \\    |_   _/ _ \\|  _ \\ / _ \\     / \\  |  _ \\|  _ \\ ",
+    " | |\\/| | / _ \\     | || | | | | | | | | |   / _ \\ | |_) | |_) |",
+    " | |  | |/ ___ \\    | || |_| | |_| | |_| |  / ___ \\|  __/|  __/ ",
+    " |_|  |_/_/   \\_\\   |_| \\___/|____/ \\___/  /_/   \\_\\_|   |_|    ",
 ]
 
 # Static Text (T005, T006)
 TAGLINE = "Your Personal Task Manager"
-COPYRIGHT = "© 2025 Talal - Phase I Hackathon Project"
+COPYRIGHT = "© 2025 Muhammad Ahmed - Phase I Hackathon Project"
 
 # Border (T007)
 BORDER = "=" * 80

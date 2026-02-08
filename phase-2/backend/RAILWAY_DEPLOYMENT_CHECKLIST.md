@@ -1,7 +1,7 @@
 # Railway Deployment Checklist for Backend Service
 
 **Service Name**: `imaginative-strength`
-**URL**: https://talal-s-tda-production.up.railway.app
+**URL**: https://backend-production-9a40.up.railway.app
 **Database**: Neon PostgreSQL (Serverless)
 
 ---
@@ -99,7 +99,7 @@ curl http://localhost:8000/health
 ### Step 1: Verify Environment Variables
 
 1. Go to Railway Dashboard: https://railway.app/dashboard
-2. Select project: **Talal's TDA**
+2. Select project: **MA-TODO-APP**
 3. Select service: **imaginative-strength**
 4. Click **Variables** tab
 5. Verify these variables exist with **EXACT** values:
@@ -107,7 +107,7 @@ curl http://localhost:8000/health
 ```env
 DATABASE_URL=postgresql://neondb_owner:npg_8WSLxbOhQf1a@ep-solitary-morning-a4vdcuab-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require
 JWT_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-8251.up.railway.app,https://talal-s-tda.vercel.app
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-cd0e.up.railway.app,https://frontend-six-coral-90.vercel.app
 ENVIRONMENT=production
 ```
 
@@ -168,13 +168,13 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 
 ```bash
 # Test health endpoint
-curl https://talal-s-tda-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 
 # Expected response:
 # {"status":"healthy","timestamp":"2025-12-20T..."}
 
 # Test API docs
-curl https://talal-s-tda-production.up.railway.app/docs
+curl https://backend-production-9a40.up.railway.app/docs
 # Should return HTML for Swagger UI
 ```
 
@@ -290,7 +290,7 @@ uv run alembic downgrade base
 
 ```bash
 # Create test user
-curl -X POST https://talal-s-tda-production.up.railway.app/api/auth/signup \
+curl -X POST https://backend-production-9a40.up.railway.app/api/auth/signup \
   -H "Content-Type: application/json" \
   -d '{
     "email": "test@example.com",

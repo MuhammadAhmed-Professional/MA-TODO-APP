@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: 004-phase-2-web-app
 branch: 004-phase-2-web-app
-user: Talal
+user: muhammadahmed
 command: /sp.analyze
 labels: ["analysis", "quality-assurance", "cross-artifact", "validation"]
 links:

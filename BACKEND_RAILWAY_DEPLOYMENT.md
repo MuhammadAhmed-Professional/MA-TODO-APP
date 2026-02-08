@@ -81,7 +81,7 @@ Ensure these are configured in Railway Dashboard under **Variables**:
 | Variable | Value | Description |
 |----------|-------|-------------|
 | `DATABASE_URL` | `postgresql://user:pass@host/db` | Neon PostgreSQL connection string |
-| `AUTH_SERVER_URL` | `https://auth-server-production-8251.up.railway.app` | Better Auth server URL |
+| `AUTH_SERVER_URL` | `https://auth-server-production-cd0e.up.railway.app` | Better Auth server URL |
 | `JWT_SECRET` | `<match-auth-server>` | Must match auth server's BETTER_AUTH_SECRET |
 | `CORS_ORIGINS` | `https://your-frontend.vercel.app` | Frontend URL (comma-separated for multiple) |
 | `ENVIRONMENT` | `production` | Environment type |

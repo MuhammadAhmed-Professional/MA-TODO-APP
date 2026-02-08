@@ -17,7 +17,7 @@ https://railway.app/project/1a580b9d-e43b-4faf-a523-b3454b9d3bf1/service/ac8b844
 2. Click "New Variable"
 3. Add:
    - Variable Name: AUTH_SERVER_URL
-   - Value: https://auth-server-production-8251.up.railway.app
+   - Value: https://auth-server-production-cd0e.up.railway.app
 4. Click "Save"
 
 ### Step 3: Wait for Redeploy

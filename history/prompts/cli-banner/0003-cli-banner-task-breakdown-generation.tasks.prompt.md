@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5
 feature: 002-cli-banner
 branch: 002-cli-banner
-user: talal
+user: muhammadahmed
 command: /sp.tasks
 labels: ["tasks", "implementation", "tdd", "breakdown", "cli-banner"]
 links:

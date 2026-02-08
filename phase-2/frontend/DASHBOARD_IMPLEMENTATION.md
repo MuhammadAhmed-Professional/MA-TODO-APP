@@ -17,7 +17,7 @@ This document describes the professional task management dashboard interface cre
 - Dark mode support
 - Wraps all dashboard pages
 
-**Path**: `D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\frontend\src\app\(dashboard)\layout.tsx`
+**Path**: `E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\frontend\src\app\(dashboard)\layout.tsx`
 
 ---
 
@@ -41,7 +41,7 @@ This document describes the professional task management dashboard interface cre
 - Add Task opens dialog in parent component
 - Avatar displays user initials in gradient circle
 
-**Path**: `D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\frontend\src\components\layout\Header.tsx`
+**Path**: `E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\frontend\src\components\layout\Header.tsx`
 
 ---
 
@@ -81,7 +81,7 @@ interface TaskCardProps {
 }
 ```
 
-**Path**: `D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\frontend\src\components\tasks\TaskCard.tsx`
+**Path**: `E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\frontend\src\components\tasks\TaskCard.tsx`
 
 ---
 
@@ -119,7 +119,7 @@ interface TaskListProps {
 }
 ```
 
-**Path**: `D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\frontend\src\components\tasks\TaskList.tsx`
+**Path**: `E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\frontend\src\components\tasks\TaskList.tsx`
 
 ---
 
@@ -172,7 +172,7 @@ interface TaskFormProps {
 }
 ```
 
-**Path**: `D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\frontend\src\components\tasks\TaskForm.tsx`
+**Path**: `E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\frontend\src\components\tasks\TaskForm.tsx`
 
 ---
 
@@ -203,7 +203,7 @@ interface EmptyStateProps {
 }
 ```
 
-**Path**: `D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\frontend\src\components\tasks\EmptyState.tsx`
+**Path**: `E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\frontend\src\components\tasks\EmptyState.tsx`
 
 ---
 
@@ -260,7 +260,7 @@ interface EmptyStateProps {
 - Reverts if server request fails
 - Provides instant feedback
 
-**Path**: `D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\frontend\src\app\(dashboard)\dashboard\page.tsx`
+**Path**: `E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\frontend\src\app\(dashboard)\dashboard\page.tsx`
 
 ---
 

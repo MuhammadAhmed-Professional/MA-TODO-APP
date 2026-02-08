@@ -7,16 +7,16 @@ surface: agent
 model: claude-haiku-4-5-20251001
 feature: phase-3-chatbot
 branch: main
-user: talal
+user: muhammadahmed
 command: /sp.constitution
 labels: ["constitution-v3", "phase-3-ai", "agents-sdk", "mcp-protocol", "major-version", "hackathon-ii"]
 links:
-  spec: /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/specs/features/phase-3-chatbot/spec.md
+  spec: /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/specs/features/phase-3-chatbot/spec.md
   ticket: null
   adr: null
   pr: null
 files:
-  - /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/.specify/memory/constitution.md
+  - /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/.specify/memory/constitution.md
 tests:
   - Constitution template validation (no bracket tokens)
   - Section structure validation (I-XVIII principles, governance)
@@ -67,7 +67,7 @@ User provided the entire Hackathon II specification document (5000+ lines) conta
 
 **Constitution Updated Successfully: v2.0.0 → v3.0.0 MAJOR**
 
-**File**: `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/.specify/memory/constitution.md`
+**File**: `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/.specify/memory/constitution.md`
 
 **Version Bump Rationale**:
 MAJOR version increment justified because:
@@ -178,7 +178,7 @@ backend/src/
   - Completeness: ✅ PASS (agent patterns, MCP tools, conversation state, NLU, error handling, observability)
 
 - 📁 **Files**:
-  - 1 file updated: `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/.specify/memory/constitution.md` (1440+ lines)
+  - 1 file updated: `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/.specify/memory/constitution.md` (1440+ lines)
   - Comprehensive sync impact report embedded as HTML comment
 
 - 🔁 **Next prompts**:

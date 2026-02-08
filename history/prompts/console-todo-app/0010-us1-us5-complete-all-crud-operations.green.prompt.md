@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5
 feature: 001-console-todo-app
 branch: 001-console-todo-app
-user: talal
+user: muhammadahmed
 command: /sp.implement
 labels: ["tdd", "green-phase", "crud-complete", "milestone"]
 links:

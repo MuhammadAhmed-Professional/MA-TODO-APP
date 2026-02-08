@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: 001-console-todo-app
 branch: 001-console-todo-app
-user: talal
+user: muhammadahmed
 command: /sp.analyze
 labels: ["spec-clarification", "quality-assurance", "cross-artifact-analysis"]
 links:

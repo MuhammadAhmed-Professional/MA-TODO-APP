@@ -12,13 +12,13 @@
 
 ## Project Location & Deployment
 
-**Project Root**: `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/`
+**Project Root**: `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/`
 
-**Phase III Specification Location**: `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/specs/features/phase-3-chatbot/`
+**Phase III Specification Location**: `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/specs/features/phase-3-chatbot/`
 
 **Phase III Implementation Location** (to be created):
 ```
-/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-3/
+/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-3/
 ├── frontend/                    # ChatKit UI + Next.js integration
 │   └── src/
 │       └── components/ChatBot.tsx

@@ -424,5 +424,5 @@ The project is **production-ready** and demonstrates the skills needed for a sta
 
 **Report Generated**: January 31, 2026
 **Project**: Evolution of Todo - Hackathon II
-**Repository**: https://github.com/Demolinator/Talal-s-TDA
+**Repository**: https://github.com/MuhammadAhmed-Professional/MA-TODO-APP
 **Grade: A (95%)**

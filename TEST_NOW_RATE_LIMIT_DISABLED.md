@@ -25,7 +25,7 @@ Railway needs to deploy the new backend:
 ### 2. After 2 Minutes - Try Login
 
 1. **Open fresh incognito window**
-2. Navigate to: https://talal-s-tda.vercel.app/login
+2. Navigate to: https://frontend-six-coral-90.vercel.app/login
 3. **Open DevTools** (F12) → **Network** tab
 4. **Login** with your credentials
 
@@ -35,7 +35,7 @@ Railway needs to deploy the new backend:
 
 #### Login POST Request:
 ```
-POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
 Status: 200 OK (should NOT be 429 anymore!)
 ```
 
@@ -52,7 +52,7 @@ Set-Cookie: auth_token=eyJ...; HttpOnly; Secure; SameSite=None; Max-Age=900
 
 #### Tasks GET Request:
 ```
-GET https://tda-backend-production.up.railway.app/api/tasks
+GET https://backend-production-9a40.up.railway.app/api/tasks
 ```
 
 **Click on it → Headers → Request Headers:**

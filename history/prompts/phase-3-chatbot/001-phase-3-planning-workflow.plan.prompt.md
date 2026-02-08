@@ -11,10 +11,10 @@ user: hackathon-participant
 command: /sp.plan (with Hackathon II requirements)
 labels: ["planning", "design", "phase-3", "chatbot", "mcp", "openai"]
 links:
-  spec: /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/specs/features/phase-3-chatbot/spec.md
+  spec: /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/specs/features/phase-3-chatbot/spec.md
   ticket: null
   adr: null
-  pr: https://github.com/Talal-Alasmari/phase-1/pull/001
+  pr: https://github.com/MuhammadAhmed-Professional/MA-TODO-APP/pull/001
 files:
   - specs/001-phase-3-chatbot/research.md
   - specs/001-phase-3-chatbot/data-model.md

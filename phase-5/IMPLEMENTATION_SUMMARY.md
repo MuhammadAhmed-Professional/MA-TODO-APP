@@ -150,7 +150,7 @@ This document summarizes the implementation of Phase V advanced features for the
 
 1. Run database migration:
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-5/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-5/backend
 python -m migrations.002_advanced_features
 ```
 
@@ -163,14 +163,14 @@ uv run uvicorn src.main:app --reload
 
 1. Start recurring-task-service:
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-5/services/recurring-task-service
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-5/services/recurring-task-service
 pip install -r requirements.txt
 python -m uvicorn main:app --port 8002
 ```
 
 2. Start notification-service:
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-5/services/notification-service
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-5/services/notification-service
 pip install -r requirements.txt
 python -m uvicorn main:app --port 8001
 ```

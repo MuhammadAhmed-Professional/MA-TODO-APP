@@ -11,7 +11,7 @@ Code has been pushed to GitHub, but Railway is still returning HTTP redirects. N
 2. Click **"Settings"** tab (left sidebar)
 3. Scroll to **"Source"** section
 4. **Verify:**
-   - ✅ Source Repo: Should show `Demolinator/Talal-s-TDA` or similar
+   - ✅ Source Repo: Should show `MuhammadAhmed-Professional/MA-TODO-APP` or similar
    - ✅ Branch: Should show `main`
    - ✅ Root Directory: Should show `phase-2/backend` or `/phase-2/backend`
 
@@ -52,7 +52,7 @@ If Railway is on an old commit:
 1. Go to **"Settings"** tab
 2. Under **"Source"**, click **"Disconnect Source"**
 3. Click **"Connect Repo"**
-4. Select your GitHub repo: `Demolinator/Talal-s-TDA`
+4. Select your GitHub repo: `MuhammadAhmed-Professional/MA-TODO-APP`
 5. Select branch: `main`
 6. Set root directory: `phase-2/backend`
 7. Click **"Deploy"**
@@ -79,12 +79,12 @@ After deployment completes, check the logs:
 ## Step 5: Test with curl
 
 ```bash
-curl -I https://tda-backend-production.up.railway.app/api/tasks
+curl -I https://backend-production-9a40.up.railway.app/api/tasks
 ```
 
 **Look for:**
 ```
-Location: https://tda-backend-production.up.railway.app/api/tasks/
+Location: https://backend-production-9a40.up.railway.app/api/tasks/
 ```
 
 ✅ HTTPS = Working

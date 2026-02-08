@@ -84,7 +84,7 @@ FastAPI catches exception → 500 Internal Server Error
 ### Before Fix:
 ```bash
 curl -H "Authorization: Bearer ZEt824NAor2jaH9H5iU9ppXcAMPjPPwH" \
-  https://tda-backend-production.up.railway.app/api/tasks
+  https://backend-production-9a40.up.railway.app/api/tasks
 
 # Response: 500 Internal Server Error
 # {"detail":"Internal server error","error_id":"4488608f-712c-4a8b-9d7e-f0a7949f24da"}
@@ -93,7 +93,7 @@ curl -H "Authorization: Bearer ZEt824NAor2jaH9H5iU9ppXcAMPjPPwH" \
 ### After Fix:
 ```bash
 curl -H "Authorization: Bearer ZEt824NAor2jaH9H5iU9ppXcAMPjPPwH" \
-  https://tda-backend-production.up.railway.app/api/tasks
+  https://backend-production-9a40.up.railway.app/api/tasks
 
 # Response: 401 Unauthorized (proper behavior for expired token!)
 # {"detail":"Session expired - please log in again"}
@@ -136,7 +136,7 @@ The 401 error is **expected** because the session token expired. This proves the
 
 ### To Test Complete Workflow:
 
-1. **Login via Frontend**: Navigate to https://talal-s-tda.vercel.app
+1. **Login via Frontend**: Navigate to https://frontend-six-coral-90.vercel.app
 2. **Authenticate**: Login with your credentials (Better Auth)
 3. **Create Task**: Add a new todo task
 4. **Verify**: Task appears in list ✅
@@ -164,12 +164,12 @@ All operations should now return **200/201/204** responses (not 500!).
 
 ```bash
 # ✅ Health check
-curl https://tda-backend-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 # {"status":"healthy","auth_server_url":"...","commit":"27465d5"}
 
 # ✅ Tasks endpoint (returns proper auth error, not 500)
 curl -H "Authorization: Bearer <token>" \
-  https://tda-backend-production.up.railway.app/api/tasks
+  https://backend-production-9a40.up.railway.app/api/tasks
 # {"detail":"Session expired - please log in again"}  ← Correct behavior!
 ```
 
@@ -178,7 +178,7 @@ curl -H "Authorization: Bearer <token>" \
 ```bash
 # With fresh auth token:
 curl -H "Authorization: Bearer <valid_token>" \
-  https://tda-backend-production.up.railway.app/api/tasks
+  https://backend-production-9a40.up.railway.app/api/tasks
 
 # Expected: 200 OK
 # {"tasks": [], "total": 0, "limit": 50, "offset": 0}

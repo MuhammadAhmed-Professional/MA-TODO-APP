@@ -31,7 +31,7 @@ console.log(document.location.href);
 ### Step 4: Manual Test
 1. In Console, type:
 ```javascript
-fetch('https://tda-backend-production.up.railway.app/api/tasks/', {
+fetch('https://backend-production-9a40.up.railway.app/api/tasks/', {
   credentials: 'include',
   headers: {'Content-Type': 'application/json'}
 }).then(r => console.log('Response:', r)).catch(e => console.log('Error:', e));

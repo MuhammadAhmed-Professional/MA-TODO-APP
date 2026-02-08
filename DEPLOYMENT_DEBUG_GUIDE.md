@@ -9,20 +9,20 @@
 
 1. **Auth Server Exists and Works**
    ```bash
-   $ curl https://auth-server-production-8251.up.railway.app/health
+   $ curl https://auth-server-production-cd0e.up.railway.app/health
    {"status":"healthy","timestamp":"2025-12-27T20:42:44.524Z","service":"better-auth-server","version":"1.0.0"}
    ```
 
 2. **Login Works Through Backend**
    ```bash
-   $ curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+   $ curl -X POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
    Response: 200 OK with token
    ```
    → This proves AUTH_SERVER_URL is configured correctly!
 
 3. **Session Validation Fails**
    ```bash
-   $ curl https://tda-backend-production.up.railway.app/api/auth/get-session \
+   $ curl https://backend-production-9a40.up.railway.app/api/auth/get-session \
      -H "Authorization: Bearer TOKEN"
    Response: 401 "Invalid authentication token"
    ```
@@ -89,7 +89,7 @@ Go to: https://railway.app/project/1a580b9d-e43b-4faf-a523-b3454b9d3bf1
 
 **Backend Service → Variables**:
 Look for:
-- `AUTH_SERVER_URL` - Should be `https://auth-server-production-8251.up.railway.app`
+- `AUTH_SERVER_URL` - Should be `https://auth-server-production-cd0e.up.railway.app`
 - `DATABASE_URL` - Should be Neon PostgreSQL connection string
 - `JWT_SECRET` - Should match `BETTER_AUTH_SECRET` in auth server
 
@@ -125,14 +125,14 @@ After redeployment, test these in order:
 
 ### Test 1: Health Endpoint (Verify Deployment)
 ```bash
-curl https://tda-backend-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 ```
 
 **Expected (if deployed)**:
 ```json
 {
   "status": "healthy",
-  "auth_server_url": "https://auth-server-production-8251.up.railway.app",
+  "auth_server_url": "https://auth-server-production-cd0e.up.railway.app",
   "commit": "65cbd0a"
 }
 ```
@@ -146,9 +146,9 @@ curl https://tda-backend-production.up.railway.app/health
 
 ### Test 2: Login (Verify Auth Server Connection)
 ```bash
-curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email \
+curl -X POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email \
   -H "Content-Type: application/json" \
-  -d '{"email":"ta234567801@gmail.com","password":"talal12345"}'
+  -d '{"email":"ta234567801@gmail.com","password":"ahmed12345"}'
 ```
 
 **Expected**: 200 OK with token
@@ -157,12 +157,12 @@ curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/emai
 ### Test 3: Session Validation (Verify Session Code)
 ```bash
 # First login to get a token
-TOKEN=$(curl -s -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email \
+TOKEN=$(curl -s -X POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email \
   -H "Content-Type: application/json" \
-  -d '{"email":"ta234567801@gmail.com","password":"talal12345"}' | jq -r '.token')
+  -d '{"email":"ta234567801@gmail.com","password":"ahmed12345"}' | jq -r '.token')
 
 # Then validate session
-curl https://tda-backend-production.up.railway.app/api/auth/get-session \
+curl https://backend-production-9a40.up.railway.app/api/auth/get-session \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -175,7 +175,7 @@ curl https://tda-backend-production.up.railway.app/api/auth/get-session \
 
 Once the new code is deployed, you should see in Railway logs:
 ```
-🔍 Validating token with Better Auth server: https://auth-server-production-8251.up.railway.app
+🔍 Validating token with Better Auth server: https://auth-server-production-cd0e.up.railway.app
 🔑 Token: nsKbZ0D4hYsbzgyy...
 📡 Auth server response status: 200
 ```

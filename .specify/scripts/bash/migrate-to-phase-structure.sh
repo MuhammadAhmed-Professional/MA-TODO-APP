@@ -201,7 +201,7 @@ log_step "7" "Updating Root Workspace Configuration"
 if [ "$DRY_RUN" = false ]; then
     cat > pyproject.toml.new <<'EOF'
 [project]
-name = "talal-tda-workspace"
+name = "ma-todo-app-workspace"
 version = "1.0.0"
 description = "Monorepo workspace for multi-phase Todo App (Phases I-V)"
 requires-python = ">=3.13"

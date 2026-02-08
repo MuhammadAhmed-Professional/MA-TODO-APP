@@ -9,7 +9,7 @@
 ## ✅ What's FIXED and WORKING
 
 ### 1. Auth Server - FULLY FUNCTIONAL ✅
-- **Service**: https://auth-server-production-8251.up.railway.app
+- **Service**: https://auth-server-production-cd0e.up.railway.app
 - **Status**: ✅ Healthy and responding
 - **Commit**: `a4accf3` (deployed on Railway)
 - **Fix Applied**:
@@ -19,20 +19,20 @@
 
 **Evidence**:
 ```bash
-curl https://auth-server-production-8251.up.railway.app/health
+curl https://auth-server-production-cd0e.up.railway.app/health
 # Returns: {"status":"healthy","service":"better-auth-server","version":"1.0.1"}
 ```
 
 **Authentication Working**:
 ```bash
 # Signup works:
-curl -X POST "https://auth-server-production-8251.up.railway.app/api/auth/sign-up/email" \
+curl -X POST "https://auth-server-production-cd0e.up.railway.app/api/auth/sign-up/email" \
   -H "Content-Type: application/json" \
   -d '{"email":"test@test.com","password":"test1234","name":"Test User"}'
 # Returns: 200 OK with user data and session token
 
 # Login works:
-curl -X POST "https://auth-server-production-8251.up.railway.app/api/auth/sign-in/email" \
+curl -X POST "https://auth-server-production-cd0e.up.railway.app/api/auth/sign-in/email" \
   -H "Content-Type: application/json" \
   -d '{"email":"test@test.com","password":"test1234"}'
 # Returns: 200 OK with session token
@@ -41,7 +41,7 @@ curl -X POST "https://auth-server-production-8251.up.railway.app/api/auth/sign-i
 ---
 
 ### 2. Backend Code - FIXED IN GITHUB ✅
-- **Repository**: https://github.com/Demolinator/Talal-s-TDA
+- **Repository**: https://github.com/MuhammadAhmed-Professional/MA-TODO-APP
 - **Branch**: `main`
 - **Latest Commit**: `cf129d8` (includes all fixes)
 - **Fixes Included**:
@@ -71,18 +71,18 @@ class UserResponse(BaseModel):
 ## ❌ What's NOT WORKING
 
 ### Backend Service - NOT DEPLOYED ❌
-- **Service**: https://tda-backend-production.up.railway.app
+- **Service**: https://backend-production-9a40.up.railway.app
 - **Status**: ⚠️ Running OLD CODE with bugs
 - **Current Commit**: `27465d5` (outdated - before fixes)
 - **Problem**: Railway not auto-deploying from GitHub pushes
 
 **Evidence**:
 ```bash
-curl https://tda-backend-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 # Returns: {"commit":"27465d5"}  # ❌ Old version!
 
 # Task operations fail with 500 error:
-curl -H "Authorization: Bearer <token>" https://tda-backend-production.up.railway.app/api/tasks
+curl -H "Authorization: Bearer <token>" https://backend-production-9a40.up.railway.app/api/tasks
 # Returns: {"detail":"Internal server error"}  # ❌ Due to hashed_password bug
 ```
 
@@ -107,7 +107,7 @@ The backend Railway service is NOT connected to GitHub for auto-deployment, OR t
 1. Open backend service settings in Railway
 2. Go to **"Settings"** tab
 3. Under **"Source"**, verify GitHub repository is connected:
-   - Repository: `Demolinator/Talal-s-TDA`
+   - Repository: `MuhammadAhmed-Professional/MA-TODO-APP`
    - Branch: `main`
    - Root Directory: `phase-2/backend`
 4. Enable **"Watch Paths"** or **"Auto Deploy"** if disabled
@@ -141,14 +141,14 @@ Once the backend is redeployed with the fixed code:
 
 ### Step 1: Check Backend Version
 ```bash
-curl https://tda-backend-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 # Should return: {"commit":"cf129d8"} or newer (NOT "27465d5")
 ```
 
 ### Step 2: Test Authentication
 ```bash
 # Login
-TOKEN=$(curl -s -X POST "https://tda-backend-production.up.railway.app/api/auth/sign-in/email" \
+TOKEN=$(curl -s -X POST "https://backend-production-9a40.up.railway.app/api/auth/sign-in/email" \
   -H "Content-Type: application/json" \
   -d '{"email":"test@test.com","password":"test1234"}' | grep -o '"token":"[^"]*' | cut -d'"' -f4)
 
@@ -158,16 +158,16 @@ echo "Token: $TOKEN"
 ### Step 3: Test Task Operations
 ```bash
 # List tasks (should return empty array, NOT 500 error)
-curl -H "Authorization: Bearer $TOKEN" https://tda-backend-production.up.railway.app/api/tasks
+curl -H "Authorization: Bearer $TOKEN" https://backend-production-9a40.up.railway.app/api/tasks
 
 # Create task
 curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  https://tda-backend-production.up.railway.app/api/tasks \
+  https://backend-production-9a40.up.railway.app/api/tasks \
   -d '{"title":"Test Task","description":"Testing deployment"}'
 ```
 
 ### Step 4: Test via Frontend (Playwright-style)
-1. Open: https://talal-s-tda.vercel.app
+1. Open: https://frontend-six-coral-90.vercel.app
 2. Click "Login"
 3. Enter credentials: `test@test.com` / `test1234`
 4. Click "Sign In"

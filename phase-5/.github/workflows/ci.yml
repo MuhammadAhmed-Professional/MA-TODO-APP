@@ -207,7 +207,7 @@ jobs:
     if: github.ref == 'refs/heads/develop'
     environment:
       name: staging
-      url: https://staging.todo-app.demolinator.dev
+      url: https://staging.todo-app.muhammadahmed.dev
 
     steps:
       - uses: actions/checkout@v4

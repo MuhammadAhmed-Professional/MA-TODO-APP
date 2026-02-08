@@ -9,9 +9,9 @@
 
 | Service | URL | Platform |
 |---------|-----|----------|
-| **Frontend** | https://frontend-k235s8ble-talal-ahmeds-projects.vercel.app/ | Vercel |
-| **Backend API** | https://talal-s-tda-production.up.railway.app/ | Railway |
-| **Auth Server** | https://auth-server-production-8251.up.railway.app | Railway |
+| **Frontend** | https://frontend-six-coral-90.vercel.app/ | Vercel |
+| **Backend API** | https://backend-production-9a40.up.railway.app/ | Railway |
+| **Auth Server** | https://auth-server-production-cd0e.up.railway.app | Railway |
 | **Database** | Neon PostgreSQL (pooler connection) | Neon |
 
 ---
@@ -39,11 +39,11 @@ Navigate to Railway dashboard → `auth-server` service → Variables tab and **
 DATABASE_URL=postgresql://neondb_owner:npg_8WSLxbOhQf1a@ep-solitary-morning-a4vdcuab-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require
 
 # Auth Server Configuration
-BETTER_AUTH_URL=https://auth-server-production-8251.up.railway.app
+BETTER_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 BETTER_AUTH_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801
 
 # CORS - Allow production frontend
-CORS_ORIGINS=http://localhost:3000,https://frontend-k235s8ble-talal-ahmeds-projects.vercel.app
+CORS_ORIGINS=http://localhost:3000,https://frontend-six-coral-90.vercel.app
 
 # Server Configuration
 PORT=3001
@@ -60,7 +60,7 @@ NODE_ENV=production
 
 ## 2. Backend API - Railway Environment Variables
 
-**Service**: Backend service (find the service that serves https://talal-s-tda-production.up.railway.app/)
+**Service**: Backend service (find the service that serves https://backend-production-9a40.up.railway.app/)
 
 Navigate to Railway dashboard → Backend service → Variables tab and **ADD/UPDATE** these variables:
 
@@ -75,7 +75,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES=15
 REFRESH_TOKEN_EXPIRE_DAYS=7
 
 # CORS - Allow production frontend and auth server
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-8251.up.railway.app,https://frontend-k235s8ble-talal-ahmeds-projects.vercel.app
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-cd0e.up.railway.app,https://frontend-six-coral-90.vercel.app
 
 # Environment
 ENVIRONMENT=production
@@ -91,7 +91,7 @@ ENVIRONMENT=production
 
 ## 3. Frontend - Vercel Environment Variables
 
-**Project**: `talal-s-tda` or similar (https://frontend-k235s8ble-talal-ahmeds-projects.vercel.app/)
+**Project**: `ma-todo-app` or similar (https://frontend-six-coral-90.vercel.app/)
 
 Navigate to Vercel dashboard → Project Settings → Environment Variables tab and **ADD/UPDATE** these variables:
 
@@ -99,10 +99,10 @@ Navigate to Vercel dashboard → Project Settings → Environment Variables tab 
 
 ```env
 # Backend API URL (Railway backend)
-NEXT_PUBLIC_API_URL=https://talal-s-tda-production.up.railway.app
+NEXT_PUBLIC_API_URL=https://backend-production-9a40.up.railway.app
 
 # Auth Server URL (Railway auth server)
-NEXT_PUBLIC_AUTH_URL=https://auth-server-production-8251.up.railway.app
+NEXT_PUBLIC_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 
 # App Configuration
 NEXT_PUBLIC_APP_NAME="Phase II Todo"
@@ -126,8 +126,8 @@ BETTER_AUTH_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4
 **Status**: ✅ Already updated with production values
 
 ```env
-NEXT_PUBLIC_AUTH_URL=https://auth-server-production-8251.up.railway.app
-NEXT_PUBLIC_API_URL=https://talal-s-tda-production.up.railway.app
+NEXT_PUBLIC_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
+NEXT_PUBLIC_API_URL=https://backend-production-9a40.up.railway.app
 NEXT_PUBLIC_APP_NAME="Phase II Todo"
 NEXT_PUBLIC_ENVIRONMENT=production
 BETTER_AUTH_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801
@@ -151,10 +151,10 @@ Update `CORS_ORIGINS` to include production frontend:
 
 ```env
 # Current:
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-8251.up.railway.app
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-cd0e.up.railway.app
 
 # Update to:
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-8251.up.railway.app,https://frontend-k235s8ble-talal-ahmeds-projects.vercel.app
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-cd0e.up.railway.app,https://frontend-six-coral-90.vercel.app
 ```
 
 ### Auth Server (`phase-2/auth-server/.env`)
@@ -170,7 +170,7 @@ CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
 
 # Update to (production):
 BETTER_AUTH_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801
-CORS_ORIGINS=http://localhost:3000,https://frontend-k235s8ble-talal-ahmeds-projects.vercel.app
+CORS_ORIGINS=http://localhost:3000,https://frontend-six-coral-90.vercel.app
 ```
 
 ---
@@ -182,21 +182,21 @@ CORS_ORIGINS=http://localhost:3000,https://frontend-k235s8ble-talal-ahmeds-proje
 1. **Auth Server** (ac8b8441-def7-49e9-af64-47dd171ae1c2):
    - Go to Railway dashboard → auth-server → Variables
    - Update `BETTER_AUTH_SECRET` → `cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801`
-   - Update `CORS_ORIGINS` → `http://localhost:3000,https://frontend-k235s8ble-talal-ahmeds-projects.vercel.app`
+   - Update `CORS_ORIGINS` → `http://localhost:3000,https://frontend-six-coral-90.vercel.app`
    - Service will automatically redeploy
 
 2. **Backend Service**:
    - Go to Railway dashboard → Backend service → Variables
    - Update `JWT_SECRET` → `cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801`
-   - Update `CORS_ORIGINS` → Add `https://frontend-k235s8ble-talal-ahmeds-projects.vercel.app`
+   - Update `CORS_ORIGINS` → Add `https://frontend-six-coral-90.vercel.app`
    - Service will automatically redeploy
 
 ### Step 2: Update Vercel Frontend
 
 1. Go to Vercel dashboard → Project → Settings → Environment Variables
 2. Update/Add the following for **Production** environment:
-   - `NEXT_PUBLIC_API_URL` → `https://talal-s-tda-production.up.railway.app`
-   - `NEXT_PUBLIC_AUTH_URL` → `https://auth-server-production-8251.up.railway.app`
+   - `NEXT_PUBLIC_API_URL` → `https://backend-production-9a40.up.railway.app`
+   - `NEXT_PUBLIC_AUTH_URL` → `https://auth-server-production-cd0e.up.railway.app`
    - `BETTER_AUTH_SECRET` → `cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801`
    - `NEXT_PUBLIC_ENVIRONMENT` → `production`
 3. Trigger a new deployment (Deployments tab → Redeploy)
@@ -207,18 +207,18 @@ After all services are redeployed, test the integration:
 
 1. **Auth Server Health Check**:
    ```bash
-   curl https://auth-server-production-8251.up.railway.app/health
+   curl https://auth-server-production-cd0e.up.railway.app/health
    # Expected: {"status":"healthy","timestamp":"...","service":"better-auth-server","version":"1.0.0"}
    ```
 
 2. **Backend Health Check**:
    ```bash
-   curl https://talal-s-tda-production.up.railway.app/health
+   curl https://backend-production-9a40.up.railway.app/health
    # Expected: {"status":"healthy"} or similar
    ```
 
 3. **Frontend**:
-   - Open https://frontend-k235s8ble-talal-ahmeds-projects.vercel.app/
+   - Open https://frontend-six-coral-90.vercel.app/
    - Try to sign up / log in
    - Create a task
    - Verify CORS is working (no CORS errors in browser console)
@@ -316,7 +316,7 @@ After successful integration:
 ## Contact & Support
 
 - **Railway Dashboard**: https://railway.app/project/1a580b9d-e43b-4faf-a523-b3454b9d3bf1
-- **Vercel Dashboard**: https://vercel.com/talal-ahmeds-projects
+- **Vercel Dashboard**: https://vercel.com/muhammadahmed-professional
 - **Neon Dashboard**: https://console.neon.tech
 
 For issues, check:

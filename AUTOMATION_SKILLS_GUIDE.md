@@ -56,7 +56,7 @@ I've created **three comprehensive automation skills** for your full-stack todo 
 **Method 1: Direct Command (Future)**
 ```bash
 # Once skills are registered in Claude Code
-/browser-test-auth --url https://talal-s-tda.vercel.app
+/browser-test-auth --url https://frontend-six-coral-90.vercel.app
 /railway-deploy --service backend --action deploy
 /e2e-workflow --workflow deploy-test
 ```
@@ -86,7 +86,7 @@ Claude: [Orchestrates complete workflow]
 You: "Use browser-test-auth skill to test my production frontend"
 
 Claude will:
-1. Navigate to https://talal-s-tda.vercel.app/login
+1. Navigate to https://frontend-six-coral-90.vercel.app/login
 2. Fill login form with test credentials
 3. Click sign-in button
 4. Capture network traffic
@@ -133,7 +133,7 @@ Claude will:
   "service": "backend",
   "status": "DEPLOYED",
   "health_check": "PASS",
-  "url": "https://tda-backend-production.up.railway.app"
+  "url": "https://backend-production-9a40.up.railway.app"
 }
 ```
 
@@ -188,7 +188,7 @@ If ANY test fails → Auto-rollback all services
 3. Click **"New Variable"**
 4. Add:
    - **Variable Name**: `AUTH_SERVER_URL`
-   - **Value**: `https://auth-server-production-8251.up.railway.app`
+   - **Value**: `https://auth-server-production-cd0e.up.railway.app`
 5. Click **"Add"** or **"Save"**
 6. Railway will auto-redeploy (~2 minutes)
 

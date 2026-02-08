@@ -5,13 +5,13 @@
 The Railway backend is now correctly redirecting with HTTPS:
 
 ```bash
-curl -I https://tda-backend-production.up.railway.app/api/tasks
+curl -I https://backend-production-9a40.up.railway.app/api/tasks
 ```
 
 **Result**:
 ```
 Status Code: 307 Temporary Redirect
-Location: https://tda-backend-production.up.railway.app/api/tasks/  ✅ HTTPS!
+Location: https://backend-production-9a40.up.railway.app/api/tasks/  ✅ HTTPS!
 ```
 
 The `HTTPSRedirectMiddleware` is working correctly.
@@ -22,7 +22,7 @@ The `HTTPSRedirectMiddleware` is working correctly.
 
 ### Step 1: Clear Everything (Fresh Start)
 
-1. **Close all browser tabs** for `talal-s-tda.vercel.app`
+1. **Close all browser tabs** for `frontend-six-coral-90.vercel.app`
 2. **Open Incognito/Private Window** (Ctrl + Shift + N in Chrome)
 3. **Open DevTools** (F12)
 4. Go to **Application** tab → **Storage** → Click **"Clear site data"**
@@ -30,7 +30,7 @@ The `HTTPSRedirectMiddleware` is working correctly.
 
 ### Step 2: Navigate to Dashboard
 
-1. Go to: **https://talal-s-tda.vercel.app/dashboard**
+1. Go to: **https://frontend-six-coral-90.vercel.app/dashboard**
 2. If redirected to login, sign in with your credentials
 3. Watch the **Network** tab for requests to `/api/tasks/`
 
@@ -40,7 +40,7 @@ The `HTTPSRedirectMiddleware` is working correctly.
 - Dashboard loads with tasks
 - No red errors in Console
 - Network tab shows:
-  - `GET https://tda-backend-production.up.railway.app/api/tasks/` → **200 OK**
+  - `GET https://backend-production-9a40.up.railway.app/api/tasks/` → **200 OK**
   - All requests use **HTTPS** (green padlock)
 
 #### ❌ If Still Failing:
@@ -70,13 +70,13 @@ Railway's reverse proxy was generating HTTP redirect URLs even though the fronte
 
 **Before Fix**:
 ```
-Request: https://tda-backend-production.up.railway.app/api/tasks
+Request: https://backend-production-9a40.up.railway.app/api/tasks
 Response: 307 → Location: http://... (BLOCKED by browser!)
 ```
 
 **After Fix**:
 ```
-Request: https://tda-backend-production.up.railway.app/api/tasks
+Request: https://backend-production-9a40.up.railway.app/api/tasks
 Response: 307 → Location: https://... (✅ Works!)
 ```
 
@@ -102,7 +102,7 @@ Once the dashboard works:
    - Ensure latest deployment is active (32 minutes old or newer)
 
 2. **Check environment variables** on Vercel:
-   - NEXT_PUBLIC_API_URL should be: `https://tda-backend-production.up.railway.app`
+   - NEXT_PUBLIC_API_URL should be: `https://backend-production-9a40.up.railway.app`
 
 3. **Browser extensions** could be interfering:
    - Test in Incognito mode first (extensions disabled)

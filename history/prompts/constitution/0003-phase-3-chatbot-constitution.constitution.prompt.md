@@ -7,16 +7,16 @@ surface: agent
 model: claude-haiku-4-5-20251001
 feature: phase-3-chatbot
 branch: main
-user: talal
+user: muhammadahmed
 command: /sp.constitution
 labels: ["ai-architecture", "mcp-protocol", "conversation-state", "chatbot-design", "constitution-v3"]
 links:
-  spec: /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/specs/features/phase-3-chatbot/spec.md
+  spec: /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/specs/features/phase-3-chatbot/spec.md
   ticket: null
   adr: null
   pr: null
 files:
-  - /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/specs/features/phase-3-chatbot/CONSTITUTION.md
+  - /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/specs/features/phase-3-chatbot/CONSTITUTION.md
 tests:
   - Constitution template validation (no bracket tokens)
   - Section alignment with Hackathon II Phase III requirements
@@ -54,7 +54,7 @@ User supplied complete Hackathon II documentation (2500+ lines) specifying Phase
 
 **Phase III Constitution Created Successfully**
 
-**File:** `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/specs/features/phase-3-chatbot/CONSTITUTION.md`
+**File:** `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/specs/features/phase-3-chatbot/CONSTITUTION.md`
 
 **Structure (Version 3.0.0):**
 
@@ -150,7 +150,7 @@ User supplied complete Hackathon II documentation (2500+ lines) specifying Phase
 
 - 🧪 **Tests**: Constitution template validation passed (no bracket tokens, all placeholders filled), section alignment verified against Hackathon II Phase III spec, technology stack specification validated.
 
-- 📁 **Files**: 1 file created - `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/specs/features/phase-3-chatbot/CONSTITUTION.md` (1200+ lines, fully specified)
+- 📁 **Files**: 1 file created - `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/specs/features/phase-3-chatbot/CONSTITUTION.md` (1200+ lines, fully specified)
 
 - 🔁 **Next prompts**:
   1. Create Phase III Feature Specification (spec.md) based on constitution

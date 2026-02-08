@@ -24,7 +24,7 @@ tests: []
 ## Prompt
 
 ```text
-create the perfect readme file for the project make it professional and perfect add the cli banner Talal's TDA at the top of the readme file so it looks like the icon of the project write the perfect specs.
+create the perfect readme file for the project make it professional and perfect add the cli banner MA-TODO-APP at the top of the readme file so it looks like the icon of the project write the perfect specs.
 ```
 
 ## Response snapshot

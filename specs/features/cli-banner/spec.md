@@ -3,13 +3,13 @@
 **Feature Branch**: `002-cli-banner`
 **Created**: 2025-12-05
 **Status**: Draft
-**Input**: User description: "i also want to creaate a cool cli banner when it runs with Talal's TDA can we create it first write the best specs according to the application."
+**Input**: User description: "i also want to creaate a cool cli banner when it runs with MA-TODO-APP can we create it first write the best specs according to the application."
 
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Application Launch with Branded Banner (Priority: P1)
 
-As a user launching the Todo application, I want to see an attractive ASCII art banner displaying "Talal's TDA" (Todo Desktop Application) when the application starts, so that I have a professional and branded experience.
+As a user launching the Todo application, I want to see an attractive ASCII art banner displaying "MA-TODO-APP" (Todo Desktop Application) when the application starts, so that I have a professional and branded experience.
 
 **Why this priority**: The banner is the first visual touchpoint users see. It establishes brand identity and creates a memorable first impression. This is a quick-win feature that adds polish without affecting core functionality.
 
@@ -17,7 +17,7 @@ As a user launching the Todo application, I want to see an attractive ASCII art 
 
 **Acceptance Scenarios**:
 
-1. **Given** the application is not running, **When** user launches the Todo app via `python -m src.todo_app.main`, **Then** the banner displays with "Talal's TDA" ASCII art before the main menu appears
+1. **Given** the application is not running, **When** user launches the Todo app via `python -m src.todo_app.main`, **Then** the banner displays with "MA-TODO-APP" ASCII art before the main menu appears
 2. **Given** the banner is displayed, **When** user views the output, **Then** the banner includes the tagline "Your Personal Task Manager" beneath the ASCII art
 3. **Given** the application launches successfully, **When** the banner is shown, **Then** it displays cleanly in standard 80-column terminal windows without wrapping or distortion
 
@@ -34,7 +34,7 @@ As a user viewing the banner, I want to see the application version and copyrigh
 **Acceptance Scenarios**:
 
 1. **Given** the banner is displayed, **When** user views the complete banner, **Then** it shows "Version 1.0.0" (or current version) in a consistent format
-2. **Given** the banner includes version info, **When** the copyright line displays, **Then** it shows "© 2025 Talal - Phase I Hackathon Project" or similar attribution
+2. **Given** the banner includes version info, **When** the copyright line displays, **Then** it shows "© 2025 Muhammad Ahmed - Phase I Hackathon Project" or similar attribution
 3. **Given** version information is shown, **When** the version number changes in the codebase, **Then** the banner automatically reflects the updated version
 
 ---
@@ -49,7 +49,7 @@ As a user with a terminal that supports ANSI colors, I want the banner to displa
 
 **Acceptance Scenarios**:
 
-1. **Given** the terminal supports ANSI colors, **When** the banner displays, **Then** the "Talal's TDA" text appears in a distinct color (e.g., cyan or green)
+1. **Given** the terminal supports ANSI colors, **When** the banner displays, **Then** the "MA-TODO-APP" text appears in a distinct color (e.g., cyan or green)
 2. **Given** the terminal does not support colors, **When** the banner displays, **Then** it shows in plain text without errors or formatting issues
 3. **Given** color support is detected, **When** the banner displays, **Then** the tagline and metadata use subtle styling (e.g., gray text) to create visual hierarchy
 
@@ -66,10 +66,10 @@ As a user with a terminal that supports ANSI colors, I want the banner to displa
 
 ### Functional Requirements
 
-- **FR-001**: System MUST display an ASCII art banner showing "Talal's TDA" when the application starts, before the main menu appears
+- **FR-001**: System MUST display an ASCII art banner showing "MA-TODO-APP" when the application starts, before the main menu appears
 - **FR-002**: Banner MUST include a tagline "Your Personal Task Manager" or similar descriptive text
 - **FR-003**: Banner MUST display version information in the format "Version X.Y.Z" where X.Y.Z matches the application version
-- **FR-004**: Banner MUST include copyright information with the year and creator's name (e.g., "© 2025 Talal")
+- **FR-004**: Banner MUST include copyright information with the year and creator's name (e.g., "© 2025 Muhammad Ahmed")
 - **FR-005**: Banner MUST be readable in standard 80-column terminal windows without horizontal scrolling or text wrapping
 - **FR-006**: Banner MUST use ASCII characters that are compatible with common terminal encodings (UTF-8, ASCII)
 - **FR-007**: System MAY enhance the banner with ANSI colors if terminal supports it, with graceful fallback to plain text
@@ -88,7 +88,7 @@ As a user with a terminal that supports ANSI colors, I want the banner to displa
 - **SC-001**: 100% of application launches display the banner before the main menu
 - **SC-002**: Banner displays correctly (no wrapping or distortion) in terminals with widths of 80 columns or greater
 - **SC-003**: Banner loads and displays in under 100 milliseconds to avoid noticeable delay
-- **SC-004**: Users can visually identify the application brand (Talal's TDA) within 1 second of launch
+- **SC-004**: Users can visually identify the application brand (MA-TODO-APP) within 1 second of launch
 - **SC-005**: Version information in banner matches the actual application version in 100% of cases
 - **SC-006**: Banner displays without errors or warnings in at least 95% of common terminal environments (Linux Terminal, Windows Terminal, macOS Terminal, WSL2)
 
@@ -96,7 +96,7 @@ As a user with a terminal that supports ANSI colors, I want the banner to displa
 
 ### In Scope
 
-- ASCII art banner design for "Talal's TDA"
+- ASCII art banner design for "MA-TODO-APP"
 - Display of application tagline
 - Version number display (read from application metadata)
 - Copyright information display

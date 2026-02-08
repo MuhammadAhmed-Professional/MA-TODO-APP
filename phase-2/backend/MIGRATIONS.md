@@ -495,7 +495,7 @@ Content-Type: application/json
 
 ```bash
 # Navigate to backend directory
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 
 # Check current migration status
 uv run alembic current
@@ -543,7 +543,7 @@ uv run alembic downgrade -1
 
 ```bash
 # Run comprehensive verification
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 uv run python scripts/verify_migrations.py
 ```
 
@@ -662,7 +662,7 @@ uv run alembic current
 
 ```bash
 # Use provided rollback script
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 chmod +x scripts/rollback_all_phase_v.sh
 ./scripts/rollback_all_phase_v.sh
 ```

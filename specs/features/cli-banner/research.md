@@ -1,4 +1,4 @@
-# CLI Banner Research: "Talal's TDA"
+# CLI Banner Research: "MA-TODO-APP"
 
 **Feature**: CLI Banner with Branding | **Branch**: `002-cli-banner` | **Date**: 2025-12-06
 
@@ -22,7 +22,7 @@ This document consolidates research findings from all 5 research tasks (R1-R5) d
               Your Personal Task Manager
 
               Version 0.1.0
-              © 2025 Talal - Phase I Hackathon Project
+              © 2025 Muhammad Ahmed - Phase I Hackathon Project
 ================================================================================
 ```
 
@@ -63,7 +63,7 @@ This document consolidates research findings from all 5 research tasks (R1-R5) d
 **Line Width Validation**:
 ```
 Line  1: 80 cols (border)
-Line  2: 47 cols (ASCII art - "Talal's")
+Line  2: 47 cols (ASCII art - "MA-TODO-APP's")
 Line  3: 47 cols (ASCII art)
 Line  4: 47 cols (ASCII art)
 Line  5: 47 cols (ASCII art)
@@ -564,10 +564,10 @@ def display_banner() -> None:
 ### Validation Status
 
 All specification constraints satisfied:
-- ✓ **FR-001**: ASCII art displays "Talal's TDA" (80 columns, 12 lines)
+- ✓ **FR-001**: ASCII art displays "MA-TODO-APP" (80 columns, 12 lines)
 - ✓ **FR-002**: Tagline "Your Personal Task Manager" included
 - ✓ **FR-003**: Version information format "Version X.Y.Z" implemented
-- ✓ **FR-004**: Copyright "© 2025 Talal - Phase I Hackathon Project" included
+- ✓ **FR-004**: Copyright "© 2025 Muhammad Ahmed - Phase I Hackathon Project" included
 - ✓ **FR-005**: Fits in 80-column terminals without wrapping
 - ✓ **FR-006**: Uses ASCII characters (codes 32-126) only
 - ✓ **FR-007**: ANSI colors with graceful fallback implemented

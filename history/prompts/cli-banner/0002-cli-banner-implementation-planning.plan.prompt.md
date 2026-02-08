@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5
 feature: 002-cli-banner
 branch: 002-cli-banner
-user: talal
+user: muhammadahmed
 command: /sp.plan
 labels: ["planning", "architecture", "cli-banner", "branding", "research", "design"]
 links:
@@ -32,7 +32,7 @@ User request: "i want to make sure the banner comes out perfect and amazing for 
 
 Command: `/sp.plan` - Create implementation architecture for CLI banner feature
 
-Context: User emphasized wanting a "perfect and amazing" banner with "Talal's TDA" branding. This prompted comprehensive planning with Phase 0 research (5 areas) and Phase 1 design artifacts (data-model, quickstart guide).
+Context: User emphasized wanting a "perfect and amazing" banner with "MA-TODO-APP" branding. This prompted comprehensive planning with Phase 0 research (5 areas) and Phase 1 design artifacts (data-model, quickstart guide).
 
 ## Response snapshot
 

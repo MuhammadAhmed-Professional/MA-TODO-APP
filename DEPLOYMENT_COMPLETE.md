@@ -50,7 +50,7 @@ Railway should have already started deploying the new code. To verify:
 
 **Windows (PowerShell)**:
 ```powershell
-cd D:\Talal\Work\Hackathons-Panaversity\phase-1
+cd E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO
 .\verify-railway-deployment.ps1 -BackendUrl "https://your-backend.railway.app"
 ```
 
@@ -75,7 +75,7 @@ Ensure these are set in Railway Dashboard under **Variables**:
 
 ### Must Match Auth Server
 ```env
-AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app
+AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app
 JWT_SECRET=<SAME_AS_AUTH_SERVER_BETTER_AUTH_SECRET>
 ```
 

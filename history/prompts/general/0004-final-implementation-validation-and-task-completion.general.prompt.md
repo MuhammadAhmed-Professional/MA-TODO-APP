@@ -7,7 +7,7 @@ surface: agent
 model: claude-haiku-4-5-20251001
 feature: web-todo-app
 branch: 004-phase-2-web-app
-user: talal
+user: muhammadahmed
 command: /sp.implement (continue)
 labels: ["final-completion", "t102-t104", "performance", "success-criteria", "validation"]
 links:

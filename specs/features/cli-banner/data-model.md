@@ -22,7 +22,7 @@ The CLI banner feature is display-only with no persistent data storage. Data mod
 |-----------|------|-------------|---------|
 | `ASCII_ART_LINES` | `list[str]` | List of ASCII art lines for logo | `["  _____     _   ...", ...]` |
 | `TAGLINE` | `str` | Application tagline text | `"Your Personal Task Manager"` |
-| `COPYRIGHT` | `str` | Copyright notice template | `"© 2025 Talal - Phase I Hackathon Project"` |
+| `COPYRIGHT` | `str` | Copyright notice template | `"© 2025 Muhammad Ahmed - Phase I Hackathon Project"` |
 | `PLAIN_TEXT_BANNER` | `str` | Complete banner without ANSI codes | Multi-line string |
 | `COLORED_BANNER` | `str` | Complete banner with ANSI color codes | Multi-line string with `\033[...]` |
 
@@ -47,7 +47,7 @@ ASCII_ART_LINES = [
 
 # Static Text
 TAGLINE = "Your Personal Task Manager"
-COPYRIGHT = "© 2025 Talal - Phase I Hackathon Project"
+COPYRIGHT = "© 2025 Muhammad Ahmed - Phase I Hackathon Project"
 
 # Border
 BORDER = "=" * 80

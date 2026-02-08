@@ -32,7 +32,7 @@ Sync Impact Report (Constitution v3.1.0):
   - Write comprehensive tests for agent behavior and MCP tools
 -->
 
-# Talal's TDA Constitution - Evolution of Todo (Hackathon II)
+# MA-TODO-APP Constitution - Evolution of Todo (Hackathon II)
 
 **Project**: Todo App Evolution (CLI → Web → AI Chatbot → Kubernetes → Cloud)
 **Hackathon**: Panaversity Hackathon II - AI-Native Development

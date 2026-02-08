@@ -35,7 +35,7 @@
 
 ### 4. CORS Configuration ✅
 - ✅ Preflight OPTIONS requests return correct headers
-- ✅ `Access-Control-Allow-Origin: https://talal-s-tda.vercel.app`
+- ✅ `Access-Control-Allow-Origin: https://frontend-six-coral-90.vercel.app`
 - ✅ `Access-Control-Allow-Credentials: true`
 - ✅ `Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS`
 
@@ -59,7 +59,7 @@
 
 **Evidence**:
 ```bash
-curl -X GET "https://tda-backend-production.up.railway.app/api/tasks" \
+curl -X GET "https://backend-production-9a40.up.railway.app/api/tasks" \
   -H "Authorization: Bearer ZEt824NAor2jaH9H5iU9ppXcAMPjPPwH"
 # Returns: 500 Internal Server Error
 ```
@@ -151,12 +151,12 @@ Once 500 error is fixed:
 ### Manual API Tests
 ```bash
 # Health check ✅
-curl https://tda-backend-production.up.railway.app/health
-# {"status":"healthy","auth_server_url":"https://auth-server-production-8251.up.railway.app","commit":"27465d5"}
+curl https://backend-production-9a40.up.railway.app/health
+# {"status":"healthy","auth_server_url":"https://auth-server-production-cd0e.up.railway.app","commit":"27465d5"}
 
 # Tasks endpoint ❌
 curl -H "Authorization: Bearer ZEt824NAor2jaH9H5iU9ppXcAMPjPPwH" \
-  https://tda-backend-production.up.railway.app/api/tasks
+  https://backend-production-9a40.up.railway.app/api/tasks
 # {"detail":"Internal server error","error_id":"4488608f-712c-4a8b-9d7e-f0a7949f24da"}
 ```
 
@@ -173,13 +173,13 @@ curl -H "Authorization: Bearer ZEt824NAor2jaH9H5iU9ppXcAMPjPPwH" \
 
 ### Environment Variables (Railway)
 - `DATABASE_URL`: `postgresql://neondb_owner:npg_8WSLxbOhQf1a@ep-solitary-morning-a4vdcuab-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require`
-- `CORS_ORIGINS`: `http://localhost:3000,https://talal-s-tda.vercel.app`
-- `AUTH_SERVER_URL`: `https://auth-server-production-8251.up.railway.app`
+- `CORS_ORIGINS`: `http://localhost:3000,https://frontend-six-coral-90.vercel.app`
+- `AUTH_SERVER_URL`: `https://auth-server-production-cd0e.up.railway.app`
 
 ### URLs
-- **Frontend**: https://talal-s-tda.vercel.app
-- **Backend**: https://tda-backend-production.up.railway.app
-- **Auth Server**: https://auth-server-production-8251.up.railway.app
+- **Frontend**: https://frontend-six-coral-90.vercel.app
+- **Backend**: https://backend-production-9a40.up.railway.app
+- **Auth Server**: https://auth-server-production-cd0e.up.railway.app
 - **Database**: Neon PostgreSQL (shared)
 
 ---

@@ -7,7 +7,7 @@
 
 ## Summary
 
-The feature aims to create a robust and comprehensive `README.md` for the "Evolution of Todo" project. This includes a distinct CLI banner ("Talal's TDA"), a clear project overview, detailed information on the 5 project phases, a "Getting Started" guide for the Phase I console application (including WSL 2 instructions), and dedicated sections for Hackathon II specifics (Bonus Points, Timeline, Submission Requirements, Resources, and FAQ). The technical approach focuses on leveraging Markdown capabilities for clear documentation and ensuring cross-platform rendering compatibility for the CLI banner.
+The feature aims to create a robust and comprehensive `README.md` for the "Evolution of Todo" project. This includes a distinct CLI banner ("MA-TODO-APP"), a clear project overview, detailed information on the 5 project phases, a "Getting Started" guide for the Phase I console application (including WSL 2 instructions), and dedicated sections for Hackathon II specifics (Bonus Points, Timeline, Submission Requirements, Resources, and FAQ). The technical approach focuses on leveraging Markdown capabilities for clear documentation and ensuring cross-platform rendering compatibility for the CLI banner.
 
 ## Technical Context
 

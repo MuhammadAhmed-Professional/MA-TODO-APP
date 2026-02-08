@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5
 feature: web-todo-app
 branch: 004-phase-2-web-app
-user: Talal
+user: muhammadahmed
 command: /sp.implement
 labels: ["status-check", "mvp-complete", "verification", "completion-report"]
 links:

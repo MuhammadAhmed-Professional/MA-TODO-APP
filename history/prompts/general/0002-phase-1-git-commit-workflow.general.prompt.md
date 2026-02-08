@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: none
 branch: 003-project-readme
-user: talal
+user: muhammadahmed
 command: /sp.git.commit_pr
 labels: ["git-workflow", "autonomous-commit", "phase-1"]
 links:

@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: 001-console-todo-app
 branch: 001-console-todo-app
-user: talal
+user: muhammadahmed
 command: Follow-up remediation
 labels: ["terminology", "consistency", "documentation"]
 links:

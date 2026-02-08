@@ -12,9 +12,9 @@
 
 | Component | Status | URL | Commit |
 |-----------|--------|-----|--------|
-| **Auth Server** | ✅ WORKING | https://auth-server-production-8251.up.railway.app | a4accf3 |
-| **Backend API** | ✅ WORKING | https://tda-backend-production.up.railway.app | a4accf3 |
-| **Frontend** | ✅ DEPLOYED | https://talal-s-tda.vercel.app | Latest |
+| **Auth Server** | ✅ WORKING | https://auth-server-production-cd0e.up.railway.app | a4accf3 |
+| **Backend API** | ✅ WORKING | https://backend-production-9a40.up.railway.app | a4accf3 |
+| **Frontend** | ✅ DEPLOYED | https://frontend-six-coral-90.vercel.app | Latest |
 | **Database** | ✅ WORKING | Neon PostgreSQL | N/A |
 
 ---
@@ -54,7 +54,7 @@ railway up --service tda-backend
 ### Test 1: User Authentication ✅ PASSED
 
 ```bash
-curl -X POST "https://tda-backend-production.up.railway.app/api/auth/sign-in/email" \
+curl -X POST "https://backend-production-9a40.up.railway.app/api/auth/sign-in/email" \
   -H "Content-Type: application/json" \
   -d '{"email":"test@test.com","password":"test1234"}'
 ```
@@ -75,7 +75,7 @@ curl -X POST "https://tda-backend-production.up.railway.app/api/auth/sign-in/ema
 ### Test 2: Get Session ✅ PASSED
 
 ```bash
-curl "https://tda-backend-production.up.railway.app/api/auth/get-session" \
+curl "https://backend-production-9a40.up.railway.app/api/auth/get-session" \
   -H "Authorization: Bearer kTIHAEAyD9PEi73I8Vf1rf0mI7CZZFIO"
 ```
 
@@ -92,7 +92,7 @@ curl "https://tda-backend-production.up.railway.app/api/auth/get-session" \
 ### Test 3: List Tasks (READ) ✅ PASSED
 
 ```bash
-curl "https://tda-backend-production.up.railway.app/api/tasks" \
+curl "https://backend-production-9a40.up.railway.app/api/tasks" \
   -H "Authorization: Bearer kTIHAEAyD9PEi73I8Vf1rf0mI7CZZFIO"
 ```
 
@@ -104,7 +104,7 @@ curl "https://tda-backend-production.up.railway.app/api/tasks" \
 ### Test 4: Create Task (CREATE) ✅ PASSED
 
 ```bash
-curl -X POST "https://tda-backend-production.up.railway.app/api/tasks" \
+curl -X POST "https://backend-production-9a40.up.railway.app/api/tasks" \
   -H "Authorization: Bearer kTIHAEAyD9PEi73I8Vf1rf0mI7CZZFIO" \
   -H "Content-Type: application/json" \
   -d '{"title":"Test Task from CLI","description":"Testing backend CRUD operations"}'
@@ -331,7 +331,7 @@ The backend is 100% functional. You can:
 
 ```bash
 # 1. Login
-TOKEN=$(curl -s -X POST "https://tda-backend-production.up.railway.app/api/auth/sign-in/email" \
+TOKEN=$(curl -s -X POST "https://backend-production-9a40.up.railway.app/api/auth/sign-in/email" \
   -H "Content-Type: application/json" \
   -d '{"email":"test@test.com","password":"test1234"}' \
   | grep -o '"token":"[^"]*"' | cut -d'"' -f4)
@@ -339,13 +339,13 @@ TOKEN=$(curl -s -X POST "https://tda-backend-production.up.railway.app/api/auth/
 echo "Token: $TOKEN"
 
 # 2. Create a task
-curl -X POST "https://tda-backend-production.up.railway.app/api/tasks" \
+curl -X POST "https://backend-production-9a40.up.railway.app/api/tasks" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title":"My First Task","description":"Testing the API"}'
 
 # 3. List tasks
-curl "https://tda-backend-production.up.railway.app/api/tasks" \
+curl "https://backend-production-9a40.up.railway.app/api/tasks" \
   -H "Authorization: Bearer $TOKEN"
 ```
 

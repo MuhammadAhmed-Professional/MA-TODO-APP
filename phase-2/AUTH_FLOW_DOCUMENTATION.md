@@ -55,7 +55,7 @@ const response = await fetch('http://localhost:8000/api/auth/signup', {
 # phase-2/backend/src/api/routes/auth.py
 import httpx
 
-AUTH_SERVER_URL = "https://auth-server-production-8251.up.railway.app"
+AUTH_SERVER_URL = "https://auth-server-production-cd0e.up.railway.app"
 
 @router.post("/signup")
 async def signup(user_data: UserCreate):
@@ -164,7 +164,7 @@ Content-Type: application/json
 
 ### Step 3: Backend → Auth Server
 ```http
-POST https://auth-server-production-8251.up.railway.app/auth/sign-up
+POST https://auth-server-production-cd0e.up.railway.app/auth/sign-up
 Content-Type: application/json
 
 {
@@ -297,10 +297,10 @@ async def get_tasks(
 ```env
 DATABASE_URL=postgresql://...?sslmode=require&channel_binding=require
 BETTER_AUTH_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801
-BETTER_AUTH_URL=https://auth-server-production-8251.up.railway.app
+BETTER_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 PORT=3001
 NODE_ENV=production
-CORS_ORIGINS=http://localhost:3000,https://talal-s-tda.vercel.app
+CORS_ORIGINS=http://localhost:3000,https://frontend-six-coral-90.vercel.app
 ```
 
 ### Backend (.env)
@@ -308,8 +308,8 @@ CORS_ORIGINS=http://localhost:3000,https://talal-s-tda.vercel.app
 DATABASE_URL=postgresql://...?sslmode=require&channel_binding=require
 JWT_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801
 JWT_ALGORITHM=HS256
-AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app
-CORS_ORIGINS=http://localhost:3000,https://talal-s-tda.vercel.app
+AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app
+CORS_ORIGINS=http://localhost:3000,https://frontend-six-coral-90.vercel.app
 ```
 
 ### Frontend (.env.local)
@@ -362,10 +362,10 @@ NEXT_PUBLIC_API_URL=https://backend-production.up.railway.app
 railway logs --service ac8b8441-def7-49e9-af64-47dd171ae1c2
 
 # Test auth-server health
-curl https://auth-server-production-8251.up.railway.app/health
+curl https://auth-server-production-cd0e.up.railway.app/health
 
 # Test signup endpoint
-curl -X POST https://auth-server-production-8251.up.railway.app/auth/sign-up \
+curl -X POST https://auth-server-production-cd0e.up.railway.app/auth/sign-up \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","name":"Test User","password":"password123"}'
 

@@ -10,7 +10,7 @@
 
 ### Symptom
 ```
-POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
 Response: 504 Gateway Timeout
 ```
 
@@ -63,8 +63,8 @@ Added backend URL to trusted origins:
 trustedOrigins: [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "https://talal-s-tda.vercel.app",
-  "https://tda-backend-production.up.railway.app", // Backend can call auth server
+  "https://frontend-six-coral-90.vercel.app",
+  "https://backend-production-9a40.up.railway.app", // Backend can call auth server
 ],
 ```
 
@@ -78,7 +78,7 @@ Added missing `AUTH_SERVER_URL`:
 ```env
 # Auth Server Configuration
 # Better Auth server URL (for proxying authentication requests)
-# For Railway: https://auth-server-production-8251.up.railway.app
+# For Railway: https://auth-server-production-cd0e.up.railway.app
 AUTH_SERVER_URL=http://localhost:3001
 ```
 
@@ -116,7 +116,7 @@ You **MUST** set this environment variable in Railway:
 
 **Service**: Backend (FastAPI)
 **Variable**: `AUTH_SERVER_URL`
-**Value**: `https://auth-server-production-8251.up.railway.app`
+**Value**: `https://auth-server-production-cd0e.up.railway.app`
 
 ### How to Set Railway Environment Variables
 
@@ -127,7 +127,7 @@ You **MUST** set this environment variable in Railway:
 5. Click **"+ New Variable"**
 6. Add:
    - **Key**: `AUTH_SERVER_URL`
-   - **Value**: `https://auth-server-production-8251.up.railway.app`
+   - **Value**: `https://auth-server-production-cd0e.up.railway.app`
 7. Click **"Save"** or **"Add"**
 8. Railway will automatically **redeploy** the backend
 
@@ -137,10 +137,10 @@ While in Railway Variables tab, **verify these are set correctly**:
 
 **Backend Service**:
 ```
-AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app (MUST ADD THIS!)
+AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app (MUST ADD THIS!)
 DATABASE_URL=postgresql://... (should already be set)
 JWT_SECRET=... (should match BETTER_AUTH_SECRET in auth server)
-CORS_ORIGINS=http://localhost:3000,https://talal-s-tda.vercel.app
+CORS_ORIGINS=http://localhost:3000,https://frontend-six-coral-90.vercel.app
 ENVIRONMENT=production
 ```
 
@@ -148,8 +148,8 @@ ENVIRONMENT=production
 ```
 DATABASE_URL=postgresql://... (should already be set)
 BETTER_AUTH_SECRET=... (should match JWT_SECRET in backend)
-BETTER_AUTH_URL=https://auth-server-production-8251.up.railway.app
-CORS_ORIGINS=http://localhost:3000,https://talal-s-tda.vercel.app,https://tda-backend-production.up.railway.app
+BETTER_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
+CORS_ORIGINS=http://localhost:3000,https://frontend-six-coral-90.vercel.app,https://backend-production-9a40.up.railway.app
 NODE_ENV=production
 ```
 
@@ -170,26 +170,26 @@ Monitor Railway dashboard:
 ```
 ✅ PostgreSQL connection successful
 ✅ Better Auth initialized successfully
-🌐 CORS Origins: http://localhost:3000,https://talal-s-tda.vercel.app,https://tda-backend-production.up.railway.app
+🌐 CORS Origins: http://localhost:3000,https://frontend-six-coral-90.vercel.app,https://backend-production-9a40.up.railway.app
 ✅ Better Auth server started successfully
 ```
 
 **Backend**:
 ```
-🔗 Backend using AUTH_SERVER_URL: https://auth-server-production-8251.up.railway.app
+🔗 Backend using AUTH_SERVER_URL: https://auth-server-production-cd0e.up.railway.app
 ```
 
 ### Test Commands
 
 **1. Test Auth Server Health**:
 ```bash
-curl https://auth-server-production-8251.up.railway.app/health
+curl https://auth-server-production-cd0e.up.railway.app/health
 ```
 Expected: `{"status":"healthy"}`
 
 **2. Test Auth Server Sign-Up** (create test user):
 ```bash
-curl -X POST https://auth-server-production-8251.up.railway.app/api/auth/sign-up/email \
+curl -X POST https://auth-server-production-cd0e.up.railway.app/api/auth/sign-up/email \
   -H "Content-Type: application/json" \
   -d '{"name":"Test User","email":"test@example.com","password":"password123"}'
 ```
@@ -197,14 +197,14 @@ Expected: `200 OK` with user object
 
 **3. Test Backend Proxy to Auth Server**:
 ```bash
-curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email \
+curl -X POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"password123"}'
 ```
 Expected: `200 OK` (NOT 504 timeout!)
 
 **4. Test Frontend Login**:
-1. Go to https://talal-s-tda.vercel.app/login
+1. Go to https://frontend-six-coral-90.vercel.app/login
 2. Email: `test@example.com`
 3. Password: `password123`
 4. Click "Sign In"
@@ -224,7 +224,7 @@ Expected: `200 OK` (NOT 504 timeout!)
 **Debug**:
 ```bash
 # Check if backend can reach auth server
-curl -v https://tda-backend-production.up.railway.app/api/auth/get-session
+curl -v https://backend-production-9a40.up.railway.app/api/auth/get-session
 ```
 
 Look for errors mentioning:
@@ -260,10 +260,10 @@ User Login Flow:
 
 1. User enters credentials on frontend
    ↓
-2. Frontend → Backend (tda-backend-production.up.railway.app)
+2. Frontend → Backend (backend-production-9a40.up.railway.app)
    POST /api/auth/sign-in/email
    ↓
-3. Backend → Auth Server (auth-server-production-8251.up.railway.app)
+3. Backend → Auth Server (auth-server-production-cd0e.up.railway.app)
    POST /api/auth/sign-in/email
    [Uses optimized PostgreSQL pool]
    ↓

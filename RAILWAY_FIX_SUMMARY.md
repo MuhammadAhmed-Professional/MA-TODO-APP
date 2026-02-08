@@ -53,7 +53,7 @@ The deployment was failing because of a **table name mismatch** between the migr
 
 **Step 1**: Commit and push changes
 ```bash
-cd "D:\Talal\Work\Hackathons-Panaversity\phase-1"
+cd "E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO"
 
 # Add only the critical backend files
 git add phase-2/backend/.dockerignore
@@ -77,7 +77,7 @@ git push origin main
 **Step 2**: Monitor deployment in Railway dashboard
 
 1. Go to https://railway.app/dashboard
-2. Select project: **Talal's TDA**
+2. Select project: **MA-TODO-APP**
 3. Select service: **imaginative-strength**
 4. Click **Deployments** tab
 5. Watch the latest deployment logs
@@ -95,7 +95,7 @@ INFO:     Application startup complete.
 
 **Step 4**: Test the endpoint
 ```bash
-curl https://talal-s-tda-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 # Expected: {"status":"healthy","timestamp":"..."}
 ```
 
@@ -107,7 +107,7 @@ If you want to test before deploying:
 
 **Step 1**: Build Docker image locally
 ```bash
-cd "D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\backend"
+cd "E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\backend"
 
 docker build -t backend-test .
 
@@ -154,14 +154,14 @@ After deployment succeeds, verify:
 
 - [ ] Railway deployment shows "SUCCESS" status
 - [ ] Deployment logs show all 4 migrations ran
-- [ ] Health endpoint returns 200 OK: `curl https://talal-s-tda-production.up.railway.app/health`
-- [ ] API docs accessible: `https://talal-s-tda-production.up.railway.app/docs`
+- [ ] Health endpoint returns 200 OK: `curl https://backend-production-9a40.up.railway.app/health`
+- [ ] API docs accessible: `https://backend-production-9a40.up.railway.app/docs`
 - [ ] No errors in Railway logs for 5 minutes after deployment
 
 ### Test User Registration
 
 ```bash
-curl -X POST https://talal-s-tda-production.up.railway.app/api/auth/signup \
+curl -X POST https://backend-production-9a40.up.railway.app/api/auth/signup \
   -H "Content-Type: application/json" \
   -d "{\"email\":\"test@example.com\",\"name\":\"Test User\",\"password\":\"SecurePassword123!\"}"
 
@@ -207,7 +207,7 @@ Verify these are set in Railway → Variables tab:
 ```env
 DATABASE_URL=postgresql://neondb_owner:npg_8WSLxbOhQf1a@ep-solitary-morning-a4vdcuab-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require
 JWT_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-8251.up.railway.app,https://talal-s-tda.vercel.app
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://auth-server-production-cd0e.up.railway.app,https://frontend-six-coral-90.vercel.app
 ENVIRONMENT=production
 ```
 
@@ -268,7 +268,7 @@ uv run alembic downgrade ea3540bc87e7
 - **Detailed Deployment Guide**: `phase-2/backend/RAILWAY_DEPLOYMENT_CHECKLIST.md`
 - **Railway Dashboard**: https://railway.app/dashboard
 - **Neon Console**: https://console.neon.tech/
-- **Service URL**: https://talal-s-tda-production.up.railway.app
+- **Service URL**: https://backend-production-9a40.up.railway.app
 
 ---
 

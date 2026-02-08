@@ -20,7 +20,7 @@ Write-Host ""
 # Step 3: Check if we're in backend directory
 if (-not (Test-Path ".\src\main.py")) {
     Write-Host "❌ ERROR: Not in backend directory!" -ForegroundColor Red
-    Write-Host "Please run this script from: D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\backend" -ForegroundColor Red
+    Write-Host "Please run this script from: E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\backend" -ForegroundColor Red
     exit 1
 }
 

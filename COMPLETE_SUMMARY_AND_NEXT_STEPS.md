@@ -222,7 +222,7 @@ AND column_name IN ('id', 'user_id');
 
 **Step 5: Test Again**
 ```bash
-curl -X POST "https://tda-backend-production.up.railway.app/api/tasks" \
+curl -X POST "https://backend-production-9a40.up.railway.app/api/tasks" \
   -H "Authorization: Bearer LijGbrX9eHwjpHTG5czo3bxrM0OJ9zId" \
   -H "Content-Type: application/json" \
   -d '{"title":"Migration Test","description":"After column type change"}'
@@ -315,7 +315,7 @@ Once both fixed:
 
 **Usage Example**:
 ```bash
-Use the Playwright Workflow Tester skill to test the full workflow at https://talal-s-tda.vercel.app
+Use the Playwright Workflow Tester skill to test the full workflow at https://frontend-six-coral-90.vercel.app
 ```
 
 ### 3. Backend Fixes (Committed & Deployed)
@@ -447,9 +447,9 @@ All backend code has comprehensive docstrings:
 
 ## 📞 Contact and Support
 
-**Repository**: https://github.com/Demolinator/Talal-s-TDA
-**Frontend**: https://talal-s-tda.vercel.app
-**Backend**: https://tda-backend-production.up.railway.app
+**Repository**: https://github.com/MuhammadAhmed-Professional/MA-TODO-APP
+**Frontend**: https://frontend-six-coral-90.vercel.app
+**Backend**: https://backend-production-9a40.up.railway.app
 **Database**: Neon PostgreSQL (shared)
 
 **Test Account**:

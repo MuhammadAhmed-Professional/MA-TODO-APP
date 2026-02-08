@@ -3,7 +3,7 @@
 **Feature Branch**: `003-project-readme`
 **Created**: 2025-12-06
 **Status**: Revised
-**Input**: User description: "create the perfect readme file for the project make it professional and perfect add the cli banner Talal's TDA at the top of the readme file so it looks like the icon of the project write the perfect specs."
+**Input**: User description: "create the perfect readme file for the project make it professional and perfect add the cli banner MA-TODO-APP at the top of the readme file so it looks like the icon of the project write the perfect specs."
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -27,13 +27,13 @@ As a new user or potential contributor, I want to quickly understand the project
 
 As a user, I want the `README.md` to visually represent the project with a distinctive, professional, and engaging CLI banner that acts as the project's icon.
 
-**Why this priority**: Enhances initial impression, aids brand recognition, and provides a unique visual identifier for "Talal's TDA."
+**Why this priority**: Enhances initial impression, aids brand recognition, and provides a unique visual identifier for "MA-TODO-APP."
 
-**Independent Test**: A user can view the `README.md` on common markdown rendering platforms (e.g., GitHub, VS Code) and clearly see the "Talal's TDA" CLI banner prominently displayed at the very top.
+**Independent Test**: A user can view the `README.md` on common markdown rendering platforms (e.g., GitHub, VS Code) and clearly see the "MA-TODO-APP" CLI banner prominently displayed at the very top.
 
 **Acceptance Scenarios**:\
 
-1.  **Given** I open the `README.md` file, **When** I view the top of the document, **Then** the "Talal's TDA" CLI banner is the first element displayed, providing an immediate visual identity.
+1.  **Given** I open the `README.md` file, **When** I view the top of the document, **Then** the "MA-TODO-APP" CLI banner is the first element displayed, providing an immediate visual identity.
 2.  **Given** the CLI banner is displayed, **When** I observe its appearance across different compatible platforms, **Then** it is rendered consistently, is visually appealing, professional, and clearly recognizable as the project's icon.
 3.  **Given** the banner is composed of ASCII art, **When** it is viewed on platforms with limited ASCII rendering capabilities, **Then** it degrades gracefully, remaining readable and conveying its intended message without significant distortion.
 
@@ -104,7 +104,7 @@ As a new user or developer, I want a "Frequently Asked Questions" (FAQ) section 
 ### Edge Cases
 
 -   **Platform Compatibility for CLI Banner**: What happens if a user is viewing the README on a platform that doesn't fully support or renders ASCII art unpredictably (e.g., some older terminals, specific web-based markdown viewers)?
-    -   *Mitigation*: Ensure the ASCII art is robust and simple enough for graceful degradation. The core text "Talal's TDA" should remain legible even if the visual flair is lost. Potentially provide a plaintext alternative or a note about optimal viewing environments.
+    -   *Mitigation*: Ensure the ASCII art is robust and simple enough for graceful degradation. The core text "MA-TODO-APP" should remain legible even if the visual flair is lost. Potentially provide a plaintext alternative or a note about optimal viewing environments.
 -   **README for Different Project Phases**: How does the `README.md` remain relevant and accurate as the project evolves through its 5 phases?
     -   *Mitigation*: The `README.md` should clearly delineate instructions per phase. For example, "Getting Started" could have subsections for each phase, or it could link to phase-specific `README-PhaseX.md` files or documentation within their respective directories. The main `README.md` should focus on the *current* active phase while providing an overview of all phases.
 -   **Outdated Setup Instructions**: What if setup instructions become outdated due to changes in dependencies, OS versions, or tools?
@@ -115,7 +115,7 @@ As a new user or developer, I want a "Frequently Asked Questions" (FAQ) section 
 ### In Scope
 -   Creation and maintenance of the `README.md` file at the project root (`/README.md`).
 -   Inclusion of all mandatory sections specified in the Hackathon II document (Overview, Phases, Requirements, Bonus, Timeline, Submission, Resources, FAQ).
--   Integration of a custom ASCII art CLI banner for "Talal's TDA."
+-   Integration of a custom ASCII art CLI banner for "MA-TODO-APP."
 -   Clear, concise, and professional writing style.
 -   Focus on providing immediate value for new users, contributors, and hackathon judges.
 -   Instructions for setting up and running Phase I on supported environments (e.g., WSL 2 for Windows users).
@@ -137,7 +137,7 @@ As a new user or developer, I want a "Frequently Asked Questions" (FAQ) section 
 
 -   Users viewing the `README.md` have basic familiarity with Markdown syntax and GitHub/VS Code environments.
 -   The project will primarily be developed and run on Linux-like environments (e.g., WSL 2, native Linux) for Phase I.
--   The "Talal's TDA" CLI banner will be provided or designed using standard ASCII characters, without requiring special fonts or character sets.
+-   The "MA-TODO-APP" CLI banner will be provided or designed using standard ASCII characters, without requiring special fonts or character sets.
 -   The "Hackathon II" document is the single source of truth for project phases, requirements, and submission guidelines.
 -   The project's current working directory is the repository root when following setup instructions.
 
@@ -145,13 +145,13 @@ As a new user or developer, I want a "Frequently Asked Questions" (FAQ) section 
 
 -   **Hackathon II Document**: Provides all core requirements, phase definitions, and project context.
 -   **Phase I Console Application**: The `README.md` will describe how to set up and run this existing application.
--   **ASCII Art Generation Tool/Service**: For creating or verifying the "Talal's TDA" CLI banner (if not manually crafted).
+-   **ASCII Art Generation Tool/Service**: For creating or verifying the "MA-TODO-APP" CLI banner (if not manually crafted).
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
--   **FR-001**: The `README.md` MUST include a prominent, professionally designed ASCII art CLI banner for "Talal's TDA" at the very top.
+-   **FR-001**: The `README.md` MUST include a prominent, professionally designed ASCII art CLI banner for "MA-TODO-APP" at the very top.
 -   **FR-002**: The `README.md` MUST provide a clear and concise project overview, including its purpose, the "Hackathon II" context, and its relation to the 5-Phase "Evolution of Todo" project.
 -   **FR-003**: The `README.md` MUST dedicate a section to detail the requirements, technology stack, and deliverables for each of the 5 project phases, explicitly linking to the Hackathon II document where appropriate.
 -   **FR-004**: The `README.md` MUST include a "Getting Started" section with comprehensive, step-by-step instructions on how to set up the development environment and run the Phase I console application, with specific notes for WSL 2 users on Windows.
@@ -165,12 +165,12 @@ As a new user or developer, I want a "Frequently Asked Questions" (FAQ) section 
 
 -   **README File**: The primary documentation file for the project, located at the repository root.
 -   **Project**: The "Evolution of Todo" application, a multi-phase development effort within the "Hackathon II" context.
--   **CLI Banner**: An ASCII art representation of "Talal's TDA", serving as the visual identifier for the project.
+-   **CLI Banner**: An ASCII art representation of "MA-TODO-APP", serving as the visual identifier for the project.
 -   **Hackathon II Document**: The external reference providing official guidelines, requirements, and context for the project.
 
 ## Implementation Notes *(optional)*
 
--   **ASCII Art Tooling**: Consider using an online ASCII art generator or a Python library (e.g., `pyfiglet`) to create or refine the "Talal's TDA" banner, ensuring it is visually appealing and consistent.
+-   **ASCII Art Tooling**: Consider using an online ASCII art generator or a Python library (e.g., `pyfiglet`) to create or refine the "MA-TODO-APP" banner, ensuring it is visually appealing and consistent.
 -   **Phase-Specific Documentation**: For future phases, it might be beneficial to maintain `README-PhaseX.md` files within phase-specific directories, with the main `README.md` providing an overview and linking to the current active phase's detailed setup.
 -   **Maintainability**: Structure the `README.md` with clear headings and subheadings to enhance readability and ease of future updates.
 
@@ -179,7 +179,7 @@ As a new user or developer, I want a "Frequently Asked Questions" (FAQ) section 
 ### Measurable Outcomes
 
 -   **SC-001**: Within **30 seconds** of first viewing the `README.md`, a new user or hackathon judge can identify the project's name, primary goal, current phase (Phase I), and its relation to "Hackathon II."
--   **SC-002**: The "Talal's TDA" CLI banner is prominently displayed at the top of the `README.md` and remains visually consistent and recognizable across GitHub's markdown renderer and VS Code's markdown preview.
+-   **SC-002**: The "MA-TODO-APP" CLI banner is prominently displayed at the top of the `README.md` and remains visually consistent and recognizable across GitHub's markdown renderer and VS Code's markdown preview.
 -   **SC-003**: A developer can successfully set up the development environment and run the Phase I console application within **15 minutes** by exclusively following the instructions provided in the `README.md`, without external assistance.
 -   **SC-004**: All mandatory sections (Overview, Project Phases, Getting Started, Bonus Points, Timeline, Submission Requirements, Resources, FAQ) are present, clearly identifiable, and contain accurate information consistent with the Hackathon II document.
 -   **SC-005**: The `README.md` maintains a Flesch-Kincaid Grade Level score appropriate for a general technical audience (typically 8-12), ensuring readability.

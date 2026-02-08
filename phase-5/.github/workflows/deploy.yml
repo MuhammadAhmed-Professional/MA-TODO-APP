@@ -84,7 +84,7 @@ jobs:
     needs: build-and-push
     environment:
       name: ${{ github.event.inputs.environment || 'production' }}
-      url: https://todo-app.demolinator.dev
+      url: https://todo-app.muhammadahmed.dev
 
     steps:
       - uses: actions/checkout@v4
@@ -176,10 +176,10 @@ jobs:
           sleep 30
 
           # Test frontend
-          curl -f https://todo-app.demolinator.dev/health || exit 1
+          curl -f https://todo-app.muhammadahmed.dev/health || exit 1
 
           # Test backend API
-          curl -f https://api.todo-app.demolinator.dev/health || exit 1
+          curl -f https://api.todo-app.muhammadahmed.dev/health || exit 1
 
           echo "✅ Smoke tests passed!"
 

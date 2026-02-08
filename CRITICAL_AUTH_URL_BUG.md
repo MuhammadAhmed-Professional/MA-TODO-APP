@@ -13,19 +13,19 @@ The backend's `AUTH_SERVER_URL` environment variable points to a URL that serves
 
 ```bash
 # Backend health endpoint
-curl https://tda-backend-production.up.railway.app/health
-# {"status":"healthy","auth_server_url":"https://auth-server-production-8251.up.railway.app","commit":"27465d5"}
+curl https://backend-production-9a40.up.railway.app/health
+# {"status":"healthy","auth_server_url":"https://auth-server-production-cd0e.up.railway.app","commit":"27465d5"}
 
 # Auth-server URL ALSO returns backend health format
-curl https://auth-server-production-8251.up.railway.app/health
-# {"status":"healthy","auth_server_url":"https://auth-server-production-8251.up.railway.app","commit":"74ba9e8"}
+curl https://auth-server-production-cd0e.up.railway.app/health
+# {"status":"healthy","auth_server_url":"https://auth-server-production-cd0e.up.railway.app","commit":"74ba9e8"}
 # ⚠️  This should return: {"status":"healthy","service":"better-auth-server","version":"1.0.1"}
 ```
 
 ### What's Happening
 
-1. **Frontend** → `POST /api/auth/sign-in/email` → **Backend** (tda-backend-production.up.railway.app)
-2. **Backend** → Proxies to `AUTH_SERVER_URL` → **Backend AGAIN** (auth-server-production-8251.up.railway.app)
+1. **Frontend** → `POST /api/auth/sign-in/email` → **Backend** (backend-production-9a40.up.railway.app)
+2. **Backend** → Proxies to `AUTH_SERVER_URL` → **Backend AGAIN** (auth-server-production-cd0e.up.railway.app)
 3. **Result**: Circular proxy loop or 502 Bad Gateway
 
 ---
@@ -101,7 +101,7 @@ curl -X POST "https://CORRECT-AUTH-URL/api/auth/sign-in/email" \
 # Should return session data (not 502 or timeout)
 
 # Test via backend proxy
-curl -X POST "https://tda-backend-production.up.railway.app/api/auth/sign-in/email" \
+curl -X POST "https://backend-production-9a40.up.railway.app/api/auth/sign-in/email" \
   -H "Content-Type: application/json" \
   -d '{"email":"test@test.com","password":"test1234"}'
 # Should return session data (backend proxies correctly)

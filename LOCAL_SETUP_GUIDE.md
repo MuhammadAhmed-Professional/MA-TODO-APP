@@ -54,7 +54,7 @@ If any are missing, install them:
 ## Step 1: Navigate to Project Root
 
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO
 ```
 
 Verify you're in the right place:
@@ -147,7 +147,7 @@ uv run uvicorn src.main:app --reload --port 8000
 
 ```bash
 # In a new terminal window
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/frontend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/frontend
 
 pwd  # Verify you're in phase-2/frontend
 ```
@@ -274,7 +274,7 @@ After logging in, you should see:
 Keep backend running, open a **NEW terminal**:
 
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 
 # Run all tests
 uv run pytest -v
@@ -292,7 +292,7 @@ uv run pytest -v
 Keep frontend running, open a **NEW terminal**:
 
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/frontend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/frontend
 
 # Run E2E tests
 pnpm test:e2e

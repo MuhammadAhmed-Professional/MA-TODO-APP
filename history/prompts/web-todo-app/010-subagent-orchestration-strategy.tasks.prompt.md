@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: web-todo-app
 branch: main
-user: talal
+user: muhammadahmed
 command: /sp.implement
 labels: ["orchestration", "subagents", "skills", "parallel-execution", "testing", "security", "ui-ux", "documentation", "polish"]
 links:

@@ -2,7 +2,7 @@
 
 **Date**: 2025-12-28 00:52 UTC+5
 **Status**: DEPLOYMENT SUCCESSFUL
-**Repository**: https://github.com/Demolinator/Talal-s-TDA
+**Repository**: https://github.com/MuhammadAhmed-Professional/MA-TODO-APP
 **Branch**: main
 
 ---
@@ -57,9 +57,9 @@ if (options?.headers) {
 ## Deployment Details
 
 ### Production URLs
-- **Primary**: https://talal-s-tda.vercel.app
-- **Preview**: https://frontend-8yna1awg4-talal-ahmeds-projects.vercel.app
-- **Alternate**: https://frontend-talal-ahmeds-projects.vercel.app
+- **Primary**: https://frontend-six-coral-90.vercel.app
+- **Preview**: https://frontend-six-coral-90.vercel.app
+- **Alternate**: https://frontend-six-coral-90.vercel.app
 
 ### Deployment Metadata
 ```
@@ -171,7 +171,7 @@ e56998d (HEAD -> main) fix: resolve TypeScript HeadersInit type error in API cli
 
 ### Recommended Actions
 1. **Test Authentication Flow**:
-   - Visit https://talal-s-tda.vercel.app/login
+   - Visit https://frontend-six-coral-90.vercel.app/login
    - Sign in with test credentials
    - Verify JWT token is stored in localStorage
    - Check browser console for debug logs ("SIGNIN RESPONSE", "Token found")
@@ -198,13 +198,13 @@ e56998d (HEAD -> main) fix: resolve TypeScript HeadersInit type error in API cli
 
 1. **Check localStorage**:
    ```javascript
-   // In browser console at https://talal-s-tda.vercel.app
+   // In browser console at https://frontend-six-coral-90.vercel.app
    console.log(localStorage.getItem('auth_token'));
    ```
 
 2. **Verify Backend URL**:
    ```javascript
-   // Should log: https://tda-backend-production.up.railway.app
+   // Should log: https://backend-production-9a40.up.railway.app
    console.log(process.env.NEXT_PUBLIC_API_URL);
    ```
 
@@ -235,8 +235,8 @@ e56998d (HEAD -> main) fix: resolve TypeScript HeadersInit type error in API cli
 
 ### Environment Variables (Vercel)
 ```env
-NEXT_PUBLIC_API_URL=https://tda-backend-production.up.railway.app
-NEXT_PUBLIC_BETTER_AUTH_URL=https://talal-s-tda.vercel.app
+NEXT_PUBLIC_API_URL=https://backend-production-9a40.up.railway.app
+NEXT_PUBLIC_BETTER_AUTH_URL=https://frontend-six-coral-90.vercel.app
 BETTER_AUTH_SECRET=[redacted]
 ```
 
@@ -267,7 +267,7 @@ BETTER_AUTH_SECRET=[redacted]
 
 ```
 Vercel CLI 50.1.1
-Deploying talal-ahmeds-projects/frontend
+Deploying muhammadahmed-professional/frontend
 ✓ Uploaded files [3s]
 ✓ Build queued [3s]
 ✓ Building with Turbopack [9.8s]
@@ -277,7 +277,7 @@ Deploying talal-ahmeds-projects/frontend
 ✓ Deployment completed [40s]
 ✓ Production alias assigned
 
-Production: https://talal-s-tda.vercel.app
+Production: https://frontend-six-coral-90.vercel.app
 ```
 
 ---
@@ -287,7 +287,7 @@ Production: https://talal-s-tda.vercel.app
 **Status**: DEPLOYMENT SUCCESSFUL
 **Build**: ✅ Passed
 **Type Check**: ✅ Passed
-**Production URL**: https://talal-s-tda.vercel.app
+**Production URL**: https://frontend-six-coral-90.vercel.app
 **Latest Commit**: `e56998d` (TypeScript fix)
 **Previous Commit**: `86cbc83` (JWT extraction)
 

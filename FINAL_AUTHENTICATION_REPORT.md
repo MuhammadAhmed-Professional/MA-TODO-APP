@@ -190,9 +190,9 @@ export const auth = betterAuth({
 
 ## Current Deployment Status
 
-✅ **Frontend**: https://talal-s-tda.vercel.app
-✅ **Backend**: https://tda-backend-production.up.railway.app
-✅ **Auth Server**: https://auth-server-production-8251.up.railway.app
+✅ **Frontend**: https://frontend-six-coral-90.vercel.app
+✅ **Backend**: https://backend-production-9a40.up.railway.app
+✅ **Auth Server**: https://auth-server-production-cd0e.up.railway.app
 ✅ **Database**: Neon PostgreSQL (shared)
 
 **Health Checks**: All services respond successfully

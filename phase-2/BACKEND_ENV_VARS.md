@@ -2,20 +2,20 @@
 
 ## Required Variables for Railway Deployment
 
-Configure these in Railway dashboard for the backend service (`talal-s-tda-production`):
+Configure these in Railway dashboard for the backend service (`ma-todo-app-production`):
 
 ```env
 # Database Connection
 DATABASE_URL=postgresql://neondb_owner:npg_8WSLxbOhQf1a@ep-solitary-morning-a4vdcuab-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
 
 # Auth Server URL (Better Auth)
-AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app
+AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app
 
 # JWT Secret (MUST match BETTER_AUTH_SECRET in auth-server)
 JWT_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801
 
 # CORS Configuration
-CORS_ORIGINS=http://localhost:3000,https://talal-s-tda.vercel.app
+CORS_ORIGINS=http://localhost:3000,https://frontend-six-coral-90.vercel.app
 
 # Environment
 ENVIRONMENT=production
@@ -33,10 +33,10 @@ ENVIRONMENT=production
 
 ```bash
 # Test health endpoint
-curl https://talal-s-tda-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 
 # Test signup endpoint
-curl -X POST https://talal-s-tda-production.up.railway.app/api/auth/signup \
+curl -X POST https://backend-production-9a40.up.railway.app/api/auth/signup \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","name":"Test User","password":"test pass123"}'
 ```

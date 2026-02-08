@@ -1,6 +1,6 @@
 # AGENTS.md
 
-A guide for AI coding agents working on Talal's TDA (Todo App) - Evolution of Todo project.
+A guide for AI coding agents working on MA-TODO-APP (Todo App) - Evolution of Todo project.
 
 This is a **monorepo** with multiple phases, each representing a different architectural evolution of a Todo application. Agents should read this file before making changes to understand the project structure, conventions, and workflows.
 

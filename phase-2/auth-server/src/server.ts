@@ -38,8 +38,8 @@ const app = express();
 const CORS_ORIGINS = process.env.CORS_ORIGINS?.split(",") || [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "https://talal-s-tda.vercel.app",
-  "https://talal-s-tda-production.up.railway.app",
+  "https://frontend-six-coral-90.vercel.app",
+  "https://backend-production-9a40.up.railway.app",
 ];
 
 console.log("🌐 CORS Origins:", CORS_ORIGINS);

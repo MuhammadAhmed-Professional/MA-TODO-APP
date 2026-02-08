@@ -63,7 +63,7 @@ Starting Container
 
 **Then test**:
 1. Open fresh incognito window
-2. Navigate to: https://talal-s-tda.vercel.app/login
+2. Navigate to: https://frontend-six-coral-90.vercel.app/login
 3. Login with your credentials
 
 ---
@@ -89,7 +89,7 @@ Starting Container
 ### Option 3: Test Health Endpoint
 
 ```bash
-curl https://tda-backend-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 ```
 
 Should return: `{"status":"healthy"}`

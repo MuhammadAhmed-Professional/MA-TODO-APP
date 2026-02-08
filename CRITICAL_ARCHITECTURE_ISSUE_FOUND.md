@@ -44,8 +44,8 @@ Your todo application has a **fundamental architectural mismatch**:
 
 **1. Login Works**
 ```bash
-$ curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email \
-  -d '{"email":"ta234567801@gmail.com","password":"talal12345"}'
+$ curl -X POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email \
+  -d '{"email":"ta234567801@gmail.com","password":"ahmed12345"}'
 
 Response: 200 OK
 {
@@ -57,7 +57,7 @@ Response: 200 OK
 
 **2. Session Validation Fails**
 ```bash
-$ curl https://tda-backend-production.up.railway.app/api/auth/get-session \
+$ curl https://backend-production-9a40.up.railway.app/api/auth/get-session \
   -H "Authorization: Bearer qzsq1Ftoz6nTsD8TNfDut3UCyW8SG9n9"
 
 Response: 401 Unauthorized

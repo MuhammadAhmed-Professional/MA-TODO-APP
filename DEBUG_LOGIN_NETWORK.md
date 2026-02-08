@@ -3,7 +3,7 @@
 ## ✅ Good News:
 The auth client is now correctly configured:
 ```
-BACKEND_URL: https://tda-backend-production.up.railway.app
+BACKEND_URL: https://backend-production-9a40.up.railway.app
 ```
 
 ## ❓ What's Still Wrong?
@@ -26,7 +26,7 @@ Open DevTools (F12) → **Network** tab → Clear all → Try logging in again
 
 Look for:
 ```
-POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
 ```
 
 Click on it, then check:
@@ -71,7 +71,7 @@ Set-Cookie: auth_token=eyJ...; HttpOnly; Secure; SameSite=Lax; Max-Age=900
 
 Look for:
 ```
-GET https://tda-backend-production.up.railway.app/api/tasks
+GET https://backend-production-9a40.up.railway.app/api/tasks
 ```
 
 Click on it, then check:
@@ -96,12 +96,12 @@ Cookie: auth_token=eyJ...
 
 Go to **Application** tab → **Cookies** → Expand the list
 
-**❓ Do you see a cookie for `tda-backend-production.up.railway.app`?**
+**❓ Do you see a cookie for `backend-production-9a40.up.railway.app`?**
 
 If YES:
 - Name: `auth_token`
 - Value: `eyJ...` (JWT token)
-- Domain: `tda-backend-production.up.railway.app`
+- Domain: `backend-production-9a40.up.railway.app`
 - Path: `/`
 - HttpOnly: ✓ (should be checked)
 - Secure: ✓ (should be checked)

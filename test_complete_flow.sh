@@ -8,9 +8,9 @@ echo "======================================"
 echo ""
 
 # URLs
-BACKEND_URL="https://tda-backend-production.up.railway.app"
-AUTH_SERVER_URL="https://auth-server-production-8251.up.railway.app"
-FRONTEND_URL="https://talal-s-tda.vercel.app"
+BACKEND_URL="https://backend-production-9a40.up.railway.app"
+AUTH_SERVER_URL="https://auth-server-production-cd0e.up.railway.app"
+FRONTEND_URL="https://frontend-six-coral-90.vercel.app"
 
 # Test credentials
 EMAIL="test@test.com"

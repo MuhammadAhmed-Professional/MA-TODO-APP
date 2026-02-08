@@ -7,7 +7,7 @@
 
 ### 1. CLI Banner ASCII Art Design
 
-*   **Decision**: The CLI banner for "Talal's TDA" will be implemented using robust ASCII art.
+*   **Decision**: The CLI banner for "MA-TODO-APP" will be implemented using robust ASCII art.
 *   **Rationale**: As per the `spec.md` (User Story 2, Acceptance Scenario 3) and `plan.md` constraints, ASCII art ensures portability and compatibility across various markdown rendering platforms. It avoids external assets and complex styling, aligning with the CLI nature of the initial project phase.
 *   **Alternatives Considered**:
     *   Using image-based banners: Rejected due to markdown compatibility issues, lack of graceful degradation, and increased complexity.

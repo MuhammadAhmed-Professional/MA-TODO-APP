@@ -86,7 +86,7 @@ Project ID: 1a580b9d-e43b-4faf-a523-b3454b9d3bf1
 Services:
   - Backend (FastAPI):
       ID: ac8b8441-def7-49e9-af64-47dd171ae1c2
-      URL: https://tda-backend-production.up.railway.app
+      URL: https://backend-production-9a40.up.railway.app
       Required Env Vars:
         - AUTH_SERVER_URL
         - DATABASE_URL
@@ -94,7 +94,7 @@ Services:
 
   - Auth Server (Better Auth):
       ID: (auth server service ID)
-      URL: https://auth-server-production-8251.up.railway.app
+      URL: https://auth-server-production-cd0e.up.railway.app
       Required Env Vars:
         - DATABASE_URL
         - BETTER_AUTH_SECRET
@@ -109,7 +109,7 @@ Services:
   "action": "config",
   "service": "backend",
   "variables_set": [
-    "AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app"
+    "AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app"
   ],
   "redeployment_triggered": true,
   "status": "SUCCESS"
@@ -125,7 +125,7 @@ Services:
   "status": "DEPLOYED",
   "build_time": "2m 15s",
   "health_check": "PASS",
-  "url": "https://tda-backend-production.up.railway.app"
+  "url": "https://backend-production-9a40.up.railway.app"
 }
 ```
 
@@ -145,7 +145,7 @@ Services:
 
 ### Set Environment Variable
 ```bash
-claude-code /railway-deploy --service backend --action config --env-vars "AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app"
+claude-code /railway-deploy --service backend --action config --env-vars "AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app"
 ```
 
 ### Deploy Backend
@@ -178,13 +178,13 @@ claude-code /railway-deploy --service backend --action config --env-vars "AUTH_S
 ### Critical Backend Variables
 ```bash
 # Auth Server URL (REQUIRED)
-AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app
+AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app
 
 # Database (auto-set by Railway)
 DATABASE_URL=postgresql://...
 
 # CORS Origins
-CORS_ORIGINS=https://talal-s-tda.vercel.app,http://localhost:3000
+CORS_ORIGINS=https://frontend-six-coral-90.vercel.app,http://localhost:3000
 ```
 
 ### Critical Auth Server Variables
@@ -196,20 +196,20 @@ DATABASE_URL=postgresql://...
 BETTER_AUTH_SECRET=<random-secret>
 
 # CORS Origins
-CORS_ORIGINS=https://talal-s-tda.vercel.app,https://tda-backend-production.up.railway.app
+CORS_ORIGINS=https://frontend-six-coral-90.vercel.app,https://backend-production-9a40.up.railway.app
 ```
 
 ## Health Check Verification
 
 ### Backend Health Check
 ```bash
-curl https://tda-backend-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 # Expected: {"status":"healthy"}
 ```
 
 ### Auth Server Health Check
 ```bash
-curl https://auth-server-production-8251.up.railway.app/health
+curl https://auth-server-production-cd0e.up.railway.app/health
 # Expected: {"status":"healthy"}
 ```
 
@@ -266,7 +266,7 @@ claude-code /railway-deploy --service auth-server --action deploy
 claude-code /railway-deploy --service all --action status
 
 # 4. Test authentication flow
-claude-code /browser-test-auth --url https://talal-s-tda.vercel.app
+claude-code /browser-test-auth --url https://frontend-six-coral-90.vercel.app
 ```
 
 ### 3. Post-Deployment Verification
@@ -322,7 +322,7 @@ jobs:
       - name: Test Authentication
         run: |
           claude-code /browser-test-auth \
-            --url https://talal-s-tda.vercel.app
+            --url https://frontend-six-coral-90.vercel.app
 ```
 
 ## Dependencies

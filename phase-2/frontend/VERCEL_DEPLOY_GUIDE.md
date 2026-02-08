@@ -48,7 +48,7 @@ You need to set these environment variables in Vercel:
 1. **NEXT_PUBLIC_API_URL** (Backend URL)
    ```bash
    vercel env add NEXT_PUBLIC_API_URL production
-   # When prompted, enter: https://talal-s-tda-production.up.railway.app
+   # When prompted, enter: https://backend-production-9a40.up.railway.app
    ```
 
 2. **BETTER_AUTH_SECRET** (Authentication Secret)
@@ -91,7 +91,7 @@ This will:
 After deployment completes, you'll see:
 
 ```
-✅ Production: https://talal-s-tda.vercel.app [copied to clipboard]
+✅ Production: https://frontend-six-coral-90.vercel.app [copied to clipboard]
 ```
 
 Visit the URL to verify:
@@ -106,7 +106,7 @@ Visit the URL to verify:
 
 | Variable | Value | Purpose |
 |----------|-------|---------|
-| `NEXT_PUBLIC_API_URL` | `https://talal-s-tda-production.up.railway.app` | Backend API endpoint |
+| `NEXT_PUBLIC_API_URL` | `https://backend-production-9a40.up.railway.app` | Backend API endpoint |
 | `BETTER_AUTH_SECRET` | `9TNI5WqJgVWRDvg8J5053/yEH7dnnLUNliT3x7CI0Qw=` | Auth encryption secret |
 | `NEXT_PUBLIC_ENVIRONMENT` | `production` | Environment identifier |
 | `NEXT_PUBLIC_APP_NAME` | `Phase II Todo` | Application display name |
@@ -142,7 +142,7 @@ vercel logs
 
 ### List all deployments
 ```bash
-vercel ls talal-s-tda
+vercel ls ma-todo-app
 ```
 
 ### Promote a preview deployment to production
@@ -187,7 +187,7 @@ Common issues:
 ### "CORS errors in browser"
 **Solution:** Update backend CORS settings in Railway to allow your Vercel URL:
 ```env
-CORS_ORIGINS=https://talal-s-tda.vercel.app
+CORS_ORIGINS=https://frontend-six-coral-90.vercel.app
 ```
 
 ---
@@ -199,7 +199,7 @@ Before submitting to hackathon:
 - [ ] Logged in to Vercel CLI (`vercel whoami` works)
 - [ ] All 4 environment variables set in production
 - [ ] Deployment successful (`vercel --prod` completed)
-- [ ] Deployment URL accessible (e.g., `https://talal-s-tda.vercel.app`)
+- [ ] Deployment URL accessible (e.g., `https://frontend-six-coral-90.vercel.app`)
 - [ ] Can signup/login successfully
 - [ ] Can create tasks
 - [ ] Can edit tasks
@@ -236,9 +236,9 @@ Before submitting to hackathon:
 
 After deployment, your URLs will be:
 
-- **Frontend:** `https://talal-s-tda.vercel.app` (or similar)
-- **Backend API:** `https://talal-s-tda-production.up.railway.app`
-- **API Docs:** `https://talal-s-tda-production.up.railway.app/docs`
+- **Frontend:** `https://frontend-six-coral-90.vercel.app` (or similar)
+- **Backend API:** `https://backend-production-9a40.up.railway.app`
+- **API Docs:** `https://backend-production-9a40.up.railway.app/docs`
 
 ---
 

@@ -6,7 +6,7 @@ This script verifies that all Phase III and Phase V migrations have been
 applied correctly and the database schema is as expected.
 
 Usage:
-    cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+    cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
     uv run python scripts/verify_migrations.py
 
 Environment Variables:

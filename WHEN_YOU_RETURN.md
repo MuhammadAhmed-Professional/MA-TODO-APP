@@ -7,7 +7,7 @@
 ## 🎯 TL;DR - What to Do First
 
 1. **Hard refresh the login page**: `Ctrl+Shift+R` (clears cache)
-2. **Login**: `ta234567801@gmail.com` / `talal12345`
+2. **Login**: `ta234567801@gmail.com` / `ahmed12345`
 3. **Open Browser Console** (F12)
 4. **Look for this log**:
    ```
@@ -41,8 +41,8 @@
 
 ### The Problem
 Your todo app had a **cross-domain authentication issue**:
-- Frontend: `talal-s-tda.vercel.app` (Vercel)
-- Backend: `tda-backend-production.up.railway.app` (Railway)
+- Frontend: `frontend-six-coral-90.vercel.app` (Vercel)
+- Backend: `backend-production-9a40.up.railway.app` (Railway)
 - Browsers block cookies between different domains for security
 
 ### The Solution
@@ -63,7 +63,7 @@ This is the **industry standard** for cross-domain auth (same as Google, GitHub,
 ```
 1. Hard refresh login page (Ctrl+Shift+R)
 2. Open DevTools Console (F12)
-3. Login with: ta234567801@gmail.com / talal12345
+3. Login with: ta234567801@gmail.com / ahmed12345
 4. Check console for these logs:
    🔐 SIGNIN RESPONSE: ...
    ✅ Token found: ...
@@ -133,9 +133,9 @@ git log -1 --oneline
 # Should show: 86cbc83 fix: use raw fetch for login
 
 # Test login endpoint directly
-curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email \
+curl -X POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email \
   -H "Content-Type: application/json" \
-  -d '{"email":"ta234567801@gmail.com","password":"talal12345"}'
+  -d '{"email":"ta234567801@gmail.com","password":"ahmed12345"}'
 
 # Should return JSON with "session": { "token": "eyJ..." }
 ```
@@ -146,7 +146,7 @@ curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/emai
 
 ### Documentation (for your reference)
 ```
-D:\Talal\Work\Hackathons-Panaversity\phase-1\
+E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\
 ├── FINAL_STATUS_REPORT.md (comprehensive status)
 ├── AUTH_TOKEN_ISSUE_ANALYSIS.md (technical deep dive)
 └── WHEN_YOU_RETURN.md (this file)
@@ -177,9 +177,9 @@ If you want to record a demo:
 
 ```
 1. Start recording
-2. Navigate to https://talal-s-tda.vercel.app
+2. Navigate to https://frontend-six-coral-90.vercel.app
 3. Click "Sign in" or go to /login
-4. Enter: ta234567801@gmail.com / talal12345
+4. Enter: ta234567801@gmail.com / ahmed12345
 5. Click "Sign In" → Dashboard appears
 6. Click "Add Task" → Enter "Buy groceries"
 7. Click Save → Task appears in list
@@ -230,8 +230,8 @@ User Login Flow:
 ### Console Logs (Success)
 ```
 🔍 AUTH CLIENT DEBUG:
-  process.env.NEXT_PUBLIC_API_URL: https://tda-backend-production.up.railway.app
-  BACKEND_URL: https://tda-backend-production.up.railway.app
+  process.env.NEXT_PUBLIC_API_URL: https://backend-production-9a40.up.railway.app
+  BACKEND_URL: https://backend-production-9a40.up.railway.app
 
 🔐 SIGNIN RESPONSE: {
   "user": {
@@ -248,8 +248,8 @@ User Login Flow:
 ✅ Token stored successfully
 
 🔍 API CLIENT DEBUG:
-  process.env.NEXT_PUBLIC_API_URL: https://tda-backend-production.up.railway.app
-  API_BASE_URL: https://tda-backend-production.up.railway.app
+  process.env.NEXT_PUBLIC_API_URL: https://backend-production-9a40.up.railway.app
+  API_BASE_URL: https://backend-production-9a40.up.railway.app
 
 [NO 401 ERRORS - Tasks load successfully]
 ```
@@ -311,7 +311,7 @@ If something doesn't work after 30 minutes:
 2. **Check Railway logs**: https://railway.app/project/1a580b9d-e43b-4faf-a523-b3454b9d3bf1
 3. **Clear all browser data**: DevTools → Application → Clear Storage
 4. **Try incognito/private window**: Bypasses all cache
-5. **Check this repo commit**: https://github.com/Demolinator/Talal-s-TDA/commit/86cbc83
+5. **Check this repo commit**: https://github.com/MuhammadAhmed-Professional/MA-TODO-APP/commit/86cbc83
 
 ---
 

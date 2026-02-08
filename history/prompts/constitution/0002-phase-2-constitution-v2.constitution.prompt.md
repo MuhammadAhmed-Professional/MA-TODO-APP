@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: none
 branch: 003-project-readme
-user: talal
+user: muhammadahmed
 command: /sp.constitution
 labels: ["constitution", "phase-2", "full-stack", "monorepo", "version-2.0.0"]
 links:

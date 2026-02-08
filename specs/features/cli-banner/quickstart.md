@@ -1,6 +1,6 @@
 # Quickstart: CLI Banner Implementation
 
-**Feature**: CLI Banner with "Talal's TDA" Branding
+**Feature**: CLI Banner with "MA-TODO-APP" Branding
 **Estimated Time**: 2-3 hours (with TDD)
 **Difficulty**: ⭐⭐ Intermediate
 
@@ -8,12 +8,12 @@
 
 ## Feature Overview
 
-Add a professional ASCII art banner displaying "Talal's TDA - Your Personal Task Manager" at application startup. The banner will include:
+Add a professional ASCII art banner displaying "MA-TODO-APP - Your Personal Task Manager" at application startup. The banner will include:
 
-- **ASCII Art Logo**: "Talal's TDA" in Big font (80x5 lines)
+- **ASCII Art Logo**: "MA-TODO-APP" in Big font (80x5 lines)
 - **Tagline**: "Your Personal Task Manager"
 - **Version**: Extracted from pyproject.toml or package metadata
-- **Copyright**: "© 2025 Talal - Phase I Hackathon Project"
+- **Copyright**: "© 2025 Muhammad Ahmed - Phase I Hackathon Project"
 - **Color Enhancement**: ANSI colors (bright cyan) with graceful fallback
 
 ---
@@ -144,10 +144,10 @@ class TestGetBannerContent:
         """Banner includes required branding elements."""
         banner = get_banner_content(use_color=False)
 
-        assert "TDA" in banner or "Talal" in banner
+        assert "TODO" in banner or "MA-TODO" in banner
         assert "Task Manager" in banner
         assert "Version" in banner
-        assert "2025 Talal" in banner
+        assert "2025 Muhammad Ahmed" in banner
 
     def test_colored_banner_has_ansi_codes(self):
         """Colored banner includes ANSI escape codes."""
@@ -173,7 +173,7 @@ class TestDisplayBanner:
 
         output = mock_stdout.getvalue()
         assert len(output) > 0
-        assert "TDA" in output or "Talal" in output
+        assert "TODO" in output or "MA-TODO" in output
 
     @patch('sys.stdout.isatty', return_value=False)
     @patch('sys.stdout', new_callable=StringIO)
@@ -231,7 +231,7 @@ ASCII_ART_LINES = [
 
 # Static Content
 TAGLINE = "Your Personal Task Manager"
-COPYRIGHT = "© 2025 Talal - Phase I Hackathon Project"
+COPYRIGHT = "© 2025 Muhammad Ahmed - Phase I Hackathon Project"
 BORDER = "=" * 80
 
 
@@ -421,7 +421,7 @@ uv run python -m src.todo_app.main
               Your Personal Task Manager
 
               Version 1.0.0
-              © 2025 Talal - Phase I Hackathon Project
+              © 2025 Muhammad Ahmed - Phase I Hackathon Project
 ================================================================================
 
 Welcome to Todo List Application!
@@ -485,10 +485,10 @@ Before marking the feature complete, verify:
 
 ### Functional Requirements (from spec.md)
 
-- [ ] **FR-001**: Banner displays "Talal's TDA" ASCII art at startup
+- [ ] **FR-001**: Banner displays "MA-TODO-APP" ASCII art at startup
 - [ ] **FR-002**: Tagline "Your Personal Task Manager" appears
 - [ ] **FR-003**: Version information shows (format: "Version X.Y.Z")
-- [ ] **FR-004**: Copyright "© 2025 Talal" is included
+- [ ] **FR-004**: Copyright "© 2025 Muhammad Ahmed" is included
 - [ ] **FR-005**: Banner readable in 80-column terminals (no wrapping)
 - [ ] **FR-006**: Uses ASCII characters only (codes 32-126)
 - [ ] **FR-007**: ANSI colors work with graceful fallback

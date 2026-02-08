@@ -30,7 +30,7 @@ import { fetchWithRetry } from "./api";
 // CRITICAL: Must use BACKEND URL (not auth server URL) so cookies are set on backend domain
 const BACKEND_URL =
   process.env.NEXT_PUBLIC_API_URL ||
-  "https://tda-backend-production.up.railway.app";
+  "https://backend-production-9a40.up.railway.app";
 
 // Debug logging to verify the URL being used
 if (typeof window !== "undefined") {

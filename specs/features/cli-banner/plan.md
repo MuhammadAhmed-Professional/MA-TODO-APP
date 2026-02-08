@@ -7,7 +7,7 @@
 
 ## Summary
 
-Implement a professional ASCII art banner displaying "Talal's TDA - Your Personal Task Manager" at application startup. The banner will include version information, copyright notice, and optional ANSI color enhancement with graceful fallback. Technical approach involves creating a banner display module with terminal capability detection, integrating with the existing application startup sequence in main.py, and ensuring 80-column compatibility with sub-100ms rendering performance.
+Implement a professional ASCII art banner displaying "MA-TODO-APP - Your Personal Task Manager" at application startup. The banner will include version information, copyright notice, and optional ANSI color enhancement with graceful fallback. Technical approach involves creating a banner display module with terminal capability detection, integrating with the existing application startup sequence in main.py, and ensuring 80-column compatibility with sub-100ms rendering performance.
 
 ## Technical Context
 
@@ -118,9 +118,9 @@ tests/
 
 ### Research Tasks
 
-#### R1: ASCII Art Design for "Talal's TDA"
+#### R1: ASCII Art Design for "MA-TODO-APP"
 
-**Objective**: Design professional ASCII art that displays "Talal's TDA" within 80 columns and under 15 lines.
+**Objective**: Design professional ASCII art that displays "MA-TODO-APP" within 80 columns and under 15 lines.
 
 **Investigation Areas**:
 1. ASCII art generation tools (patorjk.com, figlet, text-to-ascii)
@@ -197,10 +197,10 @@ All research findings will be consolidated in `research.md` with the following f
 ### D1: Data Model (`data-model.md`)
 
 **Banner Configuration Entity**:
-- `ASCII_ART`: Multi-line string constant for "Talal's TDA" artwork
+- `ASCII_ART`: Multi-line string constant for "MA-TODO-APP" artwork
 - `TAGLINE`: String constant for "Your Personal Task Manager"
 - `VERSION`: String extracted from package metadata or pyproject.toml
-- `COPYRIGHT`: String constant for "© 2025 Talal"
+- `COPYRIGHT`: String constant for "© 2025 Muhammad Ahmed"
 
 **Terminal Capabilities Entity**:
 - `terminal_width`: Integer (detected width in columns)
@@ -369,7 +369,7 @@ Implementation must satisfy:
 - ✅ **SC-001**: 100% of application launches display the banner before the main menu
 - ✅ **SC-002**: Banner displays correctly (no wrapping or distortion) in terminals with widths of 80 columns or greater
 - ✅ **SC-003**: Banner loads and displays in under 100 milliseconds to avoid noticeable delay
-- ✅ **SC-004**: Users can visually identify the application brand (Talal's TDA) within 1 second of launch
+- ✅ **SC-004**: Users can visually identify the application brand (MA-TODO-APP) within 1 second of launch
 - ✅ **SC-005**: Version information in banner matches the actual application version in 100% of cases
 - ✅ **SC-006**: Banner displays without errors or warnings in at least 95% of common terminal environments (Linux Terminal, Windows Terminal, macOS Terminal, WSL2)
 

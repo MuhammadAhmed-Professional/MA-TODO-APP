@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/demolinator/todo-frontend:latest
+          image: ghcr.io/muhammadahmed-professional/todo-frontend:latest
           imagePullPolicy: Always
           ports:
             - name: http
@@ -28,11 +28,11 @@ spec:
           env:
             # Backend API URL
             - name: NEXT_PUBLIC_API_URL
-              value: "https://api.todo-app.demolinator.dev"
+              value: "https://api.todo-app.muhammadahmed.dev"
 
             # Better Auth configuration
             - name: BETTER_AUTH_URL
-              value: "https://api.todo-app.demolinator.dev"
+              value: "https://api.todo-app.muhammadahmed.dev"
             - name: BETTER_AUTH_SECRET
               valueFrom:
                 secretKeyRef:

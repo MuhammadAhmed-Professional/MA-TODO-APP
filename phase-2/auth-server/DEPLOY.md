@@ -14,7 +14,7 @@ This guide provides step-by-step instructions for deploying the Better Auth serv
 **Project ID**: `1a580b9d-e43b-4faf-a523-b3454b9d3bf1`  
 **Service ID**: `ac8b8441-def7-49e9-af64-47dd171ae1c2`  
 **Environment**: production  
-**Railway URL**: https://auth-server-production-8251.up.railway.app
+**Railway URL**: https://auth-server-production-cd0e.up.railway.app
 
 ## Deployment Steps
 
@@ -38,10 +38,10 @@ Add the following environment variables:
 DATABASE_URL=${{Postgres.DATABASE_URL}}
 
 # Auth Server Base URL (Your Railway domain)
-BETTER_AUTH_URL=https://auth-server-production-8251.up.railway.app
+BETTER_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 
 # CORS Origins (Comma-separated list of allowed origins)
-CORS_ORIGINS=http://localhost:3000,https://auth-server-production-8251.up.railway.app
+CORS_ORIGINS=http://localhost:3000,https://auth-server-production-cd0e.up.railway.app
 
 # Auth Secret (Already set - verify it exists)
 BETTER_AUTH_SECRET=<your-secret-key>
@@ -76,10 +76,10 @@ Once deployed, verify the service is healthy:
 
 ```bash
 # Primary health check
-curl https://auth-server-production-8251.up.railway.app/health
+curl https://auth-server-production-cd0e.up.railway.app/health
 
 # Railway health check
-curl https://auth-server-production-8251.up.railway.app/api/auth/health
+curl https://auth-server-production-cd0e.up.railway.app/api/auth/health
 ```
 
 Both should return:
@@ -96,10 +96,10 @@ Both should return:
 
 ```bash
 # Get session (should return null for unauthenticated users)
-curl https://auth-server-production-8251.up.railway.app/auth/get-session
+curl https://auth-server-production-cd0e.up.railway.app/auth/get-session
 
 # Sign up (test account creation)
-curl -X POST https://auth-server-production-8251.up.railway.app/auth/sign-up \
+curl -X POST https://auth-server-production-cd0e.up.railway.app/auth/sign-up \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"test123","name":"Test User"}'
 ```

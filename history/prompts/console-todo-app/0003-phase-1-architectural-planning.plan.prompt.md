@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: 001-console-todo-app
 branch: 001-console-todo-app
-user: Talal Ahmed
+user: Muhammad Ahmed
 command: /sp.plan
 labels: ["plan", "architecture", "tdd", "design", "phase-1"]
 links:

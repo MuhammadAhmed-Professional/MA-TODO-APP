@@ -46,7 +46,7 @@
 
 **Request**:
 ```http
-POST https://tda-backend-production.up.railway.app/api/tasks
+POST https://backend-production-9a40.up.railway.app/api/tasks
 Authorization: Bearer yHwSnxfUAWFq3dEmZfJqdhomfKYTVRMD
 Content-Type: application/json
 
@@ -130,7 +130,7 @@ Content-Type: application/json
 
 ```javascript
 // Login test
-await page.goto('https://talal-s-tda.vercel.app/login');
+await page.goto('https://frontend-six-coral-90.vercel.app/login');
 await page.getByRole('textbox', { name: 'Email Address' }).fill('testuser123@example.com');
 await page.getByRole('textbox', { name: 'Password' }).fill('TestPass123!');
 await page.getByRole('button', { name: 'Sign In' }).click();
@@ -197,8 +197,8 @@ await page.getByRole('button', { name: 'Add Task' }).click();
 
 ## Test Environment
 
-**Frontend**: https://talal-s-tda.vercel.app
-**Backend**: https://tda-backend-production.up.railway.app
+**Frontend**: https://frontend-six-coral-90.vercel.app
+**Backend**: https://backend-production-9a40.up.railway.app
 **Database**: Neon PostgreSQL (shared)
 **Auth**: Better Auth v1.4.6
 

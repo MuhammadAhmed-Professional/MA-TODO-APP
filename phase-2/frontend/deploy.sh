@@ -16,7 +16,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Backend API URL (already deployed)
-BACKEND_URL="https://talal-s-tda-production.up.railway.app"
+BACKEND_URL="https://backend-production-9a40.up.railway.app"
 
 # Generated secrets
 BETTER_AUTH_SECRET="9TNI5WqJgVWRDvg8J5053/yEH7dnnLUNliT3x7CI0Qw="

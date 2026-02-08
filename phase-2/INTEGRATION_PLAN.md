@@ -2,7 +2,7 @@
 
 **Status**: Ready for Integration
 **Last Updated**: 2025-12-20
-**Auth Server**: https://auth-server-production-8251.up.railway.app (Deployed on Railway)
+**Auth Server**: https://auth-server-production-cd0e.up.railway.app (Deployed on Railway)
 
 ---
 
@@ -73,7 +73,7 @@
 ## Current State Analysis
 
 ### Auth Server (Deployed on Railway)
-- **URL**: https://auth-server-production-8251.up.railway.app
+- **URL**: https://auth-server-production-cd0e.up.railway.app
 - **Status**: Healthy ✓
 - **Database**: Using SQLite locally (needs migration to PostgreSQL)
 - **Endpoints**:
@@ -88,7 +88,7 @@
 - JWT secret not synced with backend
 
 ### Backend API (FastAPI)
-- **Location**: `D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\backend`
+- **Location**: `E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\backend`
 - **Database**: Connected to Neon PostgreSQL
 - **Endpoints**: `/api/auth/*` and `/api/tasks/*`
 - **JWT Secret**: `dev-secret-replace-in-production-openssl-rand-hex-32`
@@ -99,7 +99,7 @@
 - JWT secret must match auth server
 
 ### Frontend (Next.js)
-- **Location**: `D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\frontend`
+- **Location**: `E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\frontend`
 - **Current API URL**: Points to Railway backend (production)
 - **Auth Client**: Configured for local auth server (`localhost:3001`)
 
@@ -149,7 +149,7 @@ CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://your-frontend.v
 
 **Backend API** (`phase-2/backend/.env`):
 ```env
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://your-frontend.vercel.app,https://auth-server-production-8251.up.railway.app
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://your-frontend.vercel.app,https://auth-server-production-cd0e.up.railway.app
 ```
 
 ### Step 4: Update Frontend Environment Variables
@@ -157,7 +157,7 @@ CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,https://your-frontend.v
 **Create `phase-2/frontend/.env.local`**:
 ```env
 # Auth Server URL (Railway deployment)
-NEXT_PUBLIC_AUTH_URL=https://auth-server-production-8251.up.railway.app
+NEXT_PUBLIC_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 
 # Backend API URL (Railway or local)
 NEXT_PUBLIC_API_URL=http://localhost:8000
@@ -338,7 +338,7 @@ async def get_current_user(
 DATABASE_URL=postgresql://neondb_owner:npg_8WSLxbOhQf1a@ep-solitary-morning-a4vdcuab-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require
 
 # Better Auth
-BETTER_AUTH_URL=https://auth-server-production-8251.up.railway.app
+BETTER_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 BETTER_AUTH_SECRET=<shared-secret>
 
 # CORS
@@ -360,7 +360,7 @@ JWT_ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=15
 
 # CORS
-CORS_ORIGINS=http://localhost:3000,https://your-frontend.vercel.app,https://auth-server-production-8251.up.railway.app
+CORS_ORIGINS=http://localhost:3000,https://your-frontend.vercel.app,https://auth-server-production-cd0e.up.railway.app
 
 # Environment
 ENVIRONMENT=development
@@ -369,7 +369,7 @@ ENVIRONMENT=development
 ### Frontend `.env.local`
 ```env
 # Auth Server (Railway)
-NEXT_PUBLIC_AUTH_URL=https://auth-server-production-8251.up.railway.app
+NEXT_PUBLIC_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 
 # Backend API (Railway or local)
 NEXT_PUBLIC_API_URL=http://localhost:8000
@@ -407,7 +407,7 @@ Cross-Origin Resource Sharing (CORS) is critical because:
 curl -H "Origin: http://localhost:3000" \
      -H "Access-Control-Request-Method: POST" \
      -X OPTIONS \
-     https://auth-server-production-8251.up.railway.app/auth/sign-in/email
+     https://auth-server-production-cd0e.up.railway.app/auth/sign-in/email
 
 # Should return:
 # Access-Control-Allow-Origin: http://localhost:3000
@@ -528,7 +528,7 @@ export async function fetchAPI<T>(endpoint: string, options?: RequestInit): Prom
 
 1. **Clone and Navigate**:
 ```bash
-cd D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2
+cd E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2
 ```
 
 2. **Configure Environment Variables**:
@@ -624,11 +624,11 @@ wait
 
 ### Auth Server (Railway)
 **Status**: Already deployed ✓
-**URL**: https://auth-server-production-8251.up.railway.app
+**URL**: https://auth-server-production-cd0e.up.railway.app
 
 **Environment Variables** (set in Railway dashboard):
 - `DATABASE_URL`: `${{Postgres.DATABASE_URL}}`
-- `BETTER_AUTH_URL`: `https://auth-server-production-8251.up.railway.app`
+- `BETTER_AUTH_URL`: `https://auth-server-production-cd0e.up.railway.app`
 - `BETTER_AUTH_SECRET`: (use Railway secrets)
 - `CORS_ORIGINS`: `https://your-frontend.vercel.app,http://localhost:3000`
 

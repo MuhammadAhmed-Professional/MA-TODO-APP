@@ -3,8 +3,8 @@
 ## 🎯 The Root Cause (Finally Found!)
 
 Your frontend and backend are on **different domains**:
-- **Frontend**: `talal-s-tda.vercel.app`
-- **Backend**: `tda-backend-production.up.railway.app`
+- **Frontend**: `frontend-six-coral-90.vercel.app`
+- **Backend**: `backend-production-9a40.up.railway.app`
 
 The backend was setting cookies with **`SameSite=Lax`**, which **blocks cookies from being sent in cross-domain requests**.
 
@@ -65,7 +65,7 @@ response.set_cookie(
 ### Step 2: Test in Fresh Incognito Window
 
 1. Open **Incognito/Private Window** (Ctrl + Shift + N)
-2. Navigate to: `https://talal-s-tda.vercel.app/login`
+2. Navigate to: `https://frontend-six-coral-90.vercel.app/login`
 3. **Open DevTools** (F12) → **Network** tab
 4. **Clear all requests** (🚫 icon)
 
@@ -77,7 +77,7 @@ response.set_cookie(
 #### ✅ Expected Request 1: Login POST
 
 ```
-POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
 Status: 200 OK
 ```
 
@@ -91,7 +91,7 @@ Set-Cookie: auth_token=eyJ...; HttpOnly; Secure; SameSite=None; Max-Age=900
 #### ✅ Expected Request 2: Tasks GET
 
 ```
-GET https://tda-backend-production.up.railway.app/api/tasks
+GET https://backend-production-9a40.up.railway.app/api/tasks
 Status: 200 OK (not 401!)
 ```
 
@@ -125,7 +125,7 @@ Cookie: auth_token=eyJ...
 Verify the backend has the latest code:
 
 ```bash
-curl https://tda-backend-production.up.railway.app/health
+curl https://backend-production-9a40.up.railway.app/health
 ```
 
 Should return: `{"status":"healthy"}`
@@ -162,10 +162,10 @@ Cookie: auth_token=eyJ...
 
 Go to **Application** tab → **Cookies**:
 
-**Should see cookie for `tda-backend-production.up.railway.app`**:
+**Should see cookie for `backend-production-9a40.up.railway.app`**:
 - Name: `auth_token`
 - Value: `eyJ...` (JWT token)
-- Domain: `tda-backend-production.up.railway.app`
+- Domain: `backend-production-9a40.up.railway.app`
 - Path: `/`
 - Expires: ~15 minutes from now
 - HttpOnly: ✓
@@ -203,7 +203,7 @@ This is the correct setting for cross-domain authentication.
 **Backend**: ✅ Deployed to Railway
 **Commit**: `7bcf9b7`
 **Time**: Just now
-**URL**: https://tda-backend-production.up.railway.app
+**URL**: https://backend-production-9a40.up.railway.app
 
 ---
 

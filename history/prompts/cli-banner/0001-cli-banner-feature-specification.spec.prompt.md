@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5
 feature: 002-cli-banner
 branch: 002-cli-banner
-user: talal
+user: muhammadahmed
 command: /sp.specify
 labels: ["specification", "branding", "user-experience", "ascii-art"]
 links:
@@ -24,18 +24,18 @@ tests:
 
 ## Prompt
 
-User request: "i also want to creaate a cool cli banner when it runs with Talal's TDA can we create it first write the best specs according to the application."
+User request: "i also want to creaate a cool cli banner when it runs with MA-TODO-APP can we create it first write the best specs according to the application."
 
 Command: `/sp.specify` - Create specification for CLI banner feature
 
-Context: User wants to enhance the Todo Console application with a branded CLI banner displaying "Talal's TDA" when the application launches.
+Context: User wants to enhance the Todo Console application with a branded CLI banner displaying "MA-TODO-APP" when the application launches.
 
 ## Response snapshot
 
 Successfully created comprehensive specification for CLI Banner with Branding feature:
 
 **Feature Breakdown:**
-- **P1 (Core)**: ASCII art banner displaying "Talal's TDA" with tagline on application launch
+- **P1 (Core)**: ASCII art banner displaying "MA-TODO-APP" with tagline on application launch
 - **P2 (Metadata)**: Version and copyright information below banner
 - **P3 (Enhancement)**: Optional ANSI color support with graceful fallback
 
@@ -43,7 +43,7 @@ Successfully created comprehensive specification for CLI Banner with Branding fe
 - Display ASCII art banner at startup before main menu
 - Include tagline "Your Personal Task Manager"
 - Show version information (X.Y.Z format)
-- Display copyright "© 2025 Talal"
+- Display copyright "© 2025 Muhammad Ahmed"
 - Support 80-column terminals without wrapping
 - Use standard ASCII characters for compatibility
 - Optional ANSI colors with graceful fallback

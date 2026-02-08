@@ -16,7 +16,7 @@ REM Check if we're in backend directory
 if not exist "src\main.py" (
     echo.
     echo ERROR: Not in backend directory!
-    echo Please run from: D:\Talal\Work\Hackathons-Panaversity\phase-1\phase-2\backend
+    echo Please run from: E:\Hackathons-Panaversity\Hackathon-ii\MA-TODO\phase-2\backend
     pause
     exit /b 1
 )

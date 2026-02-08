@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: web-todo-app
 branch: main
-user: talal
+user: muhammadahmed
 command: Fix task management UI components
 labels: ["frontend", "react", "next.js", "typescript", "ui-components", "api-integration", "bug-fix"]
 links:

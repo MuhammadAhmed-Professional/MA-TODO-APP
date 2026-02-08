@@ -6,7 +6,7 @@
 # Use this to revert the database schema to Phase IV state.
 #
 # Usage:
-#   cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+#   cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 #   chmod +x scripts/rollback_all_phase_v.sh
 #   ./scripts/rollback_all_phase_v.sh
 #

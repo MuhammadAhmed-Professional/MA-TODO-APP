@@ -149,12 +149,12 @@ Phase 4: Notify Team
 ### Production Environment
 ```yaml
 frontend:
-  url: https://talal-s-tda.vercel.app
+  url: https://frontend-six-coral-90.vercel.app
   platform: Vercel
   deploy_command: vercel --prod
 
 backend:
-  url: https://tda-backend-production.up.railway.app
+  url: https://backend-production-9a40.up.railway.app
   platform: Railway
   project_id: 1a580b9d-e43b-4faf-a523-b3454b9d3bf1
   service_id: ac8b8441-def7-49e9-af64-47dd171ae1c2
@@ -164,7 +164,7 @@ backend:
     - CORS_ORIGINS
 
 auth_server:
-  url: https://auth-server-production-8251.up.railway.app
+  url: https://auth-server-production-cd0e.up.railway.app
   platform: Railway
   required_vars:
     - DATABASE_URL
@@ -224,9 +224,9 @@ database:
     "integration_tests": "PASS"
   },
   "urls": {
-    "frontend": "https://talal-s-tda.vercel.app",
-    "backend": "https://tda-backend-production.up.railway.app",
-    "auth_server": "https://auth-server-production-8251.up.railway.app"
+    "frontend": "https://frontend-six-coral-90.vercel.app",
+    "backend": "https://backend-production-9a40.up.railway.app",
+    "auth_server": "https://auth-server-production-cd0e.up.railway.app"
   }
 }
 ```

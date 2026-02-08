@@ -23,7 +23,7 @@
 **Duration**: 2.5s
 
 **Steps**:
-1. Navigate to https://talal-s-tda.vercel.app
+1. Navigate to https://frontend-six-coral-90.vercel.app
 2. Verify page loads successfully
 3. Verify page title and content
 
@@ -82,12 +82,12 @@
 **Console Errors**:
 ```
 [ERROR] Failed to load resource: the server responded with a status of 502 ()
-        @ https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+        @ https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
 ```
 
 **Network Request**:
 ```
-POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
 Status: 502 Bad Gateway
 Response: {"status":"error","code":502,"message":"Application failed to respond","request_id":"BinKx_lKTaSlfDAaxtoGcA"}
 ```
@@ -119,12 +119,12 @@ The backend is returning 502 Bad Gateway when attempting to proxy authentication
 
 **Evidence**:
 1. **Backend proxies to auth-server**: Backend's `/api/auth/sign-in/email` proxies to `AUTH_SERVER_URL`
-2. **Auth-server timeout**: Auth-server at `https://auth-server-production-8251.up.railway.app` times out after 30+ seconds
+2. **Auth-server timeout**: Auth-server at `https://auth-server-production-cd0e.up.railway.app` times out after 30+ seconds
 3. **Wrong service running**: The auth-server URL returns **backend** health check format instead of auth-server format
 
 **Expected Behavior**:
 ```bash
-curl https://auth-server-production-8251.up.railway.app/health
+curl https://auth-server-production-cd0e.up.railway.app/health
 # Should return:
 {
   "status": "healthy",
@@ -136,11 +136,11 @@ curl https://auth-server-production-8251.up.railway.app/health
 
 **Actual Behavior**:
 ```bash
-curl https://auth-server-production-8251.up.railway.app/health
+curl https://auth-server-production-cd0e.up.railway.app/health
 # Actually returns (WRONG - this is backend format):
 {
   "status": "healthy",
-  "auth_server_url": "https://auth-server-production-8251.up.railway.app",
+  "auth_server_url": "https://auth-server-production-cd0e.up.railway.app",
   "commit": "74ba9e8"
 }
 ```
@@ -172,20 +172,20 @@ curl https://auth-server-production-8251.up.railway.app/health
 ## Infrastructure Status
 
 ### Frontend (Vercel)
-- **URL**: https://talal-s-tda.vercel.app
+- **URL**: https://frontend-six-coral-90.vercel.app
 - **Status**: ✅ HEALTHY
 - **Deployment**: Latest code deployed
 - **Performance**: Fast page loads (~2s)
 
 ### Backend (Railway)
-- **URL**: https://tda-backend-production.up.railway.app
+- **URL**: https://backend-production-9a40.up.railway.app
 - **Status**: ✅ HEALTHY (but auth proxy broken)
 - **Health Check**: Passing
 - **Commit**: 27465d5 (older version)
 - **Issue**: Cannot connect to auth-server
 
 ### Auth Server (Railway)
-- **URL**: https://auth-server-production-8251.up.railway.app
+- **URL**: https://auth-server-production-cd0e.up.railway.app
 - **Status**: 🔴 **FAILING**
 - **Health Check**: Returns **wrong** response format
 - **Deployment**: Unknown (possibly failed)
@@ -232,15 +232,15 @@ curl https://auth-server-production-8251.up.railway.app/health
 3. **Test Auth Flow Manually** (P1):
    ```bash
    # Test auth-server health
-   curl https://auth-server-production-8251.up.railway.app/health
+   curl https://auth-server-production-cd0e.up.railway.app/health
 
    # Test direct login (bypass backend)
-   curl -X POST "https://auth-server-production-8251.up.railway.app/api/auth/sign-in/email" \
+   curl -X POST "https://auth-server-production-cd0e.up.railway.app/api/auth/sign-in/email" \
      -H "Content-Type: application/json" \
      -d '{"email":"test@test.com","password":"test1234"}'
 
    # Test via backend proxy
-   curl -X POST "https://tda-backend-production.up.railway.app/api/auth/sign-in/email" \
+   curl -X POST "https://backend-production-9a40.up.railway.app/api/auth/sign-in/email" \
      -H "Content-Type: application/json" \
      -d '{"email":"test@test.com","password":"test1234"}'
    ```
@@ -260,9 +260,9 @@ curl https://auth-server-production-8251.up.railway.app/health
 **Timeout**: 30 seconds per action
 
 **URLs Tested**:
-- Frontend: https://talal-s-tda.vercel.app
-- Backend: https://tda-backend-production.up.railway.app
-- Auth-Server: https://auth-server-production-8251.up.railway.app
+- Frontend: https://frontend-six-coral-90.vercel.app
+- Backend: https://backend-production-9a40.up.railway.app
+- Auth-Server: https://auth-server-production-cd0e.up.railway.app
 
 **Test Credentials**:
 - Email: test@test.com

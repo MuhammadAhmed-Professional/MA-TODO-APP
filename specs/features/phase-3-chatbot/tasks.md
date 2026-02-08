@@ -11,18 +11,18 @@
 ## Project Location & File Paths
 
 **All file paths in this document are relative to**:
-- **Project Root**: `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/`
+- **Project Root**: `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/`
 - **Backend Root**: `phase-2/backend/` OR `phase-3/backend/` (choose one structure)
 - **Frontend Root**: `phase-2/frontend/` OR `phase-3/frontend/` (choose one structure)
 
 **Examples**:
-- `backend/src/models/conversation.py` = `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend/src/models/conversation.py`
+- `backend/src/models/conversation.py` = `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend/src/models/conversation.py`
   OR
-  `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-3/backend/src/models/conversation.py`
+  `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-3/backend/src/models/conversation.py`
 
-- `frontend/src/components/ChatBot.tsx` = `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/frontend/src/components/ChatBot.tsx`
+- `frontend/src/components/ChatBot.tsx` = `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/frontend/src/components/ChatBot.tsx`
   OR
-  `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-3/frontend/src/components/ChatBot.tsx`
+  `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-3/frontend/src/components/ChatBot.tsx`
 
 **Recommendation**: Extend Phase II structure (use `phase-2/` backend & frontend) for continuity, as Phase II is already fully functional.
 

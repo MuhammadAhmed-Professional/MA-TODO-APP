@@ -210,4 +210,4 @@ def test_display_banner_auto_detect_color():
                 printed_content = str(mock_print.call_args)
 
                 # Content should include banner text (checking for ASCII art or tagline)
-                assert any(keyword in printed_content for keyword in [TAGLINE, 'Talal'])
+                assert any(keyword in printed_content for keyword in [TAGLINE, 'MA-TODO'])

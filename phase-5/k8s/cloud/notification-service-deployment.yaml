@@ -28,7 +28,7 @@ spec:
       serviceAccountName: notification-service-sa
       containers:
         - name: notification-service
-          image: ghcr.io/demolinator/notification-service:latest
+          image: ghcr.io/muhammadahmed-professional/notification-service:latest
           imagePullPolicy: Always
           ports:
             - name: http

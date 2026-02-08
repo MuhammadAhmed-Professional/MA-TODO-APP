@@ -8,7 +8,7 @@ Ignore the forgot-password 404 error - that's a Next.js prefetch issue, not the 
 
 Filter Network tab for: `sign-in`
 
-Find: `POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email`
+Find: `POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email`
 
 **Click on it → Headers tab → Response Headers**
 
@@ -20,7 +20,7 @@ Find: `POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
 
 Filter Network tab for: `tasks`
 
-Find: `GET https://tda-backend-production.up.railway.app/api/tasks`
+Find: `GET https://backend-production-9a40.up.railway.app/api/tasks`
 
 **Click on it → Headers tab → Request Headers**
 

@@ -22,7 +22,7 @@ Now all cookies are on the same domain, so authentication works!
 
 **CRITICAL**: You MUST clear browser data or you'll still have the old code cached!
 
-1. **Close all tabs** for `talal-s-tda.vercel.app`
+1. **Close all tabs** for `frontend-six-coral-90.vercel.app`
 2. **Open DevTools** (F12)
 3. Go to **Application** → **Storage** → Click **"Clear site data"**
 4. **Close and restart browser** (to clear service workers)
@@ -30,7 +30,7 @@ Now all cookies are on the same domain, so authentication works!
 ### Step 2: Open Fresh Incognito Window
 
 1. Open **Incognito/Private Window** (Ctrl + Shift + N)
-2. Navigate to: `https://talal-s-tda.vercel.app/login`
+2. Navigate to: `https://frontend-six-coral-90.vercel.app/login`
 
 ### Step 3: Watch Console for Debug Logs
 
@@ -38,8 +38,8 @@ Open DevTools (F12) → **Console** tab. You should see:
 
 ```
 🔍 AUTH CLIENT DEBUG:
-  process.env.NEXT_PUBLIC_API_URL: https://tda-backend-production.up.railway.app
-  BACKEND_URL: https://tda-backend-production.up.railway.app
+  process.env.NEXT_PUBLIC_API_URL: https://backend-production-9a40.up.railway.app
+  BACKEND_URL: https://backend-production-9a40.up.railway.app
 ```
 
 ✅ If you see this, the fix is loaded!
@@ -53,11 +53,11 @@ Open DevTools (F12) → **Console** tab. You should see:
 
 **Expected Requests**:
 ```
-POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
 Status: 200 OK
 Set-Cookie: auth_token=<JWT>; HttpOnly; Secure
 
-GET https://tda-backend-production.up.railway.app/api/tasks
+GET https://backend-production-9a40.up.railway.app/api/tasks
 Status: 200 OK
 Cookie: auth_token=<JWT>
 ```
@@ -83,26 +83,26 @@ Cookie: auth_token=<JWT>
 ### Check 1: Verify Auth Client URL
 
 In Console, check the debug logs:
-- Should say: `BACKEND_URL: https://tda-backend-production.up.railway.app`
+- Should say: `BACKEND_URL: https://backend-production-9a40.up.railway.app`
 - Should NOT say: `AUTH_SERVER_URL: https://auth-server-production-8251...`
 
 ### Check 2: Network Tab - Login Request
 
 After clicking "Sign In", check Network tab:
-- Request URL should be: `https://tda-backend-production.up.railway.app/api/auth/sign-in/email`
+- Request URL should be: `https://backend-production-9a40.up.railway.app/api/auth/sign-in/email`
 - Response should include: `Set-Cookie: auth_token=...`
 
 ### Check 3: Network Tab - Tasks Request
 
 After login redirect to dashboard:
-- Request URL should be: `https://tda-backend-production.up.railway.app/api/tasks`
+- Request URL should be: `https://backend-production-9a40.up.railway.app/api/tasks`
 - Request Headers should include: `Cookie: auth_token=...`
 - Status should be: `200 OK` (not 401)
 
 ### Check 4: Application Tab - Cookies
 
 After login, check Application → Cookies:
-- Domain: `tda-backend-production.up.railway.app`
+- Domain: `backend-production-9a40.up.railway.app`
 - Name: `auth_token`
 - Value: `eyJ...` (JWT token)
 - HttpOnly: ✓
@@ -118,7 +118,7 @@ After login, check Application → Cookies:
 ```typescript
 const AUTH_SERVER_URL =
   process.env.NEXT_PUBLIC_AUTH_URL ||
-  "https://auth-server-production-8251.up.railway.app";
+  "https://auth-server-production-cd0e.up.railway.app";
 
 export const authClient = createAuthClient({
   baseURL: AUTH_SERVER_URL, // ❌ Wrong! Calls auth server directly
@@ -129,7 +129,7 @@ export const authClient = createAuthClient({
 ```typescript
 const BACKEND_URL =
   process.env.NEXT_PUBLIC_API_URL ||
-  "https://tda-backend-production.up.railway.app";
+  "https://backend-production-9a40.up.railway.app";
 
 export const authClient = createAuthClient({
   baseURL: BACKEND_URL, // ✅ Correct! Calls backend, which proxies to auth server
@@ -141,7 +141,7 @@ export const authClient = createAuthClient({
 ## 🚀 Deployment Info
 
 **Commit**: `833784f`
-**Deployment URL**: https://talal-s-tda.vercel.app
+**Deployment URL**: https://frontend-six-coral-90.vercel.app
 **Build Time**: ~1 minute ago
 **Status**: ✅ Deployed successfully
 

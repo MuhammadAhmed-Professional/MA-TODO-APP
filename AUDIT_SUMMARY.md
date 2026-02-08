@@ -58,7 +58,7 @@ Phase V:    ████████░░░░░░░░░░░░░  40%
 
 **Required Commands**:
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 uv run alembic revision --autogenerate -m "Add conversation tables"
 uv run alembic upgrade head
 ```
@@ -269,34 +269,34 @@ uv run alembic upgrade head
 
 ### Check Phase I
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO
 uv run pytest                    # Should show 87 tests passed
 uv run python -m src.todo_app.main  # Should launch CLI
 ```
 
 ### Check Phase II
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/frontend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/frontend
 pnpm dev                        # Should start on port 3000
 
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 uv run uvicorn src.main:app     # Should start on port 8000
 ```
 
 ### Check Phase III (Missing)
 ```bash
 # Verify MCP tools exist
-ls -la /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend/src/mcp_tools/
+ls -la /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend/src/mcp_tools/
 # Expected: 5 Python files (EMPTY CURRENTLY!)
 
 # Verify agent service exists
-cat /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend/src/services/agent_service.py
+cat /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend/src/services/agent_service.py
 # Expected: File with OpenAI Agents SDK wrapper (MISSING!)
 ```
 
 ### Check Phase IV
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-4
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-4
 
 # Verify Dockerfiles
 ls -lh docker/*.Dockerfile        # Should show 3 files
@@ -314,10 +314,10 @@ ls -lh helm/todo-app/templates/   # Should show templates
 ### Check Phase V (Partial)
 ```bash
 # Verify microservices
-ls -la /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-5/services/
+ls -la /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-5/services/
 
 # Verify CI/CD
-ls -la /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-5/.github/workflows/
+ls -la /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-5/.github/workflows/
 
 # Check for Kafka (MISSING)
 docker ps | grep kafka            # Should show Kafka (NOT RUNNING)

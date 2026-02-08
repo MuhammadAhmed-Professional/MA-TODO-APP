@@ -10,7 +10,7 @@
 
 ## Project Location & Structure
 
-**Root Directory**: `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/`
+**Root Directory**: `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/`
 
 **Specification Files** (Use as Reference):
 - `specs/features/phase-3-chatbot/CONSTITUTION.md` - v3.0.0 governance

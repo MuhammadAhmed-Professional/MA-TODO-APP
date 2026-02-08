@@ -38,7 +38,7 @@
 - [X] T003 [P] Define ANSI color code constants in src/todo_app/banner.py (BOLD, BRIGHT_CYAN, CYAN, GRAY, RESET)
 - [X] T004 [P] Define ASCII art constant ASCII_ART_LINES in src/todo_app/banner.py (80x5 lines, "Big" font from research.md)
 - [X] T005 [P] Define TAGLINE constant in src/todo_app/banner.py ("Your Personal Task Manager")
-- [X] T006 [P] Define COPYRIGHT constant in src/todo_app/banner.py ("© 2025 Talal - Phase I Hackathon Project")
+- [X] T006 [P] Define COPYRIGHT constant in src/todo_app/banner.py ("© 2025 Muhammad Ahmed - Phase I Hackathon Project")
 - [X] T007 [P] Define BORDER constant in src/todo_app/banner.py (80 "=" characters)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
@@ -47,7 +47,7 @@
 
 ## Phase 3: User Story 1 - Application Launch with Branded Banner (Priority: P1) 🎯 MVP
 
-**Goal**: Display "Talal's TDA" ASCII art banner at application startup with tagline
+**Goal**: Display "MA-TODO-APP" ASCII art banner at application startup with tagline
 
 **Independent Test**: Launch application and verify banner displays with correct branding, proper formatting within 80 columns, and tagline appears beneath ASCII art
 
@@ -106,7 +106,7 @@
 
 - [X] T032 [US2] Manual test: Run python -m src.todo_app.main and verify version displays correctly
 - [X] T033 [US2] Manual test: Verify version in banner matches version in pyproject.toml
-- [X] T034 [US2] Manual test: Verify copyright shows "© 2025 Talal - Phase I Hackathon Project"
+- [X] T034 [US2] Manual test: Verify copyright shows "© 2025 Muhammad Ahmed - Phase I Hackathon Project"
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work - banner shows ASCII art, tagline, version, and copyright
 

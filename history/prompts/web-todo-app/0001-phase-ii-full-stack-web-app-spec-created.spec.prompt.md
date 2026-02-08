@@ -7,7 +7,7 @@ surface: agent
 model: claude-sonnet-4-5-20250929
 feature: 004-phase-2-web-app
 branch: 004-phase-2-web-app
-user: talal
+user: muhammadahmed
 command: /sp.specify
 labels: ["specification", "phase-2", "full-stack", "web-app", "authentication", "crud"]
 links:

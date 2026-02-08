@@ -103,7 +103,7 @@ async def get_current_user(request: Request, session: Session = Depends(get_sess
 ### 2. Deployed Backend to Railway ✅
 
 **Service**: `tda-backend-production`
-**URL**: `https://tda-backend-production.up.railway.app`
+**URL**: `https://backend-production-9a40.up.railway.app`
 **Status**: ✅ Deployed successfully
 **Commit**: `310b709`
 
@@ -120,7 +120,7 @@ async def get_current_user(request: Request, session: Session = Depends(get_sess
 ### 3. Frontend Deployment to Vercel ✅
 
 **Service**: Vercel automatic deployment
-**URL**: `https://talal-s-tda.vercel.app`
+**URL**: `https://frontend-six-coral-90.vercel.app`
 **Status**: 🔄 Latest commit deploying
 **Latest Commit**: `86cbc83`
 
@@ -138,7 +138,7 @@ async def get_current_user(request: Request, session: Session = Depends(get_sess
 
 #### Test Credentials Used:
 - **Email**: `ta234567801@gmail.com`
-- **Password**: `talal12345`
+- **Password**: `ahmed12345`
 
 #### Current Status (Fresh Browser Test):
 
@@ -167,11 +167,11 @@ The latest token extraction fix (commit `86cbc83`) hasn't fully deployed yet. On
 │                         USER FLOW                            │
 └─────────────────────────────────────────────────────────────┘
 
-1. User visits https://talal-s-tda.vercel.app/login
+1. User visits https://frontend-six-coral-90.vercel.app/login
 
 2. User enters email/password → Click "Sign In"
 
-3. Frontend sends: POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email
+3. Frontend sends: POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email
    Body: { email: "...", password: "..." }
 
 4. Backend proxies to Better Auth server → Validates credentials
@@ -186,7 +186,7 @@ The latest token extraction fix (commit `86cbc83`) hasn't fully deployed yet. On
 8. Dashboard component calls: getTasks()
 
 9. API client adds header: Authorization: Bearer eyJ...
-   Sends: GET https://tda-backend-production.up.railway.app/api/tasks/
+   Sends: GET https://backend-production-9a40.up.railway.app/api/tasks/
 
 10. Backend validates JWT → Returns user's tasks → ✅ SUCCESS
 ```
@@ -249,7 +249,7 @@ git log --oneline -10
 ### Backend (Railway)
 ```
 ✅ DEPLOYED
-URL: https://tda-backend-production.up.railway.app
+URL: https://backend-production-9a40.up.railway.app
 Commit: 310b709 (supports Authorization header)
 Health: ✅ All endpoints responding
 Database: ✅ Neon PostgreSQL connected
@@ -259,7 +259,7 @@ Auth Server: ✅ Better Auth running
 ### Frontend (Vercel)
 ```
 🔄 DEPLOYING (Latest commit: 86cbc83)
-URL: https://talal-s-tda.vercel.app
+URL: https://frontend-six-coral-90.vercel.app
 Expected: Token extraction fix will be live in 2-5 minutes
 Cache: May need hard refresh (Ctrl+Shift+R)
 ```
@@ -369,7 +369,7 @@ Authorization: Bearer eyJhbGc...
 ## When You Come Back...
 
 1. **Hard refresh the page**: `Ctrl+Shift+R`
-2. **Login again**: `ta234567801@gmail.com` / `talal12345`
+2. **Login again**: `ta234567801@gmail.com` / `ahmed12345`
 3. **Open DevTools Console**: Look for `🔐 SIGNIN RESPONSE:` log
 4. **If you see the log** → Token system working! Test tasks
 5. **If no log yet** → Wait 5 more minutes, deployment still propagating
@@ -391,12 +391,12 @@ git log -1 --oneline
 # Should show: 86cbc83
 
 # Test backend directly
-curl https://tda-backend-production.up.railway.app/docs
+curl https://backend-production-9a40.up.railway.app/docs
 # Should show FastAPI docs
 
 # Test login endpoint
-curl -X POST https://tda-backend-production.up.railway.app/api/auth/sign-in/email \
+curl -X POST https://backend-production-9a40.up.railway.app/api/auth/sign-in/email \
   -H "Content-Type: application/json" \
-  -d '{"email":"ta234567801@gmail.com","password":"talal12345"}'
+  -d '{"email":"ta234567801@gmail.com","password":"ahmed12345"}'
 # Should return: { user: {...}, session: { token: "..." } }
 ```

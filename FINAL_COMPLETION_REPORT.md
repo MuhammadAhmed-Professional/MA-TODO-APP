@@ -267,7 +267,7 @@ Create a 90-second demo video showing:
 **Google Form**: https://forms.gle/KMKEKaFUD6ZX4UtY8
 
 You'll need:
-1. ✅ GitHub Repo: https://github.com/Demolinator/Talal-s-TDA
+1. ✅ GitHub Repo: https://github.com/MuhammadAhmed-Professional/MA-TODO-APP
 2. ✅ Vercel URL: (your deployed frontend)
 3. ⚠️ **Demo Video**: Create and upload to YouTube
 4. ✅ WhatsApp: For presentation invitation

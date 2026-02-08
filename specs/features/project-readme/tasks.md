@@ -15,9 +15,9 @@ This document outlines the detailed, dependency-ordered tasks required to implem
 
 ### TASK-001: Design and Generate CLI Banner ASCII Art
 
--   **Description**: Design the "Talal's TDA" CLI banner using ASCII art, ensuring it is visually appealing, professional, and consistent across various markdown rendering platforms.
+-   **Description**: Design the "MA-TODO-APP" CLI banner using ASCII art, ensuring it is visually appealing, professional, and consistent across various markdown rendering platforms.
 -   **Acceptance Criteria**:
-    -   A suitable ASCII art representation of "Talal's TDA" is created.
+    -   A suitable ASCII art representation of "MA-TODO-APP" is created.
     -   The banner is simple enough to degrade gracefully on platforms with limited ASCII rendering.
     -   The design adheres to the principles of visual appeal and professionalism.
 -   **Dependencies**: -
@@ -42,7 +42,7 @@ This document outlines the detailed, dependency-ordered tasks required to implem
 
 -   **Description**: Insert the designed ASCII art CLI banner at the very top of the `README.md` file.
 -   **Acceptance Criteria**:
-    -   The "Talal's TDA" CLI banner is the first element in `README.md`.
+    -   The "MA-TODO-APP" CLI banner is the first element in `README.md`.
     -   The banner renders correctly in GitHub and VS Code markdown previews.
 -   **Dependencies**: TASK-001, TASK-002
 -   **References**:

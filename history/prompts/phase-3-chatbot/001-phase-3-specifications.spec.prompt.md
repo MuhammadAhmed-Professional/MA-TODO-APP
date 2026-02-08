@@ -7,7 +7,7 @@ surface: agent
 model: claude-haiku-4-5-20251001
 feature: phase-3-chatbot
 branch: main
-user: talal
+user: muhammadahmed
 command: /sp.specify
 labels: ["phase-3", "chatbot", "ai-agents", "mcp-tools", "specification"]
 links:

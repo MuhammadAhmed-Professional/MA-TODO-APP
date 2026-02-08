@@ -271,7 +271,7 @@ NEXT_PUBLIC_ENVIRONMENT=development
 DATABASE_URL=postgresql://neondb_owner:...@ep-solitary-morning-a4vdcuab-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require
 AUTH_SERVER_URL=http://localhost:3001
 JWT_SECRET=cbdca7cd62ff75aa5d8460c94dd5dc5ed3a1366629a701576e5a80df207b4801
-CORS_ORIGINS=http://localhost:3000,https://talal-s-tda.vercel.app
+CORS_ORIGINS=http://localhost:3000,https://frontend-six-coral-90.vercel.app
 ENVIRONMENT=production
 ```
 
@@ -348,7 +348,7 @@ npm run build
 vercel --prod
 
 # Configure environment variables in Vercel dashboard:
-# NEXT_PUBLIC_API_URL=https://talal-s-tda-production.up.railway.app
+# NEXT_PUBLIC_API_URL=https://backend-production-9a40.up.railway.app
 ```
 
 ### Backend (Railway)
@@ -361,9 +361,9 @@ railway up
 
 # Configure environment variables in Railway dashboard:
 # DATABASE_URL=<neon-connection-string>
-# AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app
+# AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app
 # JWT_SECRET=<same-as-auth-server>
-# CORS_ORIGINS=https://talal-s-tda.vercel.app
+# CORS_ORIGINS=https://frontend-six-coral-90.vercel.app
 # ENVIRONMENT=production
 ```
 
@@ -378,7 +378,7 @@ railway up
 # Configure environment variables:
 # DATABASE_URL=<neon-connection-string>
 # BETTER_AUTH_SECRET=<same-as-backend-jwt-secret>
-# BETTER_AUTH_URL=https://auth-server-production-8251.up.railway.app
+# BETTER_AUTH_URL=https://auth-server-production-cd0e.up.railway.app
 # NODE_ENV=production
 # PORT=3001
 ```

@@ -532,7 +532,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ghcr.io/demolinator/todo-backend:latest
+          image: ghcr.io/muhammadahmed-professional/todo-backend:latest
           ports:
             - containerPort: 8000
           env:

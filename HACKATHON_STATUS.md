@@ -47,8 +47,8 @@ All 5 phases are **fully implemented** with zero TODOs, zero placeholder URLs, a
 | Standalone Docker Output | ✅ | `output: 'standalone'` configured |
 
 **Deployed**:
-- Frontend: https://talal-s-tda.vercel.app
-- Backend: https://talal-s-tda-production.up.railway.app
+- Frontend: https://frontend-six-coral-90.vercel.app
+- Backend: https://backend-production-9a40.up.railway.app
 
 **Location**: `/phase-2/backend/` and `/phase-2/frontend/`
 
@@ -113,7 +113,7 @@ All 5 phases are **fully implemented** with zero TODOs, zero placeholder URLs, a
 | CI/CD Workflows | ✅ | GitHub Actions (CI + deploy) |
 | Cloud Deployment Guide | ✅ | Oracle, GKE, AKS documented |
 | DB Migration (env-based) | ✅ | Uses DATABASE_URL env var |
-| Zero TODOs/placeholders | ✅ | All `yourusername` → `demolinator` |
+| Zero TODOs/placeholders | ✅ | All `yourusername` → `muhammadahmed-professional` |
 
 **Event Topics**: task-events, reminders, audit-logs
 **Dapr Components**: pubsub-kafka, statestore-postgres, bindings-cron, secret-store, resiliency
@@ -141,7 +141,7 @@ All 5 phases are **fully implemented** with zero TODOs, zero placeholder URLs, a
 
 | Requirement | Status | Notes |
 |-------------|--------|-------|
-| Public GitHub Repo | ✅ | https://github.com/Demolinator/Talal-s-TDA |
+| Public GitHub Repo | ✅ | https://github.com/MuhammadAhmed-Professional/MA-TODO-APP |
 | /specs folder | ✅ | Specifications documented |
 | CLAUDE.md | ✅ | Root + phase-specific |
 | README.md | ✅ | All phases documented |

@@ -16,7 +16,7 @@ Before starting implementation:
 
 ```bash
 # Navigate to project root
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO
 
 # Initialize UV project (if not already done)
 uv init

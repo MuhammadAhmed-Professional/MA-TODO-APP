@@ -27,18 +27,18 @@
 
 **Result**:
 - ✅ **NO** HTTP references found in source code
-- ✅ `api.ts` has HTTPS hardcoded: `https://tda-backend-production.up.railway.app`
-- ✅ `auth.ts` has HTTPS hardcoded: `https://auth-server-production-8251.up.railway.app`
+- ✅ `api.ts` has HTTPS hardcoded: `https://backend-production-9a40.up.railway.app`
+- ✅ `auth.ts` has HTTPS hardcoded: `https://auth-server-production-cd0e.up.railway.app`
 - ✅ No environment variables override these URLs
 - ✅ Vercel has NO environment variables set (verified)
 
 **Code Snippets**:
 ```typescript
 // src/lib/api.ts (line 16)
-const API_BASE_URL = "https://tda-backend-production.up.railway.app";
+const API_BASE_URL = "https://backend-production-9a40.up.railway.app";
 
 // src/lib/auth.ts (line 30)
-const AUTH_SERVER_URL = "https://auth-server-production-8251.up.railway.app";
+const AUTH_SERVER_URL = "https://auth-server-production-cd0e.up.railway.app";
 ```
 
 ---
@@ -82,8 +82,8 @@ AUTH_SERVER_URL = os.getenv("AUTH_SERVER_URL", "http://localhost:3001")
 
 | Variable | Required Value | Purpose |
 |----------|---------------|---------|
-| `CORS_ORIGINS` | `https://talal-s-tda.vercel.app` | Allow frontend API requests |
-| `AUTH_SERVER_URL` | `https://auth-server-production-8251.up.railway.app` | Better Auth server |
+| `CORS_ORIGINS` | `https://frontend-six-coral-90.vercel.app` | Allow frontend API requests |
+| `AUTH_SERVER_URL` | `https://auth-server-production-cd0e.up.railway.app` | Better Auth server |
 | `DATABASE_URL` | `postgresql://...?sslmode=require` | Neon database |
 | `JWT_SECRET` | (existing value) | JWT token signing |
 
@@ -119,8 +119,8 @@ AUTH_SERVER_URL = os.getenv("AUTH_SERVER_URL", "http://localhost:3001")
 3. Go to "Variables" tab
 4. **VERIFY** these variables:
    ```
-   CORS_ORIGINS=https://talal-s-tda.vercel.app
-   AUTH_SERVER_URL=https://auth-server-production-8251.up.railway.app
+   CORS_ORIGINS=https://frontend-six-coral-90.vercel.app
+   AUTH_SERVER_URL=https://auth-server-production-cd0e.up.railway.app
    DATABASE_URL=postgresql://...?sslmode=require
    JWT_SECRET=(your secret)
    ```
@@ -134,8 +134,8 @@ cd phase-2/backend
 railway service
 
 # Set variables (if needed)
-railway variables set CORS_ORIGINS="https://talal-s-tda.vercel.app"
-railway variables set AUTH_SERVER_URL="https://auth-server-production-8251.up.railway.app"
+railway variables set CORS_ORIGINS="https://frontend-six-coral-90.vercel.app"
+railway variables set AUTH_SERVER_URL="https://auth-server-production-cd0e.up.railway.app"
 
 # Check logs to verify
 railway logs
@@ -144,7 +144,7 @@ railway logs
 ### Step 2: Clear Browser Cache (CRITICAL)
 
 **Complete Cache Clear**:
-1. **Close ALL tabs** with `talal-s-tda.vercel.app`
+1. **Close ALL tabs** with `frontend-six-coral-90.vercel.app`
 2. Press **Ctrl + Shift + Delete** (Windows) or **Cmd + Shift + Delete** (Mac)
 3. Select:
    - ✅ Browsing history
@@ -157,7 +157,7 @@ railway logs
 
 ### Step 3: Test with Direct Deployment URL (Bypass CDN)
 
-**Test URL**: https://frontend-7sir6dcj0-talal-ahmeds-projects.vercel.app/dashboard
+**Test URL**: https://frontend-six-coral-90.vercel.app/dashboard
 
 This URL:
 - Bypasses Vercel's edge cache
@@ -183,7 +183,7 @@ This ensures:
 **When Everything is Correct**:
 1. Browser console shows **HTTPS URLs only**:
    ```
-   GET https://tda-backend-production.up.railway.app/api/tasks
+   GET https://backend-production-9a40.up.railway.app/api/tasks
    ```
 2. No "Mixed Content" errors
 3. Tasks load successfully
@@ -191,8 +191,8 @@ This ensures:
 
 **Backend Logs Should Show**:
 ```
-INFO:root:CORS Origins configured: ['https://talal-s-tda.vercel.app']
-INFO:root:🔗 Backend using AUTH_SERVER_URL: https://auth-server-production-8251.up.railway.app
+INFO:root:CORS Origins configured: ['https://frontend-six-coral-90.vercel.app']
+INFO:root:🔗 Backend using AUTH_SERVER_URL: https://auth-server-production-cd0e.up.railway.app
 ```
 
 ---
@@ -216,7 +216,7 @@ INFO:root:🔗 Backend using AUTH_SERVER_URL: https://auth-server-production-825
 
 3. **Check Railway Service Health**:
    ```bash
-   curl https://tda-backend-production.up.railway.app/health
+   curl https://backend-production-9a40.up.railway.app/health
    # Should return: {"status":"healthy"}
    ```
 

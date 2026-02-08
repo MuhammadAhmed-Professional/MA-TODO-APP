@@ -2,7 +2,7 @@
 
 **Date**: 2025-01-31
 **Status**: ✅ ALL MIGRATIONS CREATED
-**Location**: `/mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend/src/db/migrations/versions/`
+**Location**: `/mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend/src/db/migrations/versions/`
 
 ---
 
@@ -120,7 +120,7 @@ phase-2/backend/
 
 ### 1. Review Migrations
 ```bash
-cd /mnt/d/Talal/Work/Hackathons-Panaversity/phase-1/phase-2/backend
+cd /mnt/e/Hackathons-Panaversity/Hackathon-ii/MA-TODO/phase-2/backend
 
 # Review migration chain
 uv run alembic history
