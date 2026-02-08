@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "todo-app.frontend.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount.frontend }}
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        {{- include "todo-app.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      containers:
+      - name: frontend
+        image: "{{ .Values.images.frontend.repository }}:{{ .Values.images.frontend.tag }}"
+        imagePullPolicy: {{ .Values.images.frontend.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.services.frontend.port }}
+          name: http
+          protocol: TCP
+        env:
+        - name: NEXT_PUBLIC_API_URL
+          value: {{ .Values.env.frontend.NEXT_PUBLIC_API_URL | quote }}
+        - name: NEXT_PUBLIC_BETTER_AUTH_URL
+          value: {{ .Values.env.frontend.NEXT_PUBLIC_BETTER_AUTH_URL | quote }}
+        - name: NEXT_PUBLIC_ENVIRONMENT
+          value: {{ .Values.env.frontend.NEXT_PUBLIC_ENVIRONMENT | quote }}
+        - name: NODE_ENV
+          value: {{ .Values.env.frontend.NODE_ENV | quote }}
+        resources:
+          {{- toYaml .Values.resources.frontend | nindent 10 }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.services.frontend.port }}
+          {{- toYaml .Values.healthChecks.frontend.liveness | nindent 10 }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.services.frontend.port }}
+          {{- toYaml .Values.healthChecks.frontend.readiness | nindent 10 }}
+      restartPolicy: Always
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

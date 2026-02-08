@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-frontend
+  namespace: todo-app
+  labels:
+    app: todo-frontend
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo-frontend
+  template:
+    metadata:
+      labels:
+        app: todo-frontend
+        tier: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/demolinator/todo-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          env:
+            # Backend API URL
+            - name: NEXT_PUBLIC_API_URL
+              value: "https://api.todo-app.demolinator.dev"
+
+            # Better Auth configuration
+            - name: BETTER_AUTH_URL
+              value: "https://api.todo-app.demolinator.dev"
+            - name: BETTER_AUTH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: better-auth-secret
+                  key: secret
+
+            # Environment
+            - name: NODE_ENV
+              value: "production"
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 300m
+              memory: 256Mi
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+
+      restartPolicy: Always
+
+---
+# Better Auth Secret
+apiVersion: v1
+kind: Secret
+metadata:
+  name: better-auth-secret
+  namespace: todo-app
+type: Opaque
+stringData:
+  secret: "CHANGE-THIS-TO-SECURE-SECRET-FOR-BETTER-AUTH"

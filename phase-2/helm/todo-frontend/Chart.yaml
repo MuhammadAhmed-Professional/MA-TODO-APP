@@ -1,0 +1,14 @@
+apiVersion: v2
+name: todo-frontend
+description: Helm chart for the Phase II Todo App Next.js Frontend
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - nextjs
+  - react
+  - todo
+  - frontend
+maintainers:
+  - name: Phase II Todo Team
+    email: support@example.com

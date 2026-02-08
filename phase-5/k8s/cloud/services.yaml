@@ -1,0 +1,83 @@
+---
+# Backend Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-backend
+  namespace: todo-app
+  labels:
+    app: todo-backend
+    tier: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: todo-backend
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
+  sessionAffinity: None
+
+---
+# Frontend Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-frontend
+  namespace: todo-app
+  labels:
+    app: todo-frontend
+    tier: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: todo-frontend
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  sessionAffinity: None
+
+---
+# Notification Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-service
+  namespace: todo-app
+  labels:
+    app: notification-service
+    tier: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: notification-service
+  ports:
+    - name: http
+      port: 8001
+      targetPort: 8001
+      protocol: TCP
+  sessionAffinity: None
+
+---
+# Recurring Task Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: recurring-task-service
+  namespace: todo-app
+  labels:
+    app: recurring-task-service
+    tier: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: recurring-task-service
+  ports:
+    - name: http
+      port: 8002
+      targetPort: 8002
+      protocol: TCP
+  sessionAffinity: None

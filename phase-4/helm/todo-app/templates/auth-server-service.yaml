@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-server-service
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "todo-app.authServer.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.services.authServer.type }}
+  selector:
+    app: auth-server
+  ports:
+  - port: {{ .Values.services.authServer.port }}
+    targetPort: {{ .Values.services.authServer.port }}
+    {{- if eq .Values.services.authServer.type "NodePort" }}
+    nodePort: {{ .Values.services.authServer.nodePort }}
+    {{- end }}
+    protocol: TCP
+    name: http

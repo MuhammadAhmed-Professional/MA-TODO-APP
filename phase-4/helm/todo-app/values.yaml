@@ -1,0 +1,177 @@
+# Default values for todo-app Helm chart
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Global settings
+global:
+  namespace: todo-app
+
+# Replica counts for each service
+replicaCount:
+  frontend: 2
+  backend: 2
+  authServer: 2
+
+# Image settings
+images:
+  frontend:
+    repository: todo-frontend
+    tag: latest
+    pullPolicy: Never  # For local Minikube (change to IfNotPresent for production)
+  backend:
+    repository: todo-backend
+    tag: latest
+    pullPolicy: Never
+  authServer:
+    repository: todo-auth-server
+    tag: latest
+    pullPolicy: Never
+
+# Service configurations
+services:
+  frontend:
+    type: NodePort
+    port: 3000
+    nodePort: 30000
+  backend:
+    type: NodePort
+    port: 8000
+    nodePort: 30800
+  authServer:
+    type: NodePort
+    port: 3001
+    nodePort: 30801
+
+# Resource limits and requests
+resources:
+  frontend:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+  backend:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  authServer:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+# Health check settings
+healthChecks:
+  frontend:
+    liveness:
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 3
+    readiness:
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      timeoutSeconds: 3
+      failureThreshold: 3
+  backend:
+    liveness:
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 3
+    readiness:
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      timeoutSeconds: 3
+      failureThreshold: 3
+  authServer:
+    liveness:
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 3
+    readiness:
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      timeoutSeconds: 3
+      failureThreshold: 3
+
+# Environment variables (non-secret)
+env:
+  frontend:
+    NEXT_PUBLIC_API_URL: "http://localhost:30800"
+    NEXT_PUBLIC_BETTER_AUTH_URL: "http://localhost:30801"
+    NEXT_PUBLIC_ENVIRONMENT: "production"
+    NODE_ENV: "production"
+  backend:
+    CORS_ORIGINS: "http://localhost:3000,http://127.0.0.1:3000"
+    ENVIRONMENT: "production"
+    PORT: "8000"
+  authServer:
+    BETTER_AUTH_URL: "http://localhost:30801"
+    CORS_ORIGINS: "http://localhost:3000,http://127.0.0.1:3000,http://localhost:8000"
+    NODE_ENV: "production"
+    PORT: "3001"
+
+# Secrets (these should be created separately or via external secret management)
+secrets:
+  # Secret name to use
+  name: todo-secrets
+  # Secret keys (values should be provided externally)
+  keys:
+    - DATABASE_URL
+    - JWT_SECRET
+    - BETTER_AUTH_SECRET
+    - OPENAI_API_KEY
+
+# Ingress configuration
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  hosts:
+    - host: ""  # Empty for Minikube (uses IP)
+      paths:
+        - path: /api
+          pathType: Prefix
+          backend: backend
+        - path: /auth
+          pathType: Prefix
+          backend: authServer
+        - path: /
+          pathType: Prefix
+          backend: frontend
+
+# Autoscaling (disabled by default for local development)
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+# Pod security context
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1001
+  fsGroup: 1001
+
+# Annotations
+podAnnotations: {}
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity rules
+affinity: {}

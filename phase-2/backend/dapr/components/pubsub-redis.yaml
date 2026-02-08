@@ -1,0 +1,34 @@
+# Dapr Pub/Sub Component for Redis (Local Development)
+#
+# This configuration enables Dapr to publish events to Redis pub/sub.
+# Use this for local development when Kafka is not available.
+# Place this file in: dapr/components/pubsub-redis.yaml
+#
+# Environment variables (set in .env):
+# - REDIS_HOST: Redis server host (default: localhost)
+# - REDIS_PORT: Redis server port (default: 6379)
+# - REDIS_PASSWORD: Redis password (optional)
+
+apiVersion: dapr.io/v1
+kind: Component
+metadata:
+  name: redis-pubsub
+spec:
+  type: pubsub.redis
+  version: v1
+  metadata:
+    # Redis server host
+    - name: redisHost
+      value: "localhost"
+    # Redis server port
+    - name: redisPort
+      value: "6379"
+    # Redis password (optional)
+    # - name: redisPassword
+    #   value: ""
+    # Enable TLS (set to "true" for production)
+    - name: enableTLS
+      value: "false"
+    # Redis database number
+    - name: db
+      value: "0"

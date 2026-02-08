@@ -1,0 +1,187 @@
+# Default values for todo-backend
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: todo-backend
+  pullPolicy: IfNotPresent
+  tag: "latest"
+  # Override with specific image registry
+  # registry: docker.io
+  # Full image will be: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+# Application configuration
+app:
+  port: 8000
+  environment: production
+  logLevel: INFO
+
+# Dapr sidecar configuration
+dapr:
+  enabled: true
+  appId: "todo-backend"
+  appPort: 8000
+  appProtocol: http
+  # Enable Dapr metrics
+  enableMetrics: true
+  metricsPort: 9090
+  # Dapr configuration
+  config: todo-backend-config
+  # Dapr components (optional, for secrets/config)
+  components:
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+
+service:
+  type: ClusterIP
+  port: 8000
+  # Additional service ports (e.g., for Dapr sidecar)
+  additionalPorts: []
+
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  hosts:
+    - host: todo-backend.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+    # - secretName: todo-backend-tls
+    #   hosts:
+    #     - todo-backend.example.com
+
+# Resource limits and requests
+resources:
+  limits:
+    cpu: 1000m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+# Horizontal Pod Autoscaler
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+# Pod Disruption Budget
+podDisruptionBudget:
+  enabled: false
+  minAvailable: 1
+
+# Liveness and readiness probes
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+# Environment variables from ConfigMap
+envFromConfigMap: true
+
+# Direct environment variables (for secrets use envFromSecret)
+env:
+  # Application environment
+  - name: ENVIRONMENT
+    value: "production"
+  # CORS origins (comma-separated)
+  - name: CORS_ORIGINS
+    value: "https://todo-app.example.com"
+
+# Environment variables from Secret references
+envFromSecret: {}
+  # Example: Reference existing secret for database URL
+  # DATABASE_URL:
+  #   secretName: todo-backend-secret
+  #   key: database-url
+  # OPENAI_API_KEY:
+  #   secretName: todo-backend-secret
+  #   key: openai-api-key
+  # JWT_SECRET:
+  #   secretName: todo-backend-secret
+  #   key: jwt-secret
+
+# ConfigMap data (environment variables)
+configMap:
+  # Application settings
+  ENVIRONMENT: "production"
+  CORS_ORIGINS: "https://todo-app.example.com"
+  # Database (typically override via Secret)
+  DATABASE_URL: "postgresql://user:password@localhost:5432/todo"
+  # JWT settings
+  JWT_SECRET: "change-me-in-production"
+  JWT_ALGORITHM: "HS256"
+  ACCESS_TOKEN_EXPIRE_MINUTES: "15"
+  REFRESH_TOKEN_EXPIRE_DAYS: "7"
+
+# Secret data (sensitive environment variables)
+# NOTE: In production, use existing secrets instead
+secret:
+  create: true
+  # Database connection string
+  DATABASE_URL: "postgresql://todo:password@postgres:5432/todo?sslmode=require"
+  # OpenAI API key
+  OPENAI_API_KEY: "sk-your-openai-key-here"
+  # JWT secret (use openssl rand -hex 32)
+  JWT_SECRET: "your-256-bit-random-secret"
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity rules
+affinity: {}
+
+# Health check options
+healthCheck:
+  enabled: true
+
+# Service monitor for Prometheus
+serviceMonitor:
+  enabled: false
+  interval: 30s
+  scrapeTimeout: 10s

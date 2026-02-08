@@ -1,0 +1,47 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: postgres-statestore
+  namespace: todo-app
+spec:
+  type: state.postgresql
+  version: v1
+  metadata:
+    # PostgreSQL connection string from Kubernetes secret
+    - name: connectionString
+      secretKeyRef:
+        name: postgres-credentials
+        key: connectionString
+
+    # Table name for state storage
+    - name: tableName
+      value: "dapr_state"
+
+    # Metadata table (for ETags and versioning)
+    - name: metadataTableName
+      value: "dapr_metadata"
+
+    # Timeout settings
+    - name: timeout
+      value: "20s"
+
+    # Cleanup interval for expired state (if using TTL)
+    - name: cleanupIntervalInSeconds
+      value: "3600"  # 1 hour
+
+    # Actor state store settings (if using Dapr actors)
+    - name: actorStateStore
+      value: "true"
+
+---
+# Kubernetes Secret for PostgreSQL connection
+# EXAMPLE ONLY: Replace password and connection details with actual credentials before deploying.
+# In production, use external secret management (e.g., Sealed Secrets, External Secrets Operator, Azure Key Vault).
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-credentials
+  namespace: todo-app
+type: Opaque
+stringData:
+  connectionString: "host=postgres.todo-app.svc.cluster.local user=todouser password=CHANGEME dbname=tododb port=5432 sslmode=require pool_min_conns=1 pool_max_conns=10"

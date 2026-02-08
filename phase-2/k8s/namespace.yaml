@@ -1,0 +1,10 @@
+# Namespace for the Todo Application
+# Creates a dedicated namespace to isolate application resources
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: todo-app
+  labels:
+    name: todo-app
+    environment: development
+    app: todo-app

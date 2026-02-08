@@ -1,0 +1,57 @@
+# Dapr Cron Binding for Scheduled Tasks
+#
+# This component enables scheduled task execution using Dapr's input bindings.
+# Use this for periodic tasks like checking for due reminders.
+
+---
+# Cron binding for reminder checker
+# Runs every minute to check for due reminders
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: reminder-checker-cron
+  namespace: todo-app
+spec:
+  type: bindings.cron
+  version: v1
+  metadata:
+    # Cron expression: every minute
+    - name: schedule
+      value: "*/1 * * * *"
+    # Disable according to timezone (optional)
+    # - name: timeZone
+    #   value: "UTC"
+---
+# Cron binding for recurring task generator
+# Runs every hour to spawn recurring task instances
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: recurring-task-cron
+  namespace: todo-app
+spec:
+  type: bindings.cron
+  version: v1
+  metadata:
+    # Cron expression: every hour
+    - name: schedule
+      value: "0 * * * *"
+    - name: timeZone
+      value: "UTC"
+---
+# Cron binding for daily cleanup
+# Runs daily at 2 AM to clean up old data
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: daily-cleanup-cron
+  namespace: todo-app
+spec:
+  type: bindings.cron
+  version: v1
+  metadata:
+    # Cron expression: daily at 2 AM
+    - name: schedule
+      value: "0 2 * * *"
+    - name: timeZone
+      value: "UTC"

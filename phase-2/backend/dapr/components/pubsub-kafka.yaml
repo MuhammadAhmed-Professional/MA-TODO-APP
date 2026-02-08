@@ -1,0 +1,41 @@
+# Dapr Pub/Sub Component for Kafka
+#
+# This configuration enables Dapr to publish events to Kafka topics.
+# Place this file in: dapr/components/pubsub-kafka.yaml
+#
+# Environment variables (set in .env or deployment config):
+# - KAFKA_BOOTSTRAP_SERVERS: Kafka broker addresses (default: localhost:9092)
+# - KAFKA_CONSUMER_GROUP: Consumer group ID (default: todo-backend-consumers)
+
+apiVersion: dapr.io/v1
+kind: Component
+metadata:
+  name: kafka-pubsub
+spec:
+  type: pubsub.kafka
+  version: v1
+  metadata:
+    # Kafka broker addresses (comma-separated)
+    - name: bootstrapServers
+      value: "localhost:9092"
+    # Consumer group ID (for subscriptions)
+    - name: consumerGroup
+      value: "todo-backend-consumers"
+    # Client ID for this producer
+    - name: clientID
+      value: "todo-backend"
+    # Timeout for metadata operations (seconds)
+    - name: timeoutInSeconds
+      value: "30"
+    # Enable automatic retries
+    - name: enableRetry
+      value: "true"
+    # Initial retry interval (milliseconds)
+    - name: retryInitialInterval
+      value: "100"
+    # Maximum retry interval (milliseconds)
+    - name: retryMaxInterval
+      value: "1000"
+    # Maximum number of retries
+    - name: retryMaxAttempts
+      value: "3"

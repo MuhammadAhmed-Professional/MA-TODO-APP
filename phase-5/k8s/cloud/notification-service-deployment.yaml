@@ -1,0 +1,117 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+  namespace: todo-app
+  labels:
+    app: notification-service
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notification-service
+  template:
+    metadata:
+      labels:
+        app: notification-service
+        tier: backend
+      annotations:
+        # Dapr sidecar annotations
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "notification-service"
+        dapr.io/app-port: "8001"
+        dapr.io/app-protocol: "http"
+        dapr.io/log-level: "info"
+        dapr.io/config: "dapr-config"
+    spec:
+      serviceAccountName: notification-service-sa
+      containers:
+        - name: notification-service
+          image: ghcr.io/demolinator/notification-service:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8001
+              protocol: TCP
+          env:
+            # Kafka configuration
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka-kafka-bootstrap.todo-app.svc.cluster.local:9092"
+
+            # Dapr configuration
+            - name: DAPR_HTTP_PORT
+              value: "3500"
+            - name: DAPR_GRPC_PORT
+              value: "50001"
+
+            # Email service configuration (example - SendGrid)
+            - name: SENDGRID_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sendgrid-secret
+                  key: api-key
+                  optional: true
+
+            # Application settings
+            - name: ENVIRONMENT
+              value: "production"
+            - name: LOG_LEVEL
+              value: "info"
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8001
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8001
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: notification-service-sa
+  namespace: todo-app
+  labels:
+    app: notification-service
+
+---
+# Email service credentials (optional)
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sendgrid-secret
+  namespace: todo-app
+type: Opaque
+stringData:
+  api-key: "YOUR-SENDGRID-API-KEY-HERE"

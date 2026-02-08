@@ -1,0 +1,131 @@
+# Dapr Resiliency Policies
+#
+# Defines retry, timeout, and circuit breaker policies for all Dapr operations.
+# These policies provide automatic recovery from transient failures.
+
+apiVersion: dapr.io/v1alpha1
+kind: Resiliency
+metadata:
+  name: dapr-resiliency
+  namespace: todo-app
+spec:
+  # ================== RETRY POLICIES ==================
+  policies:
+    retries:
+      # Default retry policy for most operations
+      DefaultRetryPolicy:
+        policy: constant
+        duration: 1s
+        maxRetries: 3
+        backoffCoefficient: 1.5
+
+      # Aggressive retry for transient failures
+      AggressiveRetryPolicy:
+        policy: exponential
+        initialDelay: 100ms
+        maxRetries: 5
+        maxInterval: 30s
+        backoffCoefficient: 2.0
+
+      # Conservative retry for critical operations
+      ConservativeRetryPolicy:
+        policy: constant
+        duration: 2s
+        maxRetries: 2
+
+      # No retry for idempotent operations
+      NoRetryPolicy:
+        policy: constant
+        duration: 0s
+        maxRetries: 0
+
+    # ================== TIMEOUT POLICIES ==================
+    timeouts:
+      # Default timeout for most operations
+      DefaultTimeoutPolicy:
+        timeout: 30s
+
+      # Short timeout for fast operations
+      FastTimeoutPolicy:
+        timeout: 5s
+
+      # Long timeout for slow operations
+      LongTimeoutPolicy:
+        timeout: 120s
+
+      # Extended timeout for external API calls
+      ExtendedTimeoutPolicy:
+        timeout: 300s
+
+    # ================== CIRCUIT BREAKER POLICIES ==================
+    circuitBreakers:
+      # Default circuit breaker
+      DefaultCircuitBreakerPolicy:
+        maxRequests: 1
+        timeout: 30s
+        trip: consecutiveFailures > 5
+        threshold: 50
+
+      # Aggressive circuit breaker (opens quickly)
+      AggressiveCircuitBreakerPolicy:
+        maxRequests: 1
+        timeout: 60s
+        trip: consecutiveFailures > 3
+        threshold: 50
+
+      # Conservative circuit breaker (tolerates more failures)
+      ConservativeCircuitBreakerPolicy:
+        maxRequests: 5
+        timeout: 15s
+        trip: consecutiveFailures > 10
+        threshold: 50
+
+  # ================== POLICY APPLICATION ==================
+  targets:
+    # Apply policies to services
+    apps:
+      # Backend service resiliency
+      todo-backend:
+        # Retry policy for all outbound calls
+        retry: DefaultRetryPolicy
+        # Timeout for all operations
+        timeout: DefaultTimeoutPolicy
+        # Circuit breaker for all endpoints
+        circuitBreaker: DefaultCircuitBreakerPolicy
+
+      # Notification service resiliency
+      notification-service:
+        retry: AggressiveRetryPolicy
+        timeout: FastTimeoutPolicy
+        circuitBreaker: ConservativeCircuitBreakerPolicy
+
+      # Recurring task service resiliency
+      recurring-task-service:
+        retry: DefaultRetryPolicy
+        timeout: LongTimeoutPolicy
+        circuitBreaker: DefaultCircuitBreakerPolicy
+
+    # Apply policies to specific components
+    components:
+      # State store operations
+      statestore-postgres:
+        outbound:
+          retry: ConservativeRetryPolicy
+          timeout: DefaultTimeoutPolicy
+          circuitBreaker: ConservativeCircuitBreakerPolicy
+
+      # Pub/sub operations
+      kafka-pubsub:
+        outbound:
+          retry: AggressiveRetryPolicy
+          timeout: LongTimeoutPolicy
+          circuitBreaker: AggressiveCircuitBreakerPolicy
+        inbound:
+          retry: DefaultRetryPolicy
+          timeout: DefaultTimeoutPolicy
+
+      # Secret store operations
+      kubernetes-secrets:
+        outbound:
+          retry: NoRetryPolicy
+          timeout: FastTimeoutPolicy

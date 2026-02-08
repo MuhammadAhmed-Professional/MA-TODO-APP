@@ -1,0 +1,162 @@
+# Strimzi Kafka Cluster Definition
+# Requires Strimzi Operator to be installed first: kubectl create -f 'https://strimzi.io/install/latest?namespace=todo-app' -n todo-app
+
+apiVersion: kafka.strimzi.io/v1beta2
+kind: Kafka
+metadata:
+  name: kafka
+  namespace: todo-app
+spec:
+  kafka:
+    version: 3.6.0
+    replicas: 1  # Single broker for development/staging (use 3+ for production)
+    listeners:
+      - name: plain
+        port: 9092
+        type: internal
+        tls: false
+      - name: tls
+        port: 9093
+        type: internal
+        tls: true
+    config:
+      # Broker configuration
+      offsets.topic.replication.factor: 1
+      transaction.state.log.replication.factor: 1
+      transaction.state.log.min.isr: 1
+      default.replication.factor: 1
+      min.insync.replicas: 1
+
+      # Retention policies
+      log.retention.hours: 168  # 7 days
+      log.segment.bytes: 1073741824  # 1GB
+      log.retention.check.interval.ms: 300000  # 5 minutes
+
+      # Performance tuning
+      num.network.threads: 3
+      num.io.threads: 8
+      socket.send.buffer.bytes: 102400
+      socket.receive.buffer.bytes: 102400
+      socket.request.max.bytes: 104857600
+
+      # Auto-create topics
+      auto.create.topics.enable: true
+      delete.topic.enable: true
+
+    storage:
+      type: ephemeral  # Use ephemeral storage for dev/staging
+      # For production, use persistent storage:
+      # type: persistent-claim
+      # size: 100Gi
+      # class: standard-rwo  # Change based on cloud provider
+      # deleteClaim: false
+
+    resources:
+      requests:
+        memory: 1Gi
+        cpu: 500m
+      limits:
+        memory: 2Gi
+        cpu: 1000m
+
+  zookeeper:
+    replicas: 1  # Single ZooKeeper for development (use 3+ for production)
+    storage:
+      type: ephemeral
+      # For production:
+      # type: persistent-claim
+      # size: 10Gi
+      # class: standard-rwo
+
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 250m
+      limits:
+        memory: 1Gi
+        cpu: 500m
+
+  entityOperator:
+    topicOperator:
+      resources:
+        requests:
+          memory: 128Mi
+          cpu: 100m
+        limits:
+          memory: 256Mi
+          cpu: 200m
+    userOperator:
+      resources:
+        requests:
+          memory: 128Mi
+          cpu: 100m
+        limits:
+          memory: 256Mi
+          cpu: 200m
+
+---
+# Kafka Topics (managed by Strimzi TopicOperator)
+
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: task-events
+  namespace: todo-app
+  labels:
+    strimzi.io/cluster: kafka
+spec:
+  partitions: 3
+  replicas: 1
+  config:
+    retention.ms: 604800000  # 7 days
+    segment.bytes: 1073741824  # 1GB
+    compression.type: gzip
+
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: reminders
+  namespace: todo-app
+  labels:
+    strimzi.io/cluster: kafka
+spec:
+  partitions: 3
+  replicas: 1
+  config:
+    retention.ms: 259200000  # 3 days
+    segment.bytes: 536870912  # 512MB
+    compression.type: gzip
+
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: task-updates
+  namespace: todo-app
+  labels:
+    strimzi.io/cluster: kafka
+spec:
+  partitions: 3
+  replicas: 1
+  config:
+    retention.ms: 604800000  # 7 days
+    segment.bytes: 1073741824  # 1GB
+    compression.type: gzip
+
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: audit-logs
+  namespace: todo-app
+  labels:
+    strimzi.io/cluster: kafka
+spec:
+  partitions: 6  # More partitions for high-volume audit logs
+  replicas: 1
+  config:
+    retention.ms: 2592000000  # 30 days (longer retention for compliance)
+    segment.bytes: 1073741824  # 1GB
+    compression.type: gzip
+    cleanup.policy: compact  # Use compaction to retain latest state per key

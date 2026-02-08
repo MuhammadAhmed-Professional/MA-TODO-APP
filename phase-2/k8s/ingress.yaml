@@ -1,0 +1,118 @@
+# Ingress - API Gateway Routing
+#
+# Routes external traffic to the appropriate services based on path.
+# Uses NGINX Ingress Controller (commonly used with Minikube).
+#
+# Prerequisites:
+# - NGINX Ingress Controller installed in the cluster
+#   (minikube addons enable ingress)
+#
+# For Minikube: Access via minikube IP or using minikube tunnel
+# For cloud: Configure DNS/LoadBalancer as needed
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-app-ingress
+  namespace: todo-app
+  labels:
+    app: todo-app
+  annotations:
+    # NGINX Ingress annotations
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # Enable CORS for API routes
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
+    # WebSocket support (for Next.js HMR in development)
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    # Proxy settings
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+spec:
+  ingressClassName: nginx
+  rules:
+    # Main frontend route
+    - host: todo-app.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
+    # Backend API route
+    - host: todo-app.local
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 80
+    # Health check route (bypasses auth)
+    - host: todo-app.local
+      http:
+        paths:
+          - path: /health
+            pathType: Exact
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 80
+  # Optional: TLS configuration
+  # tls:
+  #   - hosts:
+  #       - todo-app.local
+  #     secretName: todo-app-tls
+
+---
+# Alternative: Simple ingress without host requirements (good for Minikube testing)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-app-ingress-simple
+  namespace: todo-app
+  labels:
+    app: todo-app
+    app.kubernetes.io/component: ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    # Frontend: Everything except /api routes to frontend
+    - http:
+        paths:
+          - path: /()(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
+          # Backend: /api routes to backend
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 80
+          # Health check endpoint
+          - path: /health
+            pathType: Exact
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 80

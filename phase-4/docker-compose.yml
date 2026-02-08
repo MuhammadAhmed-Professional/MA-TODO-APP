@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # Frontend - Next.js 16
+  frontend:
+    build:
+      context: ../phase-2/frontend
+      dockerfile: ../phase-4/docker/frontend.Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+        NEXT_PUBLIC_BETTER_AUTH_URL: http://localhost:3001
+        NEXT_PUBLIC_ENVIRONMENT: development
+    container_name: todo-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3001
+      - NEXT_PUBLIC_ENVIRONMENT=development
+    depends_on:
+      - backend
+      - auth-server
+    networks:
+      - todo-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Backend - FastAPI
+  backend:
+    build:
+      context: ../phase-2/backend
+      dockerfile: ../phase-4/docker/backend.Dockerfile
+    container_name: todo-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+      - ENVIRONMENT=development
+      - PORT=8000
+    networks:
+      - todo-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Auth Server - Express.js with Better Auth
+  auth-server:
+    build:
+      context: ../phase-2/auth-server
+      dockerfile: ../phase-4/docker/auth-server.Dockerfile
+    container_name: todo-auth-server
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
+      - BETTER_AUTH_URL=http://localhost:3001
+      - CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,http://localhost:8000
+      - NODE_ENV=production
+      - PORT=3001
+    networks:
+      - todo-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3001/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  todo-network:
+    driver: bridge
+
+# Note: Database is external (Neon PostgreSQL)
+# Set DATABASE_URL in your .env file

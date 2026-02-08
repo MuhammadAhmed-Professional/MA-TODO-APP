@@ -1,0 +1,22 @@
+# Frontend Service - ClusterIP for internal access
+#
+# Exposes the Next.js frontend within the cluster.
+# External access is provided via the Ingress resource.
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: todo-app
+  labels:
+    app: frontend
+    component: ui
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      protocol: TCP
+  sessionAffinity: None

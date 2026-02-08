@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-server
+  namespace: todo-app
+  labels:
+    app: auth-server
+    app.kubernetes.io/name: auth-server
+    app.kubernetes.io/component: auth
+    app.kubernetes.io/part-of: todo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: auth-server
+  template:
+    metadata:
+      labels:
+        app: auth-server
+        app.kubernetes.io/name: auth-server
+    spec:
+      containers:
+      - name: auth-server
+        image: todo-auth-server:latest
+        imagePullPolicy: Never  # Use local image (Minikube)
+        ports:
+        - containerPort: 3001
+          name: http
+          protocol: TCP
+        env:
+        # ConfigMap values
+        - name: BETTER_AUTH_URL
+          valueFrom:
+            configMapKeyRef:
+              name: todo-config
+              key: BETTER_AUTH_URL
+        - name: CORS_ORIGINS
+          valueFrom:
+            configMapKeyRef:
+              name: todo-config
+              key: CORS_ORIGINS
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: todo-config
+              key: NODE_ENV
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: todo-config
+              key: AUTH_PORT
+        # Secret values
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: todo-secrets
+              key: DATABASE_URL
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: todo-secrets
+              key: JWT_SECRET
+        - name: BETTER_AUTH_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: todo-secrets
+              key: BETTER_AUTH_SECRET
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3001
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+      restartPolicy: Always

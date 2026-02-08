@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recurring-task-service
+  namespace: todo-app
+  labels:
+    app: recurring-task-service
+    tier: backend
+spec:
+  replicas: 1  # Single instance to avoid duplicate processing
+  selector:
+    matchLabels:
+      app: recurring-task-service
+  template:
+    metadata:
+      labels:
+        app: recurring-task-service
+        tier: backend
+      annotations:
+        # Dapr sidecar annotations
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "recurring-task-service"
+        dapr.io/app-port: "8002"
+        dapr.io/app-protocol: "http"
+        dapr.io/log-level: "info"
+        dapr.io/config: "dapr-config"
+    spec:
+      serviceAccountName: recurring-task-service-sa
+      containers:
+        - name: recurring-task-service
+          image: ghcr.io/demolinator/recurring-task-service:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8002
+              protocol: TCP
+          env:
+            # Database connection (from secret)
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: connectionString
+
+            # Kafka configuration
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka-kafka-bootstrap.todo-app.svc.cluster.local:9092"
+
+            # Dapr configuration
+            - name: DAPR_HTTP_PORT
+              value: "3500"
+            - name: DAPR_GRPC_PORT
+              value: "50001"
+
+            # Application settings
+            - name: ENVIRONMENT
+              value: "production"
+            - name: LOG_LEVEL
+              value: "info"
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8002
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8002
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: recurring-task-service-sa
+  namespace: todo-app
+  labels:
+    app: recurring-task-service

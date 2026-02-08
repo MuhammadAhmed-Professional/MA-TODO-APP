@@ -1,0 +1,119 @@
+# Backend Deployment - FastAPI with Dapr Sidecar
+#
+# Dapr annotations enable automatic sidecar injection:
+# - dapr.io/enabled: Enables Dapr sidecar injection
+# - dapr.io/app-id: Unique identifier for Dapr service discovery
+# - dapr.io/app-port: Port the application listens on
+# - dapr.io/config: Dapr configuration (see dapr-config.yaml)
+#
+# Resource limits are optimized for Minikube (adjust for production)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: todo-app
+  labels:
+    app: backend
+    component: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+        component: api
+      annotations:
+        # Dapr sidecar injection annotations
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "todo-backend"
+        dapr.io/app-port: "8000"
+        dapr.io/config: "todo-app-config"
+        dapr.io/log-level: "info"
+        # Enable Kafka pubsub component
+        dapr.io/enable-api-logging: "true"
+    spec:
+      containers:
+        # Backend FastAPI application
+        - name: backend
+          image: todo-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+            - name: dapr-http
+              containerPort: 3500
+              protocol: TCP
+            - name: dapr-grpc
+              containerPort: 50001
+              protocol: TCP
+          env:
+            - name: PORT
+              value: "8000"
+            - name: ENVIRONMENT
+              value: "production"
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: todo-app-secrets
+                  key: database-url
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: todo-app-secrets
+                  key: jwt-secret
+            - name: CORS_ORIGINS
+              value: "http://localhost,http://localhost:3000"
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: todo-app-secrets
+                  key: openai-api-key
+              optional: true
+          envFrom:
+            - configMapRef:
+                name: backend-config
+          # Resource limits for Minikube (adjust based on your cluster)
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          # Health check probes
+          livenessProbe:
+            httpGet:
+              path: /api/health/ping
+              port: 3500
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3500
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /api/health/ping
+              port: 3500
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 12
+      # Dapr sidecar is automatically injected by the Dapr control plane
+      # based on the annotations above

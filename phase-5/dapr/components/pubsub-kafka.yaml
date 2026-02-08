@@ -1,0 +1,54 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: kafka-pubsub
+  namespace: todo-app
+spec:
+  type: pubsub.kafka
+  version: v1
+  metadata:
+    # Kafka broker addresses
+    - name: brokers
+      value: "kafka-kafka-bootstrap.todo-app.svc.cluster.local:9092"
+
+    # Consumer group for this component
+    - name: consumerGroup
+      value: "todo-backend-group"
+
+    # Client ID
+    - name: clientID
+      value: "todo-backend"
+
+    # Authentication (optional - for production with SASL)
+    # - name: authType
+    #   value: "password"
+    # - name: saslUsername
+    #   secretKeyRef:
+    #     name: kafka-credentials
+    #     key: username
+    # - name: saslPassword
+    #   secretKeyRef:
+    #     name: kafka-credentials
+    #     key: password
+
+    # TLS (optional - for production)
+    # - name: authRequired
+    #   value: "true"
+    # - name: skipVerify
+    #   value: "false"
+
+    # Performance tuning
+    - name: maxMessageBytes
+      value: "1024000"  # 1MB
+
+    # Consumer settings
+    - name: consumeRetryInterval
+      value: "200ms"
+
+    # Topic creation (auto-create topics if they don't exist)
+    - name: initialOffset
+      value: "newest"  # or "oldest"
+
+    # Version
+    - name: version
+      value: "2.8.0"

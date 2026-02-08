@@ -1,0 +1,10 @@
+# Railway Configuration for Phase 2 Services
+# This file tells Railway where to find each service
+
+[[services]]
+name = "auth-server"
+source = "phase-2/auth-server"
+
+[[services]]
+name = "backend"
+source = "phase-2/backend"

@@ -1,0 +1,149 @@
+# Production values for todo-backend Helm chart
+# Usage: helm install todo-backend ./todo-backend -f values-production.yaml
+
+# Use production image
+image:
+  registry: ghcr.io
+  repository: your-org/todo-backend
+  tag: "v1.0.0"
+  pullPolicy: IfNotPresent
+
+# Use image pull secret for private registry
+imagePullSecrets:
+  - name: ghcr-login-secret
+
+# Increase replicas for production
+replicaCount: 2
+
+# Application configuration
+app:
+  port: 8000
+  environment: production
+  logLevel: WARNING  # Reduce logging in production
+
+# Enable Dapr with production settings
+dapr:
+  enabled: true
+  appId: "todo-backend-prod"
+  appPort: 8000
+  appProtocol: http
+  enableMetrics: true
+  metricsPort: 9090
+  config: dapr-production-config
+
+# Ingress configuration
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+  hosts:
+    - host: api.todo-app.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: todo-backend-tls
+      hosts:
+        - api.todo-app.example.com
+
+# Production resources
+resources:
+  limits:
+    cpu: 2000m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+# Enable autoscaling
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+# Enable Pod Disruption Budget
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+# Disable default secret creation (use existing secrets)
+secret:
+  create: false
+
+# Reference existing secrets for sensitive values
+envFromSecret:
+  DATABASE_URL:
+    secretName: todo-backend-secret
+    key: database-url
+  OPENAI_API_KEY:
+    secretName: todo-backend-secret
+    key: openai-api-key
+  JWT_SECRET:
+    secretName: todo-backend-secret
+    key: jwt-secret
+
+# Production environment variables
+env:
+  - name: ENVIRONMENT
+    value: "production"
+  - name: CORS_ORIGINS
+    value: "https://todo-app.example.com"
+
+# ConfigMap for non-sensitive values
+configMap:
+  ENVIRONMENT: "production"
+  CORS_ORIGINS: "https://todo-app.example.com"
+  JWT_ALGORITHM: "HS256"
+  ACCESS_TOKEN_EXPIRE_MINUTES: "15"
+  REFRESH_TOKEN_EXPIRE_DAYS: "7"
+
+# Health check probes
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+# Pod anti-affinity for high availability
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - todo-backend
+          topologyKey: kubernetes.io/hostname
+
+# Node selector for production workloads
+nodeSelector:
+  workload: application
+
+# Tolerations for dedicated nodes
+tolerations:
+  - key: "dedicated"
+    operator: "Equal"
+    value: "application"
+    effect: "NoSchedule"

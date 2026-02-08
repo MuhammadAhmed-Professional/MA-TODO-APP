@@ -1,0 +1,100 @@
+apiVersion: dapr.io/v1alpha1
+kind: Configuration
+metadata:
+  name: dapr-config
+  namespace: todo-app
+spec:
+  # Tracing configuration (OpenTelemetry)
+  tracing:
+    samplingRate: "1"  # 100% sampling in dev, reduce in production (e.g., "0.1" for 10%)
+    zipkin:
+      endpointAddress: "http://zipkin.observability.svc.cluster.local:9411/api/v2/spans"
+
+  # Metrics configuration
+  metric:
+    enabled: true
+
+  # Middleware pipeline
+  httpPipeline:
+    handlers:
+      - name: cors
+        type: middleware.http.cors
+        spec:
+          allowedOrigins:
+            - "http://localhost:3000"
+            - "https://todo-app.demolinator.dev"
+          allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          allowedHeaders:
+            - "*"
+          allowCredentials: true
+          maxAge: "3600"
+
+  # Access control (optional - restrict which apps can invoke which services)
+  accessControl:
+    defaultAction: allow
+    trustDomain: "public"
+    policies:
+      # Allow frontend to call backend
+      - appId: todo-frontend
+        defaultAction: allow
+        trustDomain: "public"
+        namespace: "todo-app"
+        operations:
+          - name: "/api/*"
+            httpVerb: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+            action: allow
+
+      # Allow notification service to call backend
+      - appId: notification-service
+        defaultAction: allow
+        trustDomain: "public"
+        namespace: "todo-app"
+
+  # Feature flags
+  features:
+    - name: ServiceInvocation
+      enabled: true
+    - name: Pubsub
+      enabled: true
+    - name: State
+      enabled: true
+    - name: Secrets
+      enabled: true
+
+  # Component deny list (if you want to disable certain components)
+  # components:
+  #   deny:
+  #     - "redis-statestore"
+
+  # Resiliency policies
+  # resiliency:
+  #   policies:
+  #     retries:
+  #       DefaultRetryPolicy:
+  #         policy: constant
+  #         duration: 5s
+  #         maxRetries: 3
+  #     timeouts:
+  #       DefaultTimeoutPolicy:
+  #         timeout: 60s
+  #     circuitBreakers:
+  #       DefaultCircuitBreakerPolicy:
+  #         maxRequests: 1
+  #         timeout: 30s
+  #         trip: consecutiveFailures > 5
+
+  # Name resolution (service discovery)
+  nameResolution:
+    component: "kubernetes"
+    configuration:
+      clusterDomain: "cluster.local"
+
+  # Logging
+  logging:
+    # Log level: debug, info, warn, error
+    level: "info"

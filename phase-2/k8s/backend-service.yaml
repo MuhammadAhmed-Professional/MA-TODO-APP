@@ -1,0 +1,64 @@
+# Backend Service - ClusterIP for internal communication
+#
+# Exposes the FastAPI backend within the cluster.
+# The Dapr sidecar intercepts calls to enable service discovery and pub/sub.
+#
+# Port mappings:
+# - 80 (ClusterIP) -> 8000 (container) - Direct backend access
+# - 3500 (ClusterIP) -> 3500 (container) - Dapr HTTP API
+# - 50001 (ClusterIP) -> 50001 (container) - Dapr gRPC API
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: todo-app
+  labels:
+    app: backend
+    component: api
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    # Main backend API port (proxied through Dapr)
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP
+    # Dapr HTTP API port
+    - name: dapr-http
+      port: 3500
+      targetPort: 3500
+      protocol: TCP
+    # Dapr gRPC API port
+    - name: dapr-grpc
+      port: 50001
+      targetPort: 50001
+      protocol: TCP
+  sessionAffinity: None
+
+---
+# Service for direct Dapr sidecar access (optional)
+# This allows services to communicate via Dapr's service mesh
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-dapr
+  namespace: todo-app
+  labels:
+    app: backend
+    component: dapr
+    dapr.io/app-id: "todo-backend"
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - name: dapr-http
+      port: 3500
+      targetPort: 3500
+      protocol: TCP
+    - name: dapr-grpc
+      port: 50001
+      targetPort: 50001
+      protocol: TCP

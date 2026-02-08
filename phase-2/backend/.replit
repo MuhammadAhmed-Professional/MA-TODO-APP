@@ -1,0 +1,33 @@
+# Replit Configuration for FastAPI Backend
+# Phase III Todo App - AI Chat Interface
+
+# Main command to run the application
+run = "uv run alembic upgrade head && uvicorn src.main:app --host 0.0.0.0 --port 8000"
+
+# Language configuration
+language = "python3"
+
+# Entry point
+entrypoint = "src/main.py"
+
+# Python version
+[nix]
+channel = "stable-24_05"
+
+# Deployment configuration
+[deployment]
+run = ["sh", "-c", "uv run alembic upgrade head && uvicorn src.main:app --host 0.0.0.0 --port 8000"]
+deploymentTarget = "cloudrun"
+
+# Environment variables (non-sensitive)
+[env]
+PYTHON_VERSION = "3.13"
+JWT_ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = "15"
+REFRESH_TOKEN_EXPIRE_DAYS = "7"
+ENVIRONMENT = "production"
+
+# Packages to install
+[[ports]]
+localPort = 8000
+externalPort = 80

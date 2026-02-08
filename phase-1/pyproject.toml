@@ -1,0 +1,13 @@
+[project]
+name = "phase-1"
+version = "0.1.0"
+description = "Phase I: Console Todo App - In-memory Python CLI application"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.1",
+    "pytest-cov>=7.0.0",
+]

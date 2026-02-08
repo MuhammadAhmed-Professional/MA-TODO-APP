@@ -1,0 +1,87 @@
+# Frontend Deployment - Next.js Application
+#
+# Next.js runs in production mode with built assets.
+# Standalone mode ensures minimal container size.
+#
+# Resource limits are optimized for Minikube (adjust for production)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: todo-app
+  labels:
+    app: frontend
+    component: ui
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        component: ui
+    spec:
+      containers:
+        - name: frontend
+          image: todo-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "3000"
+            # Backend API URL (uses internal Kubernetes service discovery)
+            - name: NEXT_PUBLIC_API_URL
+              value: "http://backend.todo-app.svc.cluster.local"
+            - name: NEXT_PUBLIC_ENVIRONMENT
+              value: "production"
+          envFrom:
+            - configMapRef:
+                name: frontend-config
+          # Resource limits for Minikube
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 300m
+              memory: 384Mi
+          # Health check probes
+          # Next.js exposes a health endpoint at /_next/health
+          # For simple liveness, we check the root path
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+              timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 18

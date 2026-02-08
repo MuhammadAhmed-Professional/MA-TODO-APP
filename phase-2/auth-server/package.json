@@ -1,0 +1,39 @@
+{
+  "name": "auth-server",
+  "version": "1.0.0",
+  "description": "Better Auth authentication server for Phase II Todo App",
+  "main": "dist/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "migrate": "better-auth migrate"
+  },
+  "keywords": [
+    "better-auth",
+    "authentication",
+    "jwt"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-auth": "^1.4.6",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.3",
+    "kysely": "^0.28.9",
+    "pg": "^8.16.3",
+    "postgres": "^3.4.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
