@@ -1,10 +1,11 @@
-# Talal's TDA - The Evolution of Todo
+# MA-TODO-APP - The Evolution of Todo
 
 **Hackathon II: Mastering Spec-Driven Development & Cloud Native AI**
 
-[![Live App](https://img.shields.io/badge/Live_App-Vercel-black)](https://talal-s-tda.vercel.app)
-[![Backend API](https://img.shields.io/badge/API-Railway-purple)](https://talal-s-tda-production.up.railway.app/docs)
-[![GitHub](https://img.shields.io/badge/GitHub-Demolinator-blue)](https://github.com/Demolinator/Talal-s-TDA)
+[![Live App](https://img.shields.io/badge/Live_App-Vercel-black)](https://frontend-six-coral-90.vercel.app)
+[![Backend API](https://img.shields.io/badge/API-Railway-purple)](https://backend-production-9a40.up.railway.app/docs)
+[![Auth Server](https://img.shields.io/badge/Auth-Railway-green)](https://auth-server-production-cd0e.up.railway.app/health)
+[![GitHub](https://img.shields.io/badge/GitHub-MA--TODO--APP-blue)](https://github.com/MuhammadAhmed-Professional/MA-TODO-APP)
 
 ---
 
@@ -12,9 +13,10 @@
 
 | Service | URL |
 |---------|-----|
-| **Frontend** | [https://talal-s-tda.vercel.app](https://talal-s-tda.vercel.app) |
-| **Backend API** | [https://talal-s-tda-production.up.railway.app](https://talal-s-tda-production.up.railway.app) |
-| **API Docs** | [https://talal-s-tda-production.up.railway.app/docs](https://talal-s-tda-production.up.railway.app/docs) |
+| **Frontend** | [https://frontend-six-coral-90.vercel.app](https://frontend-six-coral-90.vercel.app) |
+| **Backend API** | [https://backend-production-9a40.up.railway.app](https://backend-production-9a40.up.railway.app) |
+| **Auth Server** | [https://auth-server-production-cd0e.up.railway.app](https://auth-server-production-cd0e.up.railway.app) |
+| **API Docs** | [https://backend-production-9a40.up.railway.app/docs](https://backend-production-9a40.up.railway.app/docs) |
 
 ---
 
@@ -36,7 +38,7 @@ CLI App         Web App          AI Chatbot       Kubernetes       Cloud + Dapr
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                   Frontend (Next.js 16)                       │
-│            https://talal-s-tda.vercel.app                     │
+│         https://frontend-six-coral-90.vercel.app             │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  Dashboard  │  Chat (AI)  │  Voice  │  Urdu/English   │  │
 │  └────────────────────────────────────────────────────────┘  │
@@ -44,7 +46,7 @@ CLI App         Web App          AI Chatbot       Kubernetes       Cloud + Dapr
                        │ HTTPS
 ┌──────────────────────▼───────────────────────────────────────┐
 │                Backend (FastAPI 0.120+)                       │
-│         https://talal-s-tda-production.up.railway.app        │
+│      https://backend-production-9a40.up.railway.app          │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐  │
 │  │ Tasks API│  │ Chat API │  │ Auth API │  │ MCP Server │  │
 │  └──────────┘  └──────────┘  └──────────┘  └────────────┘  │
@@ -64,20 +66,20 @@ CLI App         Web App          AI Chatbot       Kubernetes       Cloud + Dapr
 
 ## Phase Details
 
-### Phase I: Console App (100/100 pts) ✅
+### Phase I: Console App (100/100 pts)
 
 Python CLI Todo app with in-memory storage.
 
 - **5 features**: Add, View, Update, Delete, Mark Complete
 - **87 tests** passing (100% pass rate)
-- **Architecture**: Layered (UI → Operations → Storage)
+- **Architecture**: Layered (UI -> Operations -> Storage)
 - **Tech**: Python 3.13+, UV, pytest
 
 **Run**: `cd phase-1 && uv sync && uv run python -m src.todo_app.main`
 
 ---
 
-### Phase II: Full-Stack Web App (150/150 pts) ✅
+### Phase II: Full-Stack Web App (150/150 pts)
 
 Modern web application with authentication and real-time task management.
 
@@ -86,12 +88,15 @@ Modern web application with authentication and real-time task management.
 - **Database**: Neon Serverless PostgreSQL
 - **Auth**: Better Auth (JWT + HttpOnly cookies)
 - **API**: Full RESTful CRUD (7 endpoints)
-- **Deployed**: Vercel (frontend) + Railway (backend + auth)
+- **Deployed**: Vercel (frontend) + Railway (backend + auth server)
 
 **Run locally**:
 ```bash
 # Backend
 cd phase-2/backend && uv sync && uv run uvicorn src.main:app --reload --port 8000
+
+# Auth Server
+cd phase-2/auth-server && npm install && npm run dev
 
 # Frontend
 cd phase-2/frontend && pnpm install && pnpm dev
@@ -99,7 +104,7 @@ cd phase-2/frontend && pnpm install && pnpm dev
 
 ---
 
-### Phase III: AI Chatbot (200/200 pts) ✅
+### Phase III: AI Chatbot (200/200 pts)
 
 Natural language task management via AI chatbot with MCP tools.
 
@@ -115,7 +120,7 @@ Natural language task management via AI chatbot with MCP tools.
 
 ---
 
-### Phase IV: Kubernetes Deployment (250/250 pts) ✅
+### Phase IV: Kubernetes Deployment (250/250 pts)
 
 Containerized deployment with Helm charts and AI-powered K8s tools.
 
@@ -132,7 +137,7 @@ Containerized deployment with Helm charts and AI-powered K8s tools.
 
 ---
 
-### Phase V: Cloud-Native + Dapr (300/300 pts) ✅
+### Phase V: Cloud-Native + Dapr (300/300 pts)
 
 Event-driven microservices architecture with Dapr and Kafka.
 
@@ -151,7 +156,7 @@ Event-driven microservices architecture with Dapr and Kafka.
 
 ---
 
-## Bonus Features (+700 pts) ✅
+## Bonus Features (+700 pts)
 
 | Bonus | Points | Description |
 |-------|--------|-------------|
@@ -177,14 +182,14 @@ Event-driven microservices architecture with Dapr and Kafka.
 | Events | Kafka (via Dapr Pub/Sub) |
 | Microservices | Dapr (State, Bindings, Secrets, Service Invocation) |
 | CI/CD | GitHub Actions |
-| Hosting | Vercel (frontend), Railway (backend) |
+| Hosting | Vercel (frontend), Railway (backend + auth server) |
 
 ---
 
 ## Project Structure
 
 ```
-Hackathon-ii/
+MA-TODO-APP/
 ├── phase-1/                    # Phase I: CLI Todo App
 │   ├── src/todo_app/           # Source code (6 modules)
 │   └── tests/                  # 87 tests
@@ -225,14 +230,17 @@ Hackathon-ii/
 
 ```bash
 # Clone
-git clone https://github.com/Demolinator/Talal-s-TDA.git
-cd Talal-s-TDA
+git clone https://github.com/MuhammadAhmed-Professional/MA-TODO-APP.git
+cd MA-TODO-APP
 
 # Phase I
 cd phase-1 && uv sync && uv run python -m src.todo_app.main
 
 # Phase II Backend
 cd phase-2/backend && cp .env.example .env && uv sync && uv run uvicorn src.main:app --reload
+
+# Phase II Auth Server
+cd phase-2/auth-server && cp .env.example .env && npm install && npm run dev
 
 # Phase II Frontend
 cd phase-2/frontend && cp .env.local.example .env.local && pnpm install && pnpm dev
@@ -254,4 +262,4 @@ cd phase-2/frontend && cp .env.local.example .env.local && pnpm install && pnpm 
 
 ---
 
-**Author**: Talal | **Repository**: [github.com/Demolinator/Talal-s-TDA](https://github.com/Demolinator/Talal-s-TDA)
+**Author**: Muhammad Ahmed | **Repository**: [github.com/MuhammadAhmed-Professional/MA-TODO-APP](https://github.com/MuhammadAhmed-Professional/MA-TODO-APP)

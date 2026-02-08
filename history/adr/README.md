@@ -1,18 +1,18 @@
 # Architecture Decision Records (ADRs)
 
-This directory contains architectural decisions for the Todo App project across all phases.
+This directory contains architectural decisions for the MA-TODO-APP project across all phases.
 
 ## Active ADRs
 
 | ID | Title | Status | Date | Phase |
 |----|-------|--------|------|-------|
-| [0001](0001-in-memory-storage-for-phase-i-cli.md) | In-Memory Storage for Phase I CLI | ✅ Accepted | 2025-12-11 | Phase I |
-| [0002](0002-uv-package-manager-for-python-dependencies.md) | UV Package Manager for Python Dependencies | ⚠️ Draft | 2025-12-11 | All |
-| [0003](0003-next-js-16-app-router-for-frontend.md) | Next.js 16 App Router for Frontend | ⚠️ Draft | 2025-12-11 | Phase II |
-| [0004](0004-fastapi-and-sqlmodel-backend-stack.md) | FastAPI and SQLModel Backend Stack | ⚠️ Draft | 2025-12-11 | Phase II |
-| [0005](0005-neon-serverless-postgresql-database.md) | Neon Serverless PostgreSQL Database | ⚠️ Draft | 2025-12-11 | Phase II |
-| [0006](0006-jwt-authentication-with-httponly-cookies.md) | JWT Authentication with HttpOnly Cookies | ⚠️ Draft | 2025-12-11 | Phase II |
-| [0007](0007-monorepo-with-phase-wise-organization.md) | Monorepo with Phase-Wise Organization | ✅ Accepted | 2025-12-11 | All |
+| [0001](0001-in-memory-storage-for-phase-i-cli.md) | In-Memory Storage for Phase I CLI | Accepted | 2025-12-11 | Phase I |
+| [0002](0002-uv-package-manager-for-python-dependencies.md) | UV Package Manager for Python Dependencies | Draft | 2025-12-11 | All |
+| [0003](0003-next-js-16-app-router-for-frontend.md) | Next.js 16 App Router for Frontend | Draft | 2025-12-11 | Phase II |
+| [0004](0004-fastapi-and-sqlmodel-backend-stack.md) | FastAPI and SQLModel Backend Stack | Draft | 2025-12-11 | Phase II |
+| [0005](0005-neon-serverless-postgresql-database.md) | Neon Serverless PostgreSQL Database | Draft | 2025-12-11 | Phase II |
+| [0006](0006-jwt-authentication-with-httponly-cookies.md) | JWT Authentication with HttpOnly Cookies | Draft | 2025-12-11 | Phase II |
+| [0007](0007-monorepo-with-phase-wise-organization.md) | Monorepo with Phase-Wise Organization | Accepted | 2025-12-11 | All |
 
 ## Decision Categories
 
@@ -31,11 +31,11 @@ This directory contains architectural decisions for the Todo App project across 
 
 ## Status Definitions
 
-- ✅ **Accepted**: Decision implemented and validated
-- ⚠️ **Draft**: ADR created, needs detailed content
-- 🔄 **Proposed**: Under review
-- ❌ **Rejected**: Decision not adopted
-- 📋 **Superseded**: Replaced by newer ADR
+- **Accepted**: Decision implemented and validated
+- **Draft**: ADR created, needs detailed content
+- **Proposed**: Under review
+- **Rejected**: Decision not adopted
+- **Superseded**: Replaced by newer ADR
 
 ## Next Steps
 

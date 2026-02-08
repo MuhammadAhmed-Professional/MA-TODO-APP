@@ -1,7 +1,7 @@
 # Phase II Frontend - Next.js 16
 
-**Status**: ✅ Deployed
-**Live**: [https://talal-s-tda.vercel.app](https://talal-s-tda.vercel.app)
+**Status**: Deployed
+**Live**: [https://frontend-six-coral-90.vercel.app](https://frontend-six-coral-90.vercel.app)
 **Stack**: Next.js 16.0.10, React 19, TypeScript 5, Tailwind CSS, shadcn/ui
 
 ---

@@ -1,19 +1,20 @@
 # Phase II: Full-Stack Web App + Phase III: AI Chatbot
 
-**Status**: ✅ Complete (100%)
-**Live**: [https://talal-s-tda.vercel.app](https://talal-s-tda.vercel.app)
-**API**: [https://talal-s-tda-production.up.railway.app/docs](https://talal-s-tda-production.up.railway.app/docs)
+**Status**: Complete (100%)
+**Live**: [https://frontend-six-coral-90.vercel.app](https://frontend-six-coral-90.vercel.app)
+**API**: [https://backend-production-9a40.up.railway.app/docs](https://backend-production-9a40.up.railway.app/docs)
+**Auth**: [https://auth-server-production-cd0e.up.railway.app/health](https://auth-server-production-cd0e.up.railway.app/health)
 
 ---
 
 ## Architecture
 
-| Service | Port | Technology | Deployment |
-|---------|------|-----------|------------|
-| **Frontend** | 3000 | Next.js 16, React 19, TypeScript | Vercel |
-| **Backend** | 8000 | FastAPI 0.120+, SQLModel | Railway |
-| **Auth Server** | 3001 | Express, Better Auth | Railway |
-| **Database** | - | Neon Serverless PostgreSQL | Neon |
+| Service | Port | Technology | Deployment | URL |
+|---------|------|-----------|------------|-----|
+| **Frontend** | 3000 | Next.js 16, React 19, TypeScript | Vercel | [frontend-six-coral-90.vercel.app](https://frontend-six-coral-90.vercel.app) |
+| **Backend** | 8000 | FastAPI 0.120+, SQLModel | Railway | [backend-production-9a40.up.railway.app](https://backend-production-9a40.up.railway.app) |
+| **Auth Server** | 3001 | Express, Better Auth | Railway | [auth-server-production-cd0e.up.railway.app](https://auth-server-production-cd0e.up.railway.app) |
+| **Database** | - | Neon Serverless PostgreSQL | Neon | - |
 
 ---
 

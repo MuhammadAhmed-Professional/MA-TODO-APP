@@ -1,12 +1,14 @@
 # Better Auth Server
 
-**Authentication microservice for Phase II Todo Application**
+**Authentication microservice for MA-TODO-APP**
 
 This is a standalone Node.js/TypeScript server that handles all authentication concerns using [Better Auth](https://better-auth.com). It works in tandem with the FastAPI backend, providing a clean separation of concerns:
 
 - **Better Auth Server**: User authentication (signup, login, logout, sessions)
 - **FastAPI Backend**: Business logic (task CRUD operations)
 - **Shared**: Same PostgreSQL database, compatible JWT tokens
+
+**Live**: [https://auth-server-production-cd0e.up.railway.app/health](https://auth-server-production-cd0e.up.railway.app/health)
 
 ---
 
@@ -57,7 +59,7 @@ Returns server status and version.
 
 ### Sign Up (Create Account)
 ```http
-POST /auth/sign-up
+POST /api/auth/sign-up/email
 Content-Type: application/json
 
 {
@@ -67,11 +69,11 @@ Content-Type: application/json
 }
 ```
 
-**Response**: User object + sets `auth_token` cookie
+**Response**: User object + session token
 
 ### Sign In (Login)
 ```http
-POST /auth/sign-in/email
+POST /api/auth/sign-in/email
 Content-Type: application/json
 
 {
@@ -80,11 +82,11 @@ Content-Type: application/json
 }
 ```
 
-**Response**: User object + sets `auth_token` cookie
+**Response**: User object + session token
 
 ### Sign Out (Logout)
 ```http
-POST /auth/sign-out
+POST /api/auth/sign-out
 Cookie: auth_token=<token>
 ```
 
@@ -92,7 +94,7 @@ Cookie: auth_token=<token>
 
 ### Get Session (Current User)
 ```http
-GET /auth/get-session
+GET /api/auth/get-session
 Cookie: auth_token=<token>
 ```
 
@@ -107,25 +109,27 @@ Cookie: auth_token=<token>
 ```
 Frontend (Next.js)
     │
-    ├─► Better Auth Server (Port 3001)
-    │   • POST /auth/sign-up
-    │   • POST /auth/sign-in/email
-    │   • POST /auth/sign-out
-    │   • GET /auth/get-session
-    │   └─► Creates JWT token in cookie
-    │
     └─► FastAPI Backend (Port 8000)
-        • GET /api/tasks
-        • POST /api/tasks
-        • PUT /api/tasks/{id}
-        • DELETE /api/tasks/{id}
-        └─► Validates JWT token from cookie
+        │   https://backend-production-9a40.up.railway.app
+        │   • POST /api/auth/sign-up/email  ──► proxied to Auth Server
+        │   • POST /api/auth/sign-in/email  ──► proxied to Auth Server
+        │   • GET /api/tasks
+        │   • POST /api/tasks
+        │   • PUT /api/tasks/{id}
+        │   • DELETE /api/tasks/{id}
+        │   └─► Validates JWT token from session
+        │
+        └─► Better Auth Server (Port 3001)
+            https://auth-server-production-cd0e.up.railway.app
+            • Handles user creation and authentication
+            • Manages sessions in PostgreSQL
+            └─► Returns JWT token to backend
 ```
 
 ### Database Schema
 
 **Better Auth Tables**:
-- `user`: User accounts (id, name, email, emailVerified, createdAt, updatedAt, hashed_password)
+- `user`: User accounts (id, name, email, emailVerified, createdAt, updatedAt)
 - `session`: Active sessions (id, token, userId, expiresAt, ipAddress, userAgent)
 - `account`: OAuth provider accounts (for future social auth)
 - `verification`: Email verification tokens (for future email verification)
@@ -134,9 +138,9 @@ Frontend (Next.js)
 - `tasks`: Todo tasks (id, title, description, is_complete, user_id, created_at, updated_at)
 
 **Foreign Keys**:
-- `tasks.user_id` → `user.id`
-- `session.userId` → `user.id`
-- `account.userId` → `user.id`
+- `tasks.user_id` -> `user.id`
+- `session.userId` -> `user.id`
+- `account.userId` -> `user.id`
 
 ---
 
@@ -148,8 +152,8 @@ Frontend (Next.js)
 |----------|-------------|---------|
 | `DATABASE_URL` | Neon PostgreSQL connection string | `postgresql://user:pass@host/db?sslmode=require` |
 | `BETTER_AUTH_SECRET` | JWT signing secret (must match backend) | `your-256-bit-secret-key` |
-| `BETTER_AUTH_URL` | Server base URL | `http://localhost:3001` |
-| `CORS_ORIGINS` | Allowed frontend origins (comma-separated) | `http://localhost:3000,http://127.0.0.1:3000` |
+| `BETTER_AUTH_URL` | Server base URL | `https://auth-server-production-cd0e.up.railway.app` |
+| `CORS_ORIGINS` | Allowed origins (comma-separated) | `https://frontend-six-coral-90.vercel.app,https://backend-production-9a40.up.railway.app` |
 | `PORT` | Server port | `3001` |
 | `NODE_ENV` | Environment | `development` or `production` |
 
@@ -213,29 +217,27 @@ Creates/updates database tables. Safe to run multiple times (idempotent).
 
 **Sign Up**:
 ```bash
-curl -X POST http://localhost:3001/auth/sign-up \
+curl -X POST https://auth-server-production-cd0e.up.railway.app/api/auth/sign-up/email \
   -H "Content-Type: application/json" \
-  -d '{"name":"Test User","email":"test@example.com","password":"password123"}' \
-  -c cookies.txt
+  -d '{"name":"Test User","email":"test@example.com","password":"password123"}'
 ```
 
 **Sign In**:
 ```bash
-curl -X POST http://localhost:3001/auth/sign-in/email \
+curl -X POST https://auth-server-production-cd0e.up.railway.app/api/auth/sign-in/email \
   -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"password123"}' \
-  -c cookies.txt
+  -d '{"email":"test@example.com","password":"password123"}'
 ```
 
 **Get Session**:
 ```bash
-curl http://localhost:3001/auth/get-session \
+curl https://auth-server-production-cd0e.up.railway.app/api/auth/get-session \
   -b cookies.txt
 ```
 
 **Sign Out**:
 ```bash
-curl -X POST http://localhost:3001/auth/sign-out \
+curl -X POST https://auth-server-production-cd0e.up.railway.app/api/auth/sign-out \
   -b cookies.txt
 ```
 
@@ -266,13 +268,15 @@ curl -X POST http://localhost:3001/auth/sign-out \
 
 ## Deployment
 
-### Railway / Render / Fly.io
+### Railway
 
-1. **Set Environment Variables** in dashboard:
+This service is deployed on Railway at: [https://auth-server-production-cd0e.up.railway.app](https://auth-server-production-cd0e.up.railway.app)
+
+1. **Set Environment Variables** in Railway dashboard:
    - `DATABASE_URL`
-   - `BETTER_AUTH_SECRET` (same as backend)
+   - `BETTER_AUTH_SECRET` (same as backend `JWT_SECRET`)
    - `BETTER_AUTH_URL` (your deployed URL)
-   - `CORS_ORIGINS` (your frontend URL)
+   - `CORS_ORIGINS` (frontend + backend URLs)
    - `NODE_ENV=production`
 
 2. **Build Command**:
@@ -348,7 +352,7 @@ CMD ["npm", "start"]
 
 - **Better Auth Docs**: https://better-auth.com/docs
 - **Better Auth GitHub**: https://github.com/better-auth/better-auth
-- **Integration Plan**: See `../BETTER_AUTH_INTEGRATION_PLAN.md`
+- **MA-TODO-APP GitHub**: https://github.com/MuhammadAhmed-Professional/MA-TODO-APP
 
 ---
 
@@ -356,6 +360,5 @@ CMD ["npm", "start"]
 
 For issues related to:
 - **Better Auth**: See [Better Auth GitHub Issues](https://github.com/better-auth/better-auth/issues)
-- **Integration**: See `../BETTER_AUTH_INTEGRATION_PLAN.md`
 - **FastAPI Backend**: See `../backend/CLAUDE.md`
 - **Frontend**: See `../frontend/CLAUDE.md`

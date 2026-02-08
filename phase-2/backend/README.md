@@ -313,6 +313,6 @@ For issues or questions:
 
 ---
 
-**Last Updated**: December 13, 2025
-**Maintainer**: Talal
+**Last Updated**: February 2026
+**Maintainer**: Muhammad Ahmed
 **License**: MIT
